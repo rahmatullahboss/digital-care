@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ব্যবসা প্রতিষ্ঠানের জন্য AI-নির্ভর ডিজিটাল মার্কেটিং, ২৪/৭ সেলস মেশিন ওয়েবসাইট, স্বয়ংক্রিয় লিড জেনারেশন ও কখনো লিড হারাবেন না AI এজেন্ট">
+    <title>ডিজিটাল কেয়ার সলিউশনস | ব্যবসা প্রতিষ্ঠানের জন্য আধুনিক ডিজিটাল মার্কেটিং</title>
+    <link rel="icon" type="image/webp" href="/Digital care favicon.webp">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Hind Siliguri for Bengali -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Applying Bengali font to the entire page */
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        #industry-text {
+            display: inline-block;
+            transition: transform 0.6s;
+        }
+
+        #industry-text.flip {
+            transform: rotateX(360deg);
+        }
+
+        /* Scroll Animation CSS (FIXED) */
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(30px);
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* This ensures that transform utilities from Tailwind are correctly applied with the animation */
+        .animate-on-scroll.is-visible {
+            transform: var(--tw-transform, translateY(0));
+        }
+
+        @media (min-width: 1024px) { /* lg breakpoint */
+          .defocused {
+            transform: scale(0.85) !important;
+            opacity: 0.6 !important;
+            filter: blur(1px);
+            transition: all 0.4s ease-in-out;
+          }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white/30 backdrop-blur-md border border-white/20 shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" id="site-name" class="text-2xl font-bold text-teal-600">ডিজিটাল কেয়ার</a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="about.html" class="text-gray-600 hover:text-teal-600">আমাদের সম্পর্কে</a>
+                <a href="services.html" class="text-gray-600 hover:text-teal-600">সার্ভিসসমূহ</a>
+                <a href="#pricing" class="text-gray-600 hover:text-teal-600">সলিউশন</a>
+                <a href="blog.html" class="text-gray-600 hover:text-teal-600">ব্লগ</a>
+                <a href="clinic-demo.html" class="text-gray-600 hover:text-teal-600">ক্লিনিক ডেমো</a>
+                <a href="affiliate.html" class="text-gray-600 hover:text-teal-600">অ্যাফিলিয়েট</a>
+                <a href="#process" class="text-gray-600 hover:text-teal-600">আমাদের প্রক্রিয়া</a>
+                <a href="#faq" class="text-gray-600 hover:text-teal-600">জিজ্ঞাসা</a>
+                <a href="#contact" class="bg-teal-500 text-white px-4 py-2 rounded-full hover:bg-teal-600 transition duration-300">যোগাযোগ করুন</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-600 focus:outline-none" aria-label="মেনু খুলুন বা বন্ধ করুন" aria-expanded="false">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden px-6 pb-4 space-y-2">
+            <a href="about.html" class="block text-gray-600 hover:text-teal-600">আমাদের সম্পর্কে</a>
+            <a href="services.html" class="block text-gray-600 hover:text-teal-600">সার্ভিসসমূহ</a>
+            <a href="#pricing" class="block text-gray-600 hover:text-teal-600">সলিউশন</a>
+            <a href="blog.html" class="block text-gray-600 hover:text-teal-600">ব্লগ</a>
+            <a href="clinic-demo.html" class="block text-gray-600 hover:text-teal-600">ক্লিনিক ডেমো</a>
+            <a href="affiliate.html" class="block text-gray-600 hover:text-teal-600">অ্যাফিলিয়েট</a>
+            <a href="#process" class="block text-gray-600 hover:text-teal-600">আমাদের প্রক্রিয়া</a>
+            <a href="#faq" class="block text-gray-600 hover:text-teal-600">জিজ্ঞাসা</a>
+            <a href="#contact" class="block bg-teal-500 text-white text-center px-4 py-2 rounded-full hover:bg-teal-600 transition duration-300">যোগাযোগ করুন</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="bg-white py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">
+                    আপনার <span id="industry-text" class="inline-block bg-teal-100 text-teal-700 px-3 py-1 rounded-full">ব্যবসার</span> <span class="text-teal-600">ডিজিটাল রূপান্তর</span> এখানেই শুরু
+                </h1>
+                <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">
+                    আমরা আপনার ব্যবসার জন্য আধুনিক ওয়েবসাইট, ই-কমার্স সলিউশন, ফেসবুক অটোমেশন এবং ২৪/৭ কাস্টমার সার্ভিস AI এজেন্ট তৈরি করি, যা গ্রাহকদের সাথে আপনার যোগাযোগ সহজ করে এবং ব্র্যান্ড ভ্যালু বাড়ায়।
+                </p>
+                <a href="#contact" class="mt-8 inline-block bg-teal-500 text-white text-lg font-semibold px-8 py-4 rounded-full hover:bg-teal-600 transition duration-300">বিনামূল্যে পরামর্শ নিন</a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">আমাদের সার্ভিসসমূহ</h2>
+                    <p class="text-gray-600 mt-2">আপনার প্রতিষ্ঠানের ডিজিটাল রূপান্তরে আমরা যে সেবাগুলো দিয়ে থাকি</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Service Card 1 -->
+                    <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
+                        <div class="flex justify-center mb-4">
+                             <svg class="w-16 h-16 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2"><a href="services/web-development.html" class="hover:text-teal-600">আপনার ২৪/৭ সেলস মেশিন</a></h3>
+                        <p class="text-gray-600">আমরা শুধু ওয়েবসাইট বানাই না; আমরা এমন একটি স্বয়ংক্রিয় সিস্টেম তৈরি করি যা আপনার জন্য ২৪/৭ গ্রাহক খুঁজে বের করে এবং তাদের ক্রেতায় পরিণত করে।</p>
+                    </div>
+                    <!-- Service Card 2 -->
+                    <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
+                        <div class="flex justify-center mb-4">
+                            <svg class="w-16 h-16 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2"><a href="services/facebook-automation.html" class="hover:text-teal-600">স্বয়ংক্রিয় লিড জেনারেশন</a></h3>
+                        <p class="text-gray-600">ফেসবুকের হাজার হাজার সম্ভাব্য গ্রাহকের মধ্য থেকে আসল ক্রেতাদের খুঁজে বের করার কাজটি আমাদের AI করবে। প্রতিটি মেসেজ, প্রতিটি কমেন্ট থেকে সম্ভাব্য লিড সংগ্রহ করে আপনার সেলস পাইপলাইনকে সচল রাখুন।</p>
+                    </div>
+                    <!-- Service Card 3 -->
+                    <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
+                        <div class="flex justify-center mb-4">
+                            <svg class="w-16 h-16 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2"><a href="services/ai-chatbot.html" class="hover:text-teal-600">কখনো আর একটিও লিড হারাবেন না</a></h3>
+                        <p class="text-gray-600">গভীর রাতে বা ছুটির দিনে আসা গ্রাহকদের আর অপেক্ষা করতে হবে না। আমাদের AI এজেন্ট প্রতিটি গ্রাহককে তাৎক্ষণিক উত্তর দেবে, তাদের তথ্য সংগ্রহ করবে এবং নিশ্চিত করবে যে প্রতিটি সুযোগই বিক্রিতে পরিণত হয়।</p>
+                    </div>
+                    <!-- Service Card 4 -->
+                    <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
+                        <div class="flex justify-center mb-4">
+                             <svg class="w-16 h-16 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2"><a href="services/digital-marketing.html" class="hover:text-teal-600">ডেটা-ভিত্তিক গ্রোথ স্ট্র্যাটেজি</a></h3>
+                        <p class="text-gray-600">অনুমানের ওপর ভিত্তি করে আর মার্কেটিং নয়। আমরা ডেটা এবং অ্যানালিটিক্স ব্যবহার করে এমন বিজ্ঞাপন কৌশল তৈরি করি যা প্রতিটি টাকায় সর্বোচ্চ রিটার্ন (ROI) নিশ্চিত করে।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section (New) -->
+        <section id="why-us" class="bg-white py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">কেন আমাদের বেছে নেবেন?</h2>
+                    <p class="text-gray-600 mt-2">আমরা শুধু সার্ভিস দিই না, আমরা আপনার সফলতার অংশীদার হই</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 animate-on-scroll">
+                        <i class="fas fa-brain text-4xl text-teal-500 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">AI প্রযুক্তিতে বিশেষজ্ঞ</h3>
+                        <p class="text-gray-600">আমরা খরচ কমিয়ে লাভ বাড়ানোর প্রযুক্তি তৈরি করি।</p>
+                    </div>
+                    <div class="text-center p-6 animate-on-scroll">
+                        <i class="fas fa-headset text-4xl text-teal-500 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">ডেডিকেটেড সাপোর্ট</h3>
+                        <p class="text-gray-600">আমরা আপনার গ্রোথ পার্টনার, শুধু একজন ভেন্ডর নই।</p>
+                    </div>
+                    <div class="text-center p-6 animate-on-scroll">
+                        <i class="fas fa-chart-line text-4xl text-teal-500 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">ফলাফল-ভিত্তিক কৌশল</h3>
+                        <p class="text-gray-600">আমরা এমন সিস্টেম তৈরি করি যা সরাসরি আপনার ব্যাংক একাউন্টে প্রভাব ফেলে।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study Section -->
+        <section id="case-study" class="bg-slate-50 py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">আমাদের কাজ বাস্তবে দেখুন</h2>
+                    <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
+                        আমরা শুধু কথার প্রতিশ্রুতি দিই না, আমরা কাজের মাধ্যমে ফলাফল দেখাই। এই ৪ মিনিটের ভিডিওতে দেখুন কীভাবে আমরা একটি ই-কমার্স ব্যবসার জন্য একটি সম্পূর্ণ অটোমেটেড সিস্টেম তৈরি করেছি।
+                    </p>
+                </div>
+
+                <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+                    <iframe src="https://www.loom.com/embed/d7f841578f3344cda179023e683d2e2e?sid=3d051e6d-96f8-4c9a-80a2-77b99122fbd1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                </div>
+
+                <div class="text-center mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a
+                        href="https://online-bazar.top/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-block bg-gray-800 text-white font-semibold px-6 py-3 rounded-full hover:bg-gray-700 transition duration-300">
+                        <i class="fas fa-external-link-alt mr-2"></i> লাইভ ডেমো দেখুন
+                    </a>
+                    <a
+                        href="https://www.facebook.com/onlinebazarbarguna"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-blue-700 transition duration-300">
+                        <i class="fab fa-facebook-f mr-2"></i> ফেসবুক পেজ ভিজিট করুন
+                    </a>
+                    <a
+                        href="clinic-demo.html"
+                        class="inline-block bg-teal-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-teal-700 transition duration-300">
+                        <i class="fas fa-play-circle mr-2"></i> ক্লিনিক ডেমো দেখুন
+                    </a>
+                </div>
+
+                <div class="text-center mt-12">
+                    <a href="#contact" class="inline-block bg-teal-500 text-white text-lg font-semibold px-8 py-4 rounded-full hover:bg-teal-600 transition duration-300">আপনার ব্যবসার জন্য এমন সমাধান চান?</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section (Updated) -->
+        <section id="pricing" class="bg-white py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">আমাদের সলিউশনসমূহ</h2>
+                    <p class="text-gray-600 mt-2">আপনার প্রয়োজনের সঠিক সলিউশন পেতে আমাদের সাথে কথা বলুন</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto items-center">
+                    <div class="animate-on-scroll">
+                        <div id="pricing-card-1" class="bg-white border border-gray-200 p-8 rounded-lg lg:scale-100 transition-all duration-300 hover:scale-105">
+                            <h3 class="text-2xl font-bold text-center">ফাউন্ডেশন প্যাকেজ</h3>
+                            <p class="text-center text-gray-500 mt-2">ছোট ব্যবসা বা স্টার্টআপের জন্য</p>
+                            <div class="text-center my-6">
+                                <p class="text-3xl font-bold">ROI ভিত্তিক প্রাইসিং</p>
+                                <p class="text-sm text-gray-600 mt-2">বিস্তারিত জানতে কথা বলুন</p>
+                            </div>
+                            <ul class="space-y-3 text-gray-600">
+                                <li><i class="fas fa-check-circle text-teal-500 mr-2"></i>ফেসবুক পেজ সেটআপ</li>
+                                <li><i class="fas fa-check-circle text-teal-500 mr-2"></i>২৪/৭ গ্রাহক অনুসন্ধান ম্যানেজমেন্ট</li>
+                                <li><i class="fas fa-times-circle text-red-400 mr-2"></i>অনলাইন সেলস ও লিড কালেকশন প্ল্যাটফর্ম</li>
+                                <li><i class="fas fa-times-circle text-red-400 mr-2"></i>অ্যাডভান্সড AI এজেন্ট</li>
+                            </ul>
+                            <button data-package="ফাউন্ডেশন প্যাকেজ" class="order-btn w-full mt-8 bg-white border border-teal-500 text-teal-500 py-3 rounded-full font-semibold hover:bg-teal-500 hover:text-white transition-colors duration-300">বিনামূল্যে স্ট্র্যাটেজি সেশন বুক করুন</button>
+                        </div>
+                    </div>
+
+                    <div class="animate-on-scroll">
+                        <div id="pricing-card-main" class="bg-teal-600 text-white p-8 rounded-lg shadow-2xl lg:scale-105 transition-all duration-300 hover:scale-105 lg:hover:scale-110 lg:z-10 relative">
+                            <div class="flex justify-center">
+                                <span class="bg-white text-teal-600 text-xs font-bold px-3 py-1 rounded-full uppercase">সেরা প্যাকেজ</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-center mt-4">গ্রোথ ইঞ্জিন প্যাকেজ</h3>
+                            <p class="text-center text-teal-200 mt-2">মাঝারি ব্যবসা বা ই-কমার্স সাইটের জন্য</p>
+                            <div class="text-center my-6">
+                                <p class="text-3xl font-bold">ROI ভিত্তিক প্রাইসিং</p>
+                                <p class="text-sm text-teal-200 mt-2">বিস্তারিত জানতে কথা বলুন</p>
+                            </div>
+                            <ul class="space-y-3 text-teal-100">
+                                <li><i class="fas fa-check-circle text-white mr-2"></i>ফেসবুক পেজ ও অটোমেশন</li>
+                                <li><i class="fas fa-check-circle text-white mr-2"></i>অনলাইন সেলস ও লিড কালেকশন প্ল্যাটফর্ম</li>
+                                <li><i class="fas fa-check-circle text-white mr-2"></i>২৪/৭ কাস্টমার সার্ভিস AI এজেন্ট</li>
+                                <li><i class="fas fa-check-circle text-white mr-2"></i>গুগল ম্যাপস ইন্টিগ্রেশন</li>
+                                <li><i class="fas fa-check-circle text-white mr-2"></i>SEO অপটিমাইজেশন</li>
+                                <li><i class="fas fa-check-circle text-white mr-2"></i>মাসিক রিপোর্টিং</li>
+                            </ul>
+                            <button data-package="গ্রোথ ইঞ্জিন প্যাকেজ" class="order-btn w-full mt-8 bg-white text-teal-600 py-3 rounded-full font-semibold hover:bg-teal-100 transition-colors duration-300">বিনামূল্যে স্ট্র্যাটেজি সেশন বুক করুন</button>
+                        </div>
+                    </div>
+
+                    <div class="animate-on-scroll">
+                        <div id="pricing-card-3" class="bg-white border border-gray-200 p-8 rounded-lg lg:scale-100 transition-all duration-300 hover:scale-105">
+                            <h3 class="text-2xl font-bold text-center">মার্কেট লিডার প্যাকেজ</h3>
+                            <p class="text-center text-gray-500 mt-2">বড় প্রতিষ্ঠান বা কর্পোরেট কোম্পানির জন্য</p>
+                            <div class="text-center my-6">
+                                 <p class="text-3xl font-bold">ROI ভিত্তিক প্রাইসিং</p>
+                                <p class="text-sm text-gray-600 mt-2">বিস্তারিত জানতে কথা বলুন</p>
+                            </div>
+                            <ul class="space-y-3 text-gray-600">
+                                 <li><i class="fas fa-check-circle text-teal-500 mr-2"></i>সকল গ্রোথ ইঞ্জিন প্যাকেজ ফিচার</li>
+                                 <li><i class="fas fa-check-circle text-teal-500 mr-2"></i>স্কেলেবল অনলাইন সেলস প্ল্যাটফর্ম</li>
+                                 <li><i class="fas fa-check-circle text-teal-500 mr-2"></i>অ্যাডভান্সড CRM ইন্টিগ্রেশন</li>
+                                 <li><i class="fas fa-check-circle text-teal-500 mr-2"></i>ডেডিকেটেড সাপোর্ট</li>
+                            </ul>
+                             <button data-package="মার্কেট লিডার প্যাকেজ" class="order-btn w-full mt-8 bg-white border border-teal-500 text-teal-500 py-3 rounded-full font-semibold hover:bg-teal-500 hover:text-white transition-colors duration-300">বিনামূল্যে স্ট্র্যাটেজি সেশন বুক করুন</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process" class="py-20 bg-slate-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">আমাদের কাজের প্রক্রিয়া</h2>
+                    <p class="text-gray-600 mt-2">আমরা একটি সহজ এবং স্বচ্ছ প্রক্রিয়ায় কাজ করি</p>
+                </div>
+                <div class="relative">
+                    <!-- Dotted line -->
+                    <div class="hidden md:block absolute top-8 left-0 w-full h-0.5 bg-teal-200"></div>
+                    <div class="relative grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                        <div class="p-4 animate-on-scroll">
+                            <div class="flex justify-center items-center w-16 h-16 mx-auto bg-white border-2 border-teal-500 rounded-full text-2xl font-bold text-teal-500 mb-4 z-10">১</div>
+                            <h3 class="text-xl font-semibold mb-2">আলোচনা ও পরিকল্পনা</h3>
+                            <p class="text-gray-600">আপনার প্রয়োজনগুলো বুঝতে আমরা একটি মিটিং করি এবং একটি কার্যকর পরিকল্পনা তৈরি করি।</p>
+                        </div>
+                        <div class="p-4 animate-on-scroll">
+                            <div class="flex justify-center items-center w-16 h-16 mx-auto bg-white border-2 border-teal-500 rounded-full text-2xl font-bold text-teal-500 mb-4 z-10">২</div>
+                            <h3 class="text-xl font-semibold mb-2">চুক্তি ও অনবোর্ডিং</h3>
+                            <p class="text-gray-600">পরিকল্পনা অনুযায়ী আমরা একটি চুক্তিপত্র তৈরি করি এবং কাজ শুরু করার জন্য প্রয়োজনীয় তথ্য সংগ্রহ করি।</p>
+                        </div>
+                        <div class="p-4 animate-on-scroll">
+                            <div class="flex justify-center items-center w-16 h-16 mx-auto bg-white border-2 border-teal-500 rounded-full text-2xl font-bold text-teal-500 mb-4 z-10">৩</div>
+                            <h3 class="text-xl font-semibold mb-2">ডেভেলপমেন্ট ও বাস্তবায়ন</h3>
+                            <p class="text-gray-600">আমাদের দক্ষ টিম আপনার ওয়েবসাইট এবং AI এজেন্ট তৈরি করে এবং আপনার ডিজিটাল প্ল্যাটফর্মগুলো প্রস্তুত করে।</p>
+                        </div>
+                        <div class="p-4 animate-on-scroll">
+                            <div class="flex justify-center items-center w-16 h-16 mx-auto bg-white border-2 border-teal-500 rounded-full text-2xl font-bold text-teal-500 mb-4 z-10">৪</div>
+                            <h3 class="text-xl font-semibold mb-2">রিপোর্টিং ও সাপোর্ট</h3>
+                            <p class="text-gray-600">প্রতি মাসে আমরা কাজের অগ্রগতির রিপোর্ট প্রদান করি এবং যে কোনো প্রয়োজনে সার্বক্ষণিক সাপোর্ট দিয়ে থাকি।</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section (New) -->
+        <section id="faq" class="bg-white py-20">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">সাধারণ জিজ্ঞাসাসমূহ</h2>
+                    <p class="text-gray-600 mt-2">আপনার মনে থাকা কিছু সাধারণ প্রশ্নের উত্তর</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-gray-100 rounded-lg">
+                        <button class="w-full flex justify-between items-center p-4 font-semibold text-left">
+                            AI এজেন্ট কি সত্যিই কার্যকর?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="p-4 hidden text-gray-600">
+                            হ্যাঁ, আমাদের AI এজেন্ট সাধারণ প্রশ্নগুলোর (যেমন: ডাক্তার কখন বসেন?, খরচ কত?, অ্যাপয়েন্টমেন্ট কীভাবে নেব?) উত্তর স্বয়ংক্রিয়ভাবে দিতে পারে। এতে আপনার কর্মীদের কাজের চাপ কমে এবং গ্রাহকরা দ্রুত সেবা পায়।
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 rounded-lg">
+                        <button class="w-full flex justify-between items-center p-4 font-semibold text-left">
+                            ওয়েবসাইট তৈরি করতে কতদিন সময় লাগে?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="p-4 hidden text-gray-600">
+                           প্যাকেজ এবং আপনার চাহিদার উপর নির্ভর করে সাধারণত একটি সম্পূর্ণ ওয়েবসাইট তৈরি করতে ২ থেকে ৪ সপ্তাহ সময় লাগে।
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 rounded-lg">
+                        <button class="w-full flex justify-between items-center p-4 font-semibold text-left">
+                           মাসিক ফি কেন দিতে হয়?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="p-4 hidden text-gray-600">
+                            মাসিক ফি মূলত ওয়েবসাইট ও AI এজেন্টের রক্ষণাবেক্ষণ, হোস্টিং, টেকনিক্যাল সাপোর্ট এবং নিয়মিত আপডেটের জন্য নেওয়া হয়, যাতে আপনার ডিজিটাল প্ল্যাটফর্মগুলো সবসময় সচল এবং সুরক্ষিত থাকে।
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 rounded-lg">
+                        <button class="w-full flex justify-between items-center p-4 font-semibold text-left">
+                            প্যাকেজ কাস্টমাইজ করার কোনো সুযোগ আছে কি?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="p-4 hidden text-gray-600">
+                            হ্যাঁ, অবশ্যই। আমাদের তালিকাভুক্ত প্যাকেজগুলো সবচেয়ে জনপ্রিয় চাহিদার উপর ভিত্তি করে তৈরি। কিন্তু আপনার প্রতিষ্ঠানের যদি বিশেষ কোনো চাহিদা থাকে, আমরা আলোচনা করে আপনার জন্য একটি কাস্টমাইজড প্যাকেজ তৈরি করে দিতে পারব।
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 rounded-lg">
+                        <button class="w-full flex justify-between items-center p-4 font-semibold text-left">
+                            ওয়েবসাইট তৈরির জন্য ডোমেইন এবং হোস্টিং কি আমাকে কিনতে হবে?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="p-4 hidden text-gray-600">
+                            না, আপনাকে ডোমেইন বা হোস্টিং নিয়ে চিন্তা করতে হবে না। আমাদের গ্রোথ ইঞ্জিন প্যাকেজ এবং মার্কেট লিডার প্যাকেজের মাসিক ফি-এর মধ্যেই ডোমেইন, হোস্টিং এবং SSL সার্টিফিকেট অন্তর্ভুক্ত রয়েছে। আমরাই আপনার জন্য সবকিছু ম্যানেজ করব।
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 rounded-lg">
+                        <button class="w-full flex justify-between items-center p-4 font-semibold text-left">
+                            ফেসবুক ও গুগলে বিজ্ঞাপন দেওয়ার খরচ কি প্যাকেজের অন্তর্ভুক্ত?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="p-4 hidden text-gray-600">
+                            না। আমাদের মাসিক ফি-তে শুধুমাত্র বিজ্ঞাপন ম্যানেজমেন্ট বা পরিচালনার খরচ অন্তর্ভুক্ত। বিজ্ঞাপনের মূল বাজেট (ফেসবুক বা গুগলকে যা পেমেন্ট করতে হয়) আপনাকে আলাদাভাবে প্রদান করতে হবে। আমরা আপনার বাজেট অনুযায়ী সেরা ফলাফল এনে দেওয়ার জন্য কৌশল তৈরি করব।
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 rounded-lg">
+                        <button class="w-full flex justify-between items-center p-4 font-semibold text-left">
+                            কাজের অগ্রগতি আমি কীভাবে বুঝতে পারব?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="p-4 hidden text-gray-600">
+                            আমরা স্বচ্ছতায় বিশ্বাসী। গ্রোথ ইঞ্জিন প্যাকেজ এবং মার্কেট লিডার প্যাকেজের গ্রাহকদের জন্য আমরা প্রতি মাসে একটি বিস্তারিত পারফরম্যান্স রিপোর্ট প্রদান করি। এই রিপোর্টে ওয়েবসাইটের ভিজিটর, ফেসবুক পেজের এনগেজমেন্ট এবং বিজ্ঞাপনের ফলাফল সম্পর্কে বিস্তারিত তথ্য থাকে।
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 rounded-lg">
+                        <button class="w-full flex justify-between items-center p-4 font-semibold text-left">
+                            চুক্তি বাতিল করার নিয়ম কী?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="p-4 hidden text-gray-600">
+                            আপনি যেকোনো সময় আপনার চুক্তি বাতিল করতে পারেন। তবে এর জন্য কমপক্ষে ৩০ দিন আগে আমাদের লিখিতভাবে (ইমেইলের মাধ্যমে) জানাতে হবে। আমাদের কাজে আপনি সন্তুষ্ট থাকবেন, এটাই আমাদের প্রধান লক্ষ্য।
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 rounded-lg">
+                        <button class="w-full flex justify-between items-center p-4 font-semibold text-left">
+                            আমার গ্রাহকদের তথ্য কতটা সুরক্ষিত থাকবে?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="p-4 hidden text-gray-600">
+                            আমরা ডেটা সুরক্ষাকে সর্বোচ্চ গুরুত্ব দিই। আপনার ওয়েবসাইট এবং AI এজেন্টের মাধ্যমে সংগ্রহ করা সকল তথ্য অত্যন্ত সুরক্ষিতভাবে সংরক্ষণ করা হয় এবং আমরা কোনো তথ্য তৃতীয় কোনো পক্ষের সাথে শেয়ার করি না।
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="bg-teal-700 text-white py-20">
+            <div class="container mx-auto px-6">
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold">আপনার ব্যবসা প্রতিষ্ঠানের ডিজিটাল রূপান্তরে আগ্রহী?</h2>
+                        <p class="mt-4 text-teal-200">আমাদের সাথে যোগাযোগ করুন। আপনার প্রতিষ্ঠানের জন্য সেরা ডিজিটাল সমাধান নিয়ে আলোচনা করতে আমরা প্রস্তুত। বিনামূল্যে পরামর্শ পেতে পাশের ফর্মটি পূরণ করুন।</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-gray-800">
+                        <h3 class="text-2xl font-bold mb-6 text-center">যোগাযোগ করুন</h3>
+                        <form id="contact-form">
+                            <div class="mb-4">
+                                <label for="name" class="block text-sm font-bold mb-2">আপনার নাম</label>
+                                <input type="text" id="name" name="name" placeholder="আপনার সম্পূর্ণ নাম লিখুন" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="hospital" class="block text-sm font-bold mb-2">আপনার ব্যবসা/প্রতিষ্ঠানের নাম</label>
+                                <input type="text" id="hospital" name="hospital" placeholder="আপনার প্রতিষ্ঠানের নাম" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" required>
+                            </div>
+                             <div class="mb-4">
+                                <label for="phone" class="block text-sm font-bold mb-2">ফোন নম্বর</label>
+                                <input type="tel" id="phone" name="phone" placeholder="আপনার ফোন নম্বর" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-sm font-bold mb-2">আপনার বার্তা</label>
+                                <textarea id="message" name="message" rows="4" placeholder="আপনার কী জানতে চান তা লিখুন..." class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-teal-500 text-white font-bold py-3 px-4 rounded-md hover:bg-teal-600 transition duration-300">বার্তা পাঠান</button>
+                            <p id="form-message" class="text-center mt-4"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Order Modal -->
+    <div id="order-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-8 rounded-lg shadow-lg text-gray-800 w-11/12 md:w-1/2 lg:w-1/3">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-center">প্যাকেজ অর্ডার করুন</h3>
+                <button id="close-modal-btn" class="text-gray-600 hover:text-gray-900 text-2xl">&times;</button>
+            </div>
+            <form id="order-form">
+                <input type="hidden" id="package-name" name="package">
+
+                <div class="mb-4">
+                    <label for="order-name" class="block text-sm font-bold mb-2">আপনার নাম</label>
+                    <input type="text" id="order-name" name="name" placeholder="আপনার সম্পূর্ণ নাম লিখুন" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="order-hospital" class="block text-sm font-bold mb-2">আপনার ব্যবসা/প্রতিষ্ঠানের নাম</label>
+                    <input type="text" id="order-hospital" name="hospital" placeholder="আপনার প্রতিষ্ঠানের নাম" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                </div>
+                 <div class="mb-4">
+                    <label for="order-phone" class="block text-sm font-bold mb-2">ফোন নম্বর</label>
+                    <input type="tel" id="order-phone" name="phone" placeholder="আপনার ফোন নম্বর" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                </div>
+                <button type="submit" class="w-full bg-teal-500 text-white font-bold py-3 px-4 rounded-md hover:bg-teal-600">অর্ডার কনফার্ম করুন</button>
+                <p id="order-form-message" class="text-center mt-4"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer (Updated with Multi-column) -->
+    <footer class="bg-gray-800 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Column 1: About -->
+                <div class="md:col-span-2">
+                    <h3 class="text-xl font-bold text-teal-500 mb-4">ডিজিটাল কেয়ার সলিউশনস</h3>
+                    <p class="text-gray-400">আমরা বাংলাদেশের ব্যবসা প্রতিষ্ঠানগুলোকে আধুনিক প্রযুক্তির মাধ্যমে ডিজিটাল জগতে সফল হতে সাহায্য করি। আমাদের লক্ষ্য হলো আপনার এবং আপনার কাস্টমারের মধ্যে একটি নির্ভরযোগ্য ডিজিটাল সেতু তৈরি করা।</p>
+                </div>
+                <!-- Column 2: Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">গুরুত্বপূর্ণ লিংক</h3>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">আমাদের সম্পর্কে</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white">সার্ভিসসমূহ</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-white">সলিউশন</a></li>
+                        <li><a href="#process" class="text-gray-400 hover:text-white">আমাদের প্রক্রিয়া</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white">সাধারণ জিজ্ঞাসা</a></li>
+                    </ul>
+                </div>
+                <!-- Column 3: Contact -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">যোগাযোগ</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-2"></i>ডিকেপি রোড, বরগুনা</li>
+                        <li class="flex items-start"><i class="fas fa-phone mt-1 mr-2"></i>01639590392</li>
+                        <li class="flex items-start"><i class="fas fa-envelope mt-1 mr-2"></i>rahmatullahzisan@gmail.com</li>
+                    </ul>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 text-center text-gray-500">
+                <p>&copy; <span id="currentYear"></span> ডিজিটাল কেয়ার সলিউশনস। সর্বস্বত্ব সংরক্ষিত।</p>
+            </div>
+        </div>
+    </footer>
+
+     <script src="main.js" defer></script>
+
+</body>
+</html>

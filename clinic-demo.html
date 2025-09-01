@@ -1,0 +1,795 @@
+<!-- htmlhint attr-lowercase:false -->
+<!doctype html>
+<html lang="bn" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="২৪/৭ AI রিসেপশনিস্ট দ্বারা ক্লিনিক সাপোর্ট – তাত্ক্ষণিক রিপ্লাই, অ্যাপয়েন্টমেন্ট বুকিং ও স্মার্ট রিমাইন্ডার"
+    />
+    <title>ক্লিনিক ডেমো - ডিজিটাল কেয়ার সলিউশনস</title>
+    <link rel="icon" type="image/webp" href="/Digital care favicon.webp" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      body {
+        font-family: "Hind Siliguri", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <!-- Header / Navbar -->
+    <header
+      class="bg-white/30 backdrop-blur-md border border-white/20 shadow-sm sticky top-0 z-50"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          id="site-name"
+          class="text-2xl font-bold text-teal-600"
+          >ডিজিটাল কেয়ার</a
+        >
+        <div class="hidden md:flex space-x-6 items-center">
+          <a href="about.html" class="text-gray-600 hover:text-teal-600"
+            >আমাদের সম্পর্কে</a
+          >
+          <a href="services.html" class="text-gray-600 hover:text-teal-600"
+            >সার্ভিসসমূহ</a
+          >
+          <a href="index.html#pricing" class="text-gray-600 hover:text-teal-600"
+            >সলিউশন</a
+          >
+          <a href="blog.html" class="text-gray-600 hover:text-teal-600">ব্লগ</a>
+          <a href="clinic-demo.html" class="text-gray-600 hover:text-teal-600"
+            >ক্লিনিক ডেমো</a
+          >
+          <a href="affiliate.html" class="text-gray-600 hover:text-teal-600"
+            >অ্যাফিলিয়েট</a
+          >
+          <a href="index.html#process" class="text-gray-600 hover:text-teal-600"
+            >আমাদের প্রক্রিয়া</a
+          >
+          <a href="index.html#faq" class="text-gray-600 hover:text-teal-600"
+            >জিজ্ঞাসা</a
+          >
+          <a
+            href="index.html#contact"
+            class="bg-teal-500 text-white px-4 py-2 rounded-full hover:bg-teal-600 transition duration-300"
+            >যোগাযোগ করুন</a
+          >
+        </div>
+        <div class="md:hidden">
+          <button
+            id="menu-btn"
+            class="text-gray-600 focus:outline-none"
+            aria-label="মেনু খুলুন বা বন্ধ করুন"
+            aria-expanded="false"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </nav>
+      <div id="mobile-menu" class="md:hidden hidden px-6 pb-4 space-y-2">
+        <a href="about.html" class="block text-gray-600 hover:text-teal-600"
+          >আমাদের সম্পর্কে</a
+        >
+        <a href="services.html" class="block text-gray-600 hover:text-teal-600"
+          >সার্ভিসসমূহ</a
+        >
+        <a
+          href="index.html#pricing"
+          class="block text-gray-600 hover:text-teal-600"
+          >সলিউশন</a
+        >
+        <a href="blog.html" class="block text-gray-600 hover:text-teal-600"
+          >ব্লগ</a
+        >
+        <a href="clinic-demo.html" class="block text-gray-600 hover:text-teal-600"
+          >ক্লিনিক ডেমো</a
+        >
+        <a href="affiliate.html" class="block text-gray-600 hover:text-teal-600"
+          >অ্যাফিলিয়েট</a
+        >
+        <a
+          href="index.html#process"
+          class="block text-gray-600 hover:text-teal-600"
+          >আমাদের প্রক্রিয়া</a
+        >
+        <a href="index.html#faq" class="block text-gray-600 hover:text-teal-600"
+          >জিজ্ঞাসা</a
+        >
+        <a
+          href="index.html#contact"
+          class="block bg-teal-500 text-white text-center px-4 py-2 rounded-full hover:bg-teal-600 transition duration-300"
+          >যোগাযোগ করুন</a
+        >
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="bg-white">
+        <div
+          class="container mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center"
+        >
+          <div class="text-center md:text-left">
+            <span
+              class="text-teal-500 font-semibold uppercase tracking-wider"
+              >আপনার ভার্চুয়াল রিসেপশনিস্ট</span
+            >
+            <h1
+              class="text-4xl md:text-5xl font-bold text-gray-800 mt-2 mb-6 leading-tight"
+            >
+              আপনার ক্লিনিকের জন্য একজন ২৪/৭ AI সহকারী
+            </h1>
+            <p class="text-lg text-gray-600 mb-8">
+              রোগীদের প্রতিটি প্রশ্নের তাত্ক্ষণিক উত্তর দিন, স্বয়ংক্রিয়ভাবে
+              অ্যাপয়েন্টমেন্ট বুক করুন এবং স্মার্ট রিমাইন্ডারের মাধ্যমে নো-শো
+              এর হার কমিয়ে আনুন।
+            </p>
+            <div class="flex justify-center md:justify-start space-x-4">
+              <a
+                href="#pricing"
+                class="bg-teal-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-teal-600 transition-transform transform hover:scale-105"
+                >ফ্রি ট্রায়াল শুরু করুন</a
+              >
+              <a
+                href="#process"
+                class="bg-gray-200 text-gray-800 px-8 py-3 rounded-full font-semibold hover:bg-gray-300 transition-transform transform hover:scale-105"
+                >এটি কীভাবে কাজ করে?</a
+              >
+            </div>
+          </div>
+
+          <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
+            <div class="flex justify-start mb-4">
+              <div
+                class="bg-teal-500 text-white p-3 rounded-lg max-w-xs shadow"
+              >
+                <p>হ্যালো! আমি কি আপনার অ্যাপয়েন্টমেন্টটি বুক করতে পারি?</p>
+              </div>
+            </div>
+            <div class="flex justify-end mb-4">
+              <div
+                class="bg-white text-gray-800 p-3 rounded-lg max-w-xs shadow"
+              >
+                <p>হ্যাঁ, আগামীকাল সকাল ১০টায় কি কোনো স্লট খালি আছে?</p>
+              </div>
+            </div>
+            <div class="flex justify-start">
+              <div
+                class="bg-teal-500 text-white p-3 rounded-lg max-w-xs shadow"
+              >
+                <p>অবশ্যই! আপনার অ্যাপয়েন্টমেন্টটি কনফার্ম করা হয়েছে।</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- কেন দরকার -->
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">সাধারণ সমস্যা যা আপনার ব্যবসাকে পিছিয়ে দিচ্ছে</h2>
+            <p class="text-gray-600 mt-2 max-w-2xl mx-auto">ম্যানুয়াল প্রসেসের কারণে আপনি প্রতিদিন সম্ভাব্য গ্রাহক এবং আয় হারাচ্ছেন।</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-lg shadow text-center transform hover:-translate-y-2 transition-transform duration-300">
+              <div class="flex justify-center items-center w-16 h-16 mx-auto bg-red-100 rounded-full mb-4">
+                <i class="fas fa-phone-slash text-3xl text-red-500"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">তাৎক্ষণিক উত্তরের অভাব</h3>
+              <p class="text-gray-600">ফোন ব্যস্ত থাকলে বা ক্লিনিক বন্ধ থাকার পর রোগীরা উত্তর পায় না, ফলে তারা অন্য কোথাও চলে যায়।</p>
+            </div>
+            <div class="bg-white p-8 rounded-lg shadow text-center transform hover:-translate-y-2 transition-transform duration-300">
+              <div class="flex justify-center items-center w-16 h-16 mx-auto bg-yellow-100 rounded-full mb-4">
+                <i class="fas fa-hourglass-half text-3xl text-yellow-500"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">কর্মীদের সময় নষ্ট</h3>
+              <p class="text-gray-600">আপনার স্টাফরা বারবার একই প্রশ্নের উত্তর দিতে ব্যস্ত থাকে, যা তাদের মূল্যবান সময় নষ্ট করে।</p>
+            </div>
+            <div class="bg-white p-8 rounded-lg shadow text-center transform hover:-translate-y-2 transition-transform duration-300">
+              <div class="flex justify-center items-center w-16 h-16 mx-auto bg-blue-100 rounded-full mb-4">
+                <i class="fas fa-calendar-times text-3xl text-blue-500"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">অ্যাপয়েন্টমেন্ট ভুলে যাওয়া</h3>
+              <p class="text-gray-600">সঠিক সময়ে রিমাইন্ডার না দেওয়ার কারণে 'নো-শো' বাড়ে, যা আপনার আয় এবং ডাক্তারের সময় দুটোই নষ্ট করে।</p>
+            </div>
+          </div>
+          <div class="text-center mt-12">
+            <p class="text-lg"><strong>সমাধান:</strong> আমাদের AI রিসেপশনিস্ট এই সবগুলো সমস্যার সমাধান করে আপনার ক্লিনিকের আয় এবং দক্ষতা বৃদ্ধি করে।</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- আপনি কী পাবেন -->
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">আপনি কী পাবেন</h2>
+            <p class="text-gray-600 mt-2">
+              আমাদের AI রিসেপশনিস্ট আপনার ক্লিনিকের জন্য যা যা করবে
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div
+              class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+            >
+              <div class="flex justify-center mb-4">
+                <i class="fas fa-bolt text-4xl text-teal-500"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">
+                তাত্ক্ষণিক রিপ্লাই (≤৫ মিনিট)
+              </h3>
+              <p class="text-gray-600">
+                OPD সময়, ডাক্তার অ্যাভেইলেবিলিটি, টেস্ট/ফি, লোকেশন—সব প্রশ্নের
+                উত্তর ২৪/৭।
+              </p>
+            </div>
+            <div
+              class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+            >
+              <div class="flex justify-center mb-4">
+                <i class="fas fa-calendar-check text-4xl text-teal-500"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">অ্যাপয়েন্টমেন্ট বুকিং</h3>
+              <p class="text-gray-600">
+                রোগীর নাম, মোবাইল নম্বর, ডাক্তার এবং সময় নিয়ে স্বয়ংক্রিয়ভাবে
+                অ্যাপয়েন্টমেন্ট কনফার্ম করে।
+              </p>
+            </div>
+            <div
+              class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+            >
+              <div class="flex justify-center mb-4">
+                <i class="fas fa-bell text-4xl text-teal-500"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">স্মার্ট রিমাইন্ডার</h3>
+              <p class="text-gray-600">
+                WhatsApp/SMS এর মাধ্যমে ২৪ ঘন্টা এবং ২ ঘন্টা আগে অটো রিমাইন্ডার
+                পাঠিয়ে নো-শো কমায়।
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ফলাফল -->
+      <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6 text-center">
+          <h2 class="text-3xl font-bold mb-6">ফলাফল (যা আমরা দেখাতে পারি)</h2>
+          <h3 class="text-2xl font-semibold mb-4">
+            লাইভ ড্যাশবোর্ড স্ন্যাপশট:
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow p-6 text-center">
+              <p class="text-4xl font-bold text-teal-600">42</p>
+              <p class="mt-2 text-gray-600">৭ দিনে অ্যাপয়েন্টমেন্ট অনুরোধ</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 text-center">
+              <p class="text-4xl font-bold text-teal-600">14</p>
+              <p class="mt-2 text-gray-600">লিড সাবমিট</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 text-center">
+              <p class="text-4xl font-bold text-teal-600">23</p>
+              <p class="mt-2 text-gray-600">কল ক্লিক</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 text-center">
+              <p class="text-4xl font-bold text-teal-600">9</p>
+              <p class="mt-2 text-gray-600">WhatsApp ক্লিক</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 text-center">
+              <p class="text-4xl font-bold text-teal-600">&lt;1m</p>
+              <p class="mt-2 text-gray-600">গড় প্রতিক্রিয়া সময়</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 text-center">
+              <p class="text-4xl font-bold text-teal-600">30%</p>
+              <p class="mt-2 text-gray-600">নো-শো হার কমেছে</p>
+            </div>
+          </div>
+          <p class="text-gray-700">
+            প্রুফ প্যাক: GA4 রিপোর্ট + Meta Events লগ + রিমাইন্ডার ডেলিভারি/রিড
+            রেট + ৬০-সেকেন্ড ডেমো ভিডিও
+          </p>
+        </div>
+      </section>
+
+      <section id="process" class="py-20 bg-slate-50">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">কীভাবে কাজ করে (৩ ধাপে লাইভ)</h2>
+            <p class="text-gray-600 mt-2">আমরা একটি সহজ এবং স্বচ্ছ প্রক্রিয়ায় কাজ করি</p>
+          </div>
+          <div class="relative">
+            <div class="hidden md:block absolute top-8 left-0 w-full h-0.5 bg-teal-200"></div>
+            <div class="relative grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              <div class="p-4">
+                <div class="flex justify-center items-center w-16 h-16 mx-auto bg-white border-2 border-teal-500 rounded-full text-2xl font-bold text-teal-500 mb-4 z-10">১</div>
+                <h3 class="text-xl font-semibold mb-2">সেটআপ (২৪-৪৮ ঘন্টা)</h3>
+                <p class="text-gray-600">আপনার ক্লিনিকের তথ্য, ডাক্তারের সময়সূচি, ফি, লোকেশন এবং জরুরি নির্দেশনা দিয়ে সিস্টেমটি প্রস্তুত করা হয়।</p>
+              </div>
+              <div class="p-4">
+                <div class="flex justify-center items-center w-16 h-16 mx-auto bg-white border-2 border-teal-500 rounded-full text-2xl font-bold text-teal-500 mb-4 z-10">২</div>
+                <h3 class="text-xl font-semibold mb-2">লাইভ</h3>
+                <p class="text-gray-600">আপনার ওয়েবসাইট, WhatsApp/Messenger এবং অন্যান্য প্ল্যাটফর্মে AI রিসেপশনিস্ট চালু করা হয়।</p>
+              </div>
+              <div class="p-4">
+                <div class="flex justify-center items-center w-16 h-16 mx-auto bg-white border-2 border-teal-500 rounded-full text-2xl font-bold text-teal-500 mb-4 z-10">৩</div>
+                <h3 class="text-xl font-semibold mb-2">পরিমাপ ও উন্নতি</h3>
+                <p class="text-gray-600">ডেটা বিশ্লেষণ করে ক্রমাগত সিস্টেমটিকে আরও উন্নত করা হয় যাতে আপনি সেরা ফলাফল পান।</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ফ্লো -->
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">রোগীর অভিজ্ঞতা কেমন হবে?</h2>
+            <p class="text-gray-600 mt-2">
+              আমাদের AI সহকারীর সাথে রোগীর কথোপকথনের একটি নমুনা
+            </p>
+          </div>
+
+          <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+            <div class="flex justify-start mb-4">
+              <div class="bg-teal-500 text-white p-4 rounded-lg max-w-xs">
+                <p class="font-bold">AI সহকারী</p>
+                <p>
+                  হাই! আমি ক্লিনিকের AI সহকারী। আপনাকে কীভাবে সাহায্য করতে পারি?
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mb-6">
+              <button
+                class="bg-gray-200 text-gray-800 text-left p-3 rounded-lg hover:bg-teal-100 transition-colors"
+              >
+                <i class="fas fa-user-md mr-2"></i> ডাক্তারের সময়/ফি
+              </button>
+              <button
+                class="bg-gray-200 text-gray-800 text-left p-3 rounded-lg hover:bg-teal-100 transition-colors"
+              >
+                <i class="fas fa-calendar-plus mr-2"></i> অ্যাপয়েন্টমেন্ট বুক
+              </button>
+              <button
+                class="bg-gray-200 text-gray-800 text-left p-3 rounded-lg hover:bg-teal-100 transition-colors"
+              >
+                <i class="fas fa-map-marker-alt mr-2"></i> লোকেশন/ডিরেকশন
+              </button>
+              <button
+                class="bg-gray-200 text-gray-800 text-left p-3 rounded-lg hover:bg-teal-100 transition-colors"
+              >
+                <i class="fas fa-headset mr-2"></i> স্টাফের সাথে কথা
+              </button>
+            </div>
+
+            <div class="flex justify-start">
+              <div class="bg-teal-500 text-white p-4 rounded-lg max-w-xs">
+                <p class="font-bold">AI সহকারী (রিমাইন্ডার)</p>
+                <p>
+                  আপনার অ্যাপয়েন্টমেন্টের ২ ঘন্টা বাকি। লোকেশন: [Google Maps Link]
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ইন্টিগ্রেশনস -->
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">যেসব প্ল্যাটফর্মে কাজ করে</h2>
+            <p class="text-gray-600 mt-2">আপনার পছন্দের সকল প্ল্যাটফর্মের সাথে সহজেই যুক্ত হয়</p>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-4xl mx-auto text-center">
+            <div class="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+              <i class="fab fa-facebook-messenger text-5xl text-blue-600 mb-3"></i>
+              <h3 class="font-semibold">Messenger</h3>
+            </div>
+            <div class="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+              <i class="fab fa-whatsapp text-5xl text-green-500 mb-3"></i>
+              <h3 class="font-semibold">WhatsApp</h3>
+            </div>
+            <div class="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+              <i class="fas fa-globe text-5xl text-gray-700 mb-3"></i>
+              <h3 class="font-semibold">Website Chat</h3>
+            </div>
+            <div class="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+              <i class="fas fa-map-marked-alt text-5xl text-red-500 mb-3"></i>
+              <h3 class="font-semibold">Google Maps</h3>
+            </div>
+            <div class="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+              <i class="fas fa-sms text-5xl text-yellow-500 mb-3"></i>
+              <h3 class="font-semibold">SMS</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section (Updated) -->
+      <section id="pricing" class="bg-white py-20">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">আমাদের সলিউশনসমূহ</h2>
+            <p class="text-gray-600 mt-2">
+              আপনার প্রয়োজনের সঠিক সলিউশন পেতে আমাদের সাথে কথা বলুন
+            </p>
+          </div>
+          <div
+            class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto items-center"
+          >
+            <div class="animate-on-scroll">
+              <div
+                id="pricing-card-1"
+                class="bg-white border border-gray-200 p-8 rounded-lg lg:scale-100 transition-all duration-300 hover:scale-105"
+              >
+                <h3 class="text-2xl font-bold text-center">ফাউন্ডেশন প্যাকেজ</h3>
+                <p class="text-center text-gray-500 mt-2">
+                  ছোট ব্যবসা বা স্টার্টআপের জন্য
+                </p>
+                <div class="text-center my-6">
+                  <p class="text-3xl font-bold">ROI ভিত্তিক প্রাইসিং</p>
+                  <p class="text-sm text-gray-600 mt-2">
+                    বিস্তারিত জানতে কথা বলুন
+                  </p>
+                </div>
+                <ul class="space-y-3 text-gray-600">
+                  <li>
+                    <i class="fas fa-check-circle text-teal-500 mr-2"></i>ফেসবুক পেজ সেটআপ
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle text-teal-500 mr-2"></i>২৪/৭ গ্রাহক অনুসন্ধান ম্যানেজমেন্ট
+                  </li>
+                  <li>
+                    <i class="fas fa-times-circle text-red-400 mr-2"></i>অনলাইন সেলস ও লিড কালেকশন প্ল্যাটফর্ম
+                  </li>
+                  <li>
+                    <i class="fas fa-times-circle text-red-400 mr-2"></i>অ্যাডভান্সড AI এজেন্ট
+                  </li>
+                </ul>
+                <button
+                  data-package="ফাউন্ডেশন প্যাকেজ"
+                  class="order-btn w-full mt-8 bg-white border border-teal-500 text-teal-500 py-3 rounded-full font-semibold hover:bg-teal-500 hover:text-white transition-colors duration-300"
+                >
+                  বিনামূল্যে স্ট্র্যাটেজি সেশন বুক করুন
+                </button>
+              </div>
+            </div>
+
+            <div class="animate-on-scroll">
+              <div
+                id="pricing-card-main"
+                class="bg-teal-600 text-white p-8 rounded-lg shadow-2xl lg:scale-105 transition-all duration-300 hover:scale-105 lg:hover:scale-110 lg:z-10 relative"
+              >
+                <div class="flex justify-center">
+                  <span
+                    class="bg-white text-teal-600 text-xs font-bold px-3 py-1 rounded-full uppercase"
+                    >সেরা প্যাকেজ</span
+                  >
+                </div>
+                <h3 class="text-2xl font-bold text-center mt-4">
+                  গ্রোথ ইঞ্জিন প্যাকেজ
+                </h3>
+                <p class="text-center text-teal-200 mt-2">
+                  মাঝারি ব্যবসা বা ই-কমার্স সাইটের জন্য
+                </p>
+                <div class="text-center my-6">
+                  <p class="text-3xl font-bold">ROI ভিত্তিক প্রাইসিং</p>
+                  <p class="text-sm text-teal-200 mt-2">
+                    বিস্তারিত জানতে কথা বলুন
+                  </p>
+                </div>
+                <ul class="space-y-3 text-teal-100">
+                  <li>
+                    <i class="fas fa-check-circle text-white mr-2"></i>ফেসবুক পেজ ও অটোমেশন
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle text-white mr-2"></i>অনলাইন সেলস ও লিড কালেকশন প্ল্যাটফর্ম
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle text-white mr-2"></i>২৪/৭ কাস্টমার সার্ভিস AI এজেন্ট
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle text-white mr-2"></i>গুগল ম্যাপস ইন্টিগ্রেশন
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle text-white mr-2"></i>SEO অপটিমাইজেশন
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle text-white mr-2"></i>মাসিক রিপোর্টিং
+                  </li>
+                </ul>
+                <button
+                  data-package="গ্রোথ ইঞ্জিন প্যাকেজ"
+                  class="order-btn w-full mt-8 bg-white text-teal-600 py-3 rounded-full font-semibold hover:bg-teal-100 transition-colors duration-300"
+                >
+                  বিনামূল্যে স্ট্র্যাটেজি সেশন বুক করুন
+                </button>
+              </div>
+            </div>
+
+            <div class="animate-on-scroll">
+              <div
+                id="pricing-card-3"
+                class="bg-white border border-gray-200 p-8 rounded-lg lg:scale-100 transition-all duration-300 hover:scale-105"
+              >
+                <h3 class="text-2xl font-bold text-center">মার্কেট লিডার প্যাকেজ</h3>
+                <p class="text-center text-gray-500 mt-2">
+                  বড় প্রতিষ্ঠান বা কর্পোরেট কোম্পানির জন্য
+                </p>
+                <div class="text-center my-6">
+                  <p class="text-3xl font-bold">ROI ভিত্তিক প্রাইসিং</p>
+                  <p class="text-sm text-gray-600 mt-2">
+                    বিস্তারিত জানতে কথা বলুন
+                  </p>
+                </div>
+                <ul class="space-y-3 text-gray-600">
+                  <li>
+                    <i class="fas fa-check-circle text-teal-500 mr-2"></i>সকল গ্রোথ ইঞ্জিন প্যাকেজ ফিচার
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle text-teal-500 mr-2"></i>স্কেলেবল অনলাইন সেলস প্ল্যাটফর্ম
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle text-teal-500 mr-2"></i>অ্যাডভান্সড CRM ইন্টিগ্রেশন
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle text-teal-500 mr-2"></i>ডেডিকেটেড সাপোর্ট
+                  </li>
+                </ul>
+                <button
+                  data-package="মার্কেট লিডার প্যাকেজ"
+                  class="order-btn w-full mt-8 bg-white border border-teal-500 text-teal-500 py-3 rounded-full font-semibold hover:bg-teal-500 hover:text-white transition-colors duration-300"
+                >
+                  বিনামূল্যে স্ট্র্যাটেজি সেশন বুক করুন
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- সেফটি ও নীতিমালা -->
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">আপনার সুরক্ষা ও তথ্যের গোপনীয়তা</h2>
+            <p class="text-gray-600 mt-2 max-w-2xl mx-auto">আমরা রোগীদের সুরক্ষা এবং তাদের তথ্যের গোপনীয়তাকে সর্বোচ্চ গুরুত্ব দিই।</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-gray-50 border border-gray-200 p-8 rounded-lg text-center">
+              <div class="flex justify-center items-center w-16 h-16 mx-auto bg-red-100 rounded-full mb-4">
+                <i class="fas fa-ambulance text-3xl text-red-500"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">জরুরি অবস্থা</h3>
+              <p class="text-gray-600">জরুরি স্বাস্থ্য সমস্যায় AI চ্যাট ব্যবহার না করে অনুগ্রহ করে সরাসরি আপনার ক্লিনিকের নম্বরে অথবা সরকারি হেল্পলাইন <strong class="text-gray-800">১৬২৬৩</strong>-এ কল করুন।</p>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-200 p-8 rounded-lg text-center">
+              <div class="flex justify-center items-center w-16 h-16 mx-auto bg-blue-100 rounded-full mb-4">
+                <i class="fas fa-shield-alt text-3xl text-blue-500"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">তথ্যের গোপনীয়তা</h3>
+              <p class="text-gray-600">আপনার ব্যক্তিগত তথ্য আমাদের কাছে সম্পূর্ণ সুরক্ষিত। আমরা সার্ভিস প্রদানের প্রয়োজন ছাড়া আপনার কোনো তথ্য তৃতীয় পক্ষের সাথে শেয়ার করি না।</p>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-200 p-8 rounded-lg text-center">
+              <div class="flex justify-center items-center w-16 h-16 mx-auto bg-yellow-100 rounded-full mb-4">
+                <i class="fas fa-file-medical-alt text-3xl text-yellow-500"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">মেডিকেল রিপোর্ট</h3>
+              <p class="text-gray-600">চ্যাটে সংবেদনশীল মেডিকেল রিপোর্ট বা প্রেসক্রিপশন শেয়ার না করার জন্য অনুরোধ করা হচ্ছে। প্রয়োজনে আমাদের স্টাফ আপনাকে একটি নিরাপদ মাধ্যম দেখিয়ে দেবে।</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="bg-white py-20">
+        <div class="container mx-auto px-6 max-w-3xl">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">সাধারণ জিজ্ঞাসাসমূহ</h2>
+            <p class="text-gray-600 mt-2">আপনার মনে থাকা কিছু সাধারণ প্রশ্নের উত্তর</p>
+          </div>
+          <div class="space-y-4">
+            <div class="bg-gray-100 rounded-lg">
+              <button class="w-full flex justify-between items-center p-4 font-semibold text-left">
+                প্র: ২৪/৭ রিপ্লাই কি সত্যি?
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="p-4 hidden text-gray-600">
+                উ: হ্যাঁ—অফ-আওয়ারসহ সবসময়। জটিল কেস হলে স্টাফে হ্যান্ড-অফ।
+              </div>
+            </div>
+            <div class="bg-gray-100 rounded-lg">
+              <button class="w-full flex justify-between items-center p-4 font-semibold text-left">
+                প্র: কনফার্মেশন কে করে—বট নাকি স্টাফ?
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="p-4 hidden text-gray-600">
+                উ: আপনার প্রক্রিয়া অনুযায়ী—অটো কনফার্ম/স্টাফ ভেরিফাই, দুইভাবেই সেটআপ করা যায়।
+              </div>
+            </div>
+            <div class="bg-gray-100 rounded-lg">
+              <button class="w-full flex justify-between items-center p-4 font-semibold text-left">
+                প্র: রিমাইন্ডার কি WhatsApp–এ যাবে?
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="p-4 hidden text-gray-600">
+                উ: WhatsApp/SMS—যেটা আপনার জন্য সুবিধাজনক।
+              </div>
+            </div>
+            <div class="bg-gray-100 rounded-lg">
+              <button class="w-full flex justify-between items-center p-4 font-semibold text-left">
+                প্র: প্রাইভেসি?
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="p-4 hidden text-gray-600">
+                উ: আমরা কমতম তথ্য নেই, ট্রায়াল/লাইভ—দুটিতেই আপনার ডেটা আপনার নিয়ন্ত্রণে।
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final CTA -->
+      <section class="py-16 bg-teal-600 text-white text-center">
+        <div class="container mx-auto px-6">
+          <h2 class="text-3xl font-bold mb-6">
+            আপনার ক্লিনিকের জন্য ৭ দিনে লাইভ প্রুফ দেখাই—লিড/বুকিং বাড়বে, নো-শো
+            কমবে।
+          </h2>
+          <div class="flex justify-center">
+            <a
+              href="index.html#contact"
+              class="bg-white text-teal-600 px-6 py-3 rounded-full hover:bg-gray-100"
+              >ফ্রি ট্রায়াল শুরু করুন</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="order-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center hidden z-50">
+      <div class="bg-white p-8 rounded-lg shadow-lg text-gray-800 w-11/12 md:w-1/2 lg:w-1/3">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-bold text-center">প্যাকেজ অর্ডার করুন</h3>
+          <button id="close-modal-btn" class="text-gray-600 hover:text-gray-900 text-2xl">&times;</button>
+        </div>
+        <form id="order-form">
+          <input type="hidden" id="package-name" name="package" />
+
+          <div class="mb-4">
+            <label for="order-name" class="block text-sm font-bold mb-2">আপনার নাম</label>
+            <input
+              type="text"
+              id="order-name"
+              name="name"
+              placeholder="আপনার সম্পূর্ণ নাম লিখুন"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label for="order-hospital" class="block text-sm font-bold mb-2">আপনার ব্যবসা/প্রতিষ্ঠানের নাম</label>
+            <input
+              type="text"
+              id="order-hospital"
+              name="hospital"
+              placeholder="আপনার প্রতিষ্ঠানের নাম"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label for="order-phone" class="block text-sm font-bold mb-2">ফোন নম্বর</label>
+            <input
+              type="tel"
+              id="order-phone"
+              name="phone"
+              placeholder="আপনার ফোন নম্বর"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-teal-500 text-white font-bold py-3 px-4 rounded-md hover:bg-teal-600"
+          >
+            অর্ডার কনফার্ম করুন
+          </button>
+          <p id="order-form-message" class="text-center mt-4"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer (Updated with Multi-column) -->
+    <footer class="bg-gray-800 text-white pt-16 pb-8">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <!-- Column 1: About -->
+          <div class="md:col-span-2">
+            <h3 class="text-xl font-bold text-teal-500 mb-4">ডিজিটাল কেয়ার সলিউশনস</h3>
+            <p class="text-gray-400">আমরা বাংলাদেশের ব্যবসা প্রতিষ্ঠানগুলোকে আধুনিক প্রযুক্তির মাধ্যমে ডিজিটাল জগতে সফল হতে সাহায্য করি। আমাদের লক্ষ্য হলো আপনার এবং আপনার কাস্টমারের মধ্যে একটি নির্ভরযোগ্য ডিজিটাল সেতু তৈরি করা।</p>
+          </div>
+          <!-- Column 2: Quick Links -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4">গুরুত্বপূর্ণ লিংক</h3>
+            <ul class="space-y-2">
+              <li><a href="about.html" class="text-gray-400 hover:text-white">আমাদের সম্পর্কে</a></li>
+              <li><a href="services.html" class="text-gray-400 hover:text-white">সার্ভিসসমূহ</a></li>
+              <li><a href="index.html#pricing" class="text-gray-400 hover:text-white">সলিউশন</a></li>
+              <li><a href="index.html#process" class="text-gray-400 hover:text-white">আমাদের প্রক্রিয়া</a></li>
+              <li><a href="index.html#faq" class="text-gray-400 hover:text-white">সাধারণ জিজ্ঞাসা</a></li>
+            </ul>
+          </div>
+          <!-- Column 3: Contact -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4">যোগাযোগ</h3>
+            <ul class="space-y-2 text-gray-400">
+              <li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-2"></i>ডিকেপি রোড, বরগুনা</li>
+              <li class="flex items-start"><i class="fas fa-phone mt-1 mr-2"></i>01639590392</li>
+              <li class="flex items-start"><i class="fas fa-envelope mt-1 mr-2"></i>rahmatullahzisan@gmail.com</li>
+            </ul>
+            <div class="mt-4 flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+              <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in fa-lg"></i></a>
+              <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube fa-lg"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-700 pt-6 text-center text-gray-500">
+          <p>&copy; <span id="currentYear"></span> ডিজিটাল কেয়ার সলিউশনস। সর্বস্বত্ব সংরক্ষিত।</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Live Chat Widget -->
+    <script>
+      window.embeddedChatbotConfig = {
+        chatbotId: "REPLACE_WITH_CHATBOT_ID",
+        domain: "www.chatbase.co"
+      };
+    </script>
+    <script
+      src="https://www.chatbase.co/embed.min.js"
+      chatbotId="REPLACE_WITH_CHATBOT_ID"
+      defer
+    ></script>
+
+    <script src="main.js" defer></script>
+  </body>
+</html>
