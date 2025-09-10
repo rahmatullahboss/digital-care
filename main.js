@@ -217,3 +217,34 @@ document.addEventListener("DOMContentLoaded", () => {
     // Trigger on load
     handleScrollAnimation();
 });
+
+// Make entire service cards clickable on homepage
+document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('#services .service-card');
+    cards.forEach(card => {
+        const link = card.querySelector('h3 a[href]');
+        if (!link) return;
+
+        // Visual cue
+        card.style.cursor = 'pointer';
+        // Accessibility
+        card.setAttribute('role', 'link');
+        card.setAttribute('tabindex', '0');
+
+        // Click navigation (avoid double-handling when clicking actual links/buttons)
+        card.addEventListener('click', (e) => {
+            if (e.defaultPrevented) return;
+            const interactive = e.target.closest('a, button, input, textarea, select, label');
+            if (interactive) return;
+            window.location.href = link.href;
+        });
+
+        // Keyboard support
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                link.click();
+            }
+        });
+    });
+});
