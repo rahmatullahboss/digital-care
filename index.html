@@ -58,6 +58,311 @@
             transition: all 0.4s ease-in-out;
           }
         }
+
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(150deg, #f9fafb 0%, #ecfeff 40%, #f0fdf4 100%);
+        }
+
+        .hero-animated-bg {
+            position: absolute;
+            inset: -25%;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(45, 212, 191, 0.45), transparent 60%),
+                radial-gradient(circle at 80% 15%, rgba(14, 165, 233, 0.35), transparent 60%),
+                radial-gradient(circle at 50% 80%, rgba(232, 121, 249, 0.3), transparent 65%);
+            filter: blur(90px);
+            opacity: 0.75;
+            animation: heroGradientDrift 20s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-animated-bg-2 {
+            animation-duration: 26s;
+            animation-delay: -12s;
+            opacity: 0.55;
+            mix-blend-mode: screen;
+        }
+
+        @keyframes heroGradientDrift {
+            0% {
+                transform: scale(1) translate3d(0, 0, 0);
+            }
+            50% {
+                transform: scale(1.05) translate3d(-40px, 20px, 0);
+            }
+            100% {
+                transform: scale(1.1) translate3d(30px, -25px, 0);
+            }
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 9999px;
+            box-shadow: 0 25px 80px -35px rgba(13, 148, 136, 0.45);
+            opacity: 0.7;
+            pointer-events: none;
+            animation: floatShape 18s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .floating-shape.shape-1 {
+            width: 18rem;
+            height: 18rem;
+            top: -5rem;
+            right: -5rem;
+            background: radial-gradient(circle at 30% 30%, rgba(45, 212, 191, 0.35), rgba(20, 184, 166, 0.08));
+            animation-delay: -4s;
+        }
+
+        .floating-shape.shape-2 {
+            width: 14rem;
+            height: 14rem;
+            bottom: 6rem;
+            left: -5rem;
+            background: radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.08));
+            box-shadow: 0 20px 70px -30px rgba(59, 130, 246, 0.35);
+            animation-delay: -2s;
+        }
+
+        .floating-shape.shape-3 {
+            width: 10rem;
+            height: 10rem;
+            top: 40%;
+            right: 12%;
+            background: radial-gradient(circle at 30% 30%, rgba(244, 114, 182, 0.35), rgba(244, 114, 182, 0.1));
+            box-shadow: 0 20px 60px -30px rgba(190, 24, 93, 0.35);
+            animation-delay: -6s;
+        }
+
+        @keyframes floatShape {
+            0% {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+            50% {
+                transform: translate3d(20px, -15px, 0) scale(1.05);
+            }
+            100% {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+        }
+
+        .hero-illustration {
+            position: relative;
+            width: min(420px, 100%);
+            aspect-ratio: 1 / 1;
+            border-radius: 2rem;
+            padding: 2.5rem;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(236, 254, 255, 0.75));
+            border: 1px solid rgba(13, 148, 136, 0.12);
+            box-shadow: 0 50px 90px -45px rgba(13, 148, 136, 0.35);
+            overflow: visible;
+            z-index: 2;
+        }
+
+        .hero-illustration::after {
+            content: '';
+            position: absolute;
+            inset: 12%;
+            background: radial-gradient(circle at 50% 40%, rgba(45, 212, 191, 0.2), transparent 60%);
+            filter: blur(40px);
+            z-index: 0;
+        }
+
+        .hero-illustration svg {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .floating-card {
+            position: absolute;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(13, 148, 136, 0.12);
+            border-radius: 1.25rem;
+            padding: 1rem 1.25rem;
+            box-shadow: 0 20px 45px -30px rgba(15, 118, 110, 0.45);
+            backdrop-filter: blur(8px);
+            animation: floatCard 8s ease-in-out infinite;
+            z-index: 3;
+        }
+
+        .floating-card i {
+            font-size: 1.5rem;
+            color: #0f766e;
+        }
+
+        .floating-card strong {
+            display: block;
+            font-size: 1rem;
+            color: #0f172a;
+        }
+
+        .floating-card span {
+            font-size: 0.875rem;
+            color: #0f766e;
+        }
+
+        .floating-card.card-1 {
+            top: 10%;
+            left: -18%;
+            animation-delay: -2s;
+        }
+
+        .floating-card.card-2 {
+            bottom: 12%;
+            right: -12%;
+            animation-delay: -4s;
+        }
+
+        @keyframes floatCard {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-12px) translateX(6px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+
+        .hero-orbit__ring {
+            fill: none;
+            stroke-width: 2;
+            stroke-dasharray: 12 18;
+            opacity: 0.65;
+            animation: orbitDash 14s linear infinite;
+        }
+
+        .hero-orbit__ring--inner {
+            stroke: rgba(45, 212, 191, 0.55);
+            animation-duration: 12s;
+        }
+
+        .hero-orbit__ring--outer {
+            stroke: rgba(14, 165, 233, 0.5);
+            stroke-dasharray: 18 24;
+            animation-duration: 18s;
+            animation-direction: reverse;
+        }
+
+        @keyframes orbitDash {
+            from {
+                stroke-dashoffset: 0;
+            }
+            to {
+                stroke-dashoffset: -180;
+            }
+        }
+
+        .hero-orbit__planet {
+            transform-origin: 300px 300px;
+            animation: orbitSpin 16s linear infinite;
+        }
+
+        .hero-orbit__planet--reverse {
+            animation-direction: reverse;
+            animation-duration: 20s;
+        }
+
+        @keyframes orbitSpin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero-orbit__node {
+            fill: url(#hero-gradient-primary);
+            filter: drop-shadow(0 8px 18px rgba(13, 148, 136, 0.3));
+        }
+
+        .hero-orbit__node--accent {
+            fill: url(#hero-gradient-accent);
+            filter: drop-shadow(0 8px 20px rgba(59, 130, 246, 0.28));
+        }
+
+        .hero-orbit__pulse {
+            fill: rgba(14, 165, 233, 0.18);
+            animation: orbitPulse 3.6s ease-in-out infinite;
+            transform-box: fill-box;
+            transform-origin: center;
+        }
+
+        @keyframes orbitPulse {
+            0%,
+            100% {
+                transform: scale(0.9);
+                opacity: 0.4;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+
+        .hero-orbit__spark {
+            fill: rgba(45, 212, 191, 0.65);
+            animation: sparkBlink 4s ease-in-out infinite;
+            transform-box: fill-box;
+            transform-origin: center;
+        }
+
+        @keyframes sparkBlink {
+            0%,
+            100% {
+                opacity: 0.35;
+            }
+            50% {
+                opacity: 0.9;
+            }
+        }
+
+        .hero-highlight-card {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 1.5rem;
+            padding: 1.25rem;
+            box-shadow: 0 25px 50px -35px rgba(15, 118, 110, 0.35);
+            backdrop-filter: blur(6px);
+        }
+
+        .hero-highlight-card .label {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #0f766e;
+        }
+
+        .hero-highlight-card .value {
+            display: block;
+            margin-top: 0.35rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        @media (max-width: 767px) {
+            .floating-shape,
+            .floating-card {
+                display: none;
+            }
+
+            .hero-illustration {
+                padding: 1.75rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -99,15 +404,98 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="bg-white py-20 md:py-32">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">
-                    আপনার <span id="industry-text" class="inline-block bg-teal-100 text-teal-700 px-3 py-1 rounded-full">ব্যবসার</span> <span class="text-teal-600">ডিজিটাল রূপান্তর</span> এখানেই শুরু
-                </h1>
-                <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">
-                    আমরা আপনার ব্যবসার জন্য আধুনিক ওয়েবসাইট, ই-কমার্স সলিউশন, ফেসবুক অটোমেশন এবং ২৪/৭ কাস্টমার সার্ভিস AI এজেন্ট তৈরি করি, যা গ্রাহকদের সাথে আপনার যোগাযোগ সহজ করে এবং ব্র্যান্ড ভ্যালু বাড়ায়।
-                </p>
-                <a href="#contact" class="mt-8 inline-block bg-teal-500 text-white text-lg font-semibold px-8 py-4 rounded-full hover:bg-teal-600 transition duration-300">বিনামূল্যে পরামর্শ নিন</a>
+        <section class="hero-section py-20 md:py-32">
+            <div class="hero-animated-bg"></div>
+            <div class="hero-animated-bg hero-animated-bg-2"></div>
+            <span class="floating-shape shape-1"></span>
+            <span class="floating-shape shape-2"></span>
+            <span class="floating-shape shape-3"></span>
+
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-6 text-center lg:text-left">
+                        <div class="flex justify-center lg:justify-start">
+                            <span class="inline-flex items-center gap-2 px-4 py-2 bg-white/80 border border-teal-100 text-teal-700 rounded-full text-sm font-semibold shadow-sm backdrop-blur">
+                                <i class="fas fa-magic text-teal-500"></i>
+                                ROI-ফোকাসড ডিজিটাল এজেন্সি
+                            </span>
+                        </div>
+                        <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">
+                            আপনার <span id="industry-text" class="inline-block bg-teal-100 text-teal-700 px-3 py-1 rounded-full">ব্যবসার</span> <span class="text-teal-600">ডিজিটাল রূপান্তর</span> এখানেই শুরু
+                        </h1>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto lg:mx-0">
+                            আমরা আপনার ব্যবসার জন্য আধুনিক ওয়েবসাইট, ই-কমার্স সলিউশন, ফেসবুক অটোমেশন এবং ২৪/৭ কাস্টমার সার্ভিস AI এজেন্ট তৈরি করি, যা গ্রাহকদের সাথে আপনার যোগাযোগ সহজ করে এবং ব্র্যান্ড ভ্যালু বাড়ায়।
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-2">
+                            <a href="#contact" class="inline-flex items-center justify-center bg-teal-500 text-white text-lg font-semibold px-8 py-4 rounded-full hover:bg-teal-600 transition duration-300 shadow-lg">বিনামূল্যে পরামর্শ নিন</a>
+                            <a href="#case-study" class="inline-flex items-center gap-2 text-teal-700 font-semibold px-6 py-3 rounded-full bg-white/70 border border-teal-100 hover:bg-teal-50 transition duration-300 backdrop-blur">
+                                <i class="fas fa-play-circle text-teal-500"></i>
+                                কেস স্টাডি দেখুন
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 max-w-md mx-auto lg:mx-0 pt-4">
+                            <div class="hero-highlight-card">
+                                <span class="label">AI অটোমেশন</span>
+                                <span class="value">২৪/৭ গ্রাহক সংযোগ</span>
+                            </div>
+                            <div class="hero-highlight-card">
+                                <span class="label">ডেটা-চালিত স্ট্র্যাটেজি</span>
+                                <span class="value">ROI কেন্দ্রিক ক্যাম্পেইন</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative flex justify-center">
+                        <div class="hero-illustration">
+                            <svg class="hero-orbit" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="hero-illustration-title hero-illustration-desc">
+                                <title id="hero-illustration-title">অটোমেটেড ডিজিটাল গ্রোথ ইলাস্ট্রেশন</title>
+                                <desc id="hero-illustration-desc">ঘূর্ণায়মান অরবিট এবং নোডের মাধ্যমে AI ও ডেটা-চালিত সলিউশনের উপস্থাপন</desc>
+                                <defs>
+                                    <radialGradient id="hero-gradient-primary" cx="0.5" cy="0.5" r="0.7">
+                                        <stop offset="0%" stop-color="#2dd4bf" />
+                                        <stop offset="50%" stop-color="#14b8a6" />
+                                        <stop offset="100%" stop-color="#0f766e" />
+                                    </radialGradient>
+                                    <radialGradient id="hero-gradient-accent" cx="0.5" cy="0.5" r="0.7">
+                                        <stop offset="0%" stop-color="#38bdf8" />
+                                        <stop offset="60%" stop-color="#0ea5e9" />
+                                        <stop offset="100%" stop-color="#2563eb" />
+                                    </radialGradient>
+                                </defs>
+                                <circle cx="300" cy="300" r="96" fill="rgba(255,255,255,0.8)" />
+                                <circle cx="300" cy="300" r="130" class="hero-orbit__ring hero-orbit__ring--inner" />
+                                <circle cx="300" cy="300" r="205" class="hero-orbit__ring hero-orbit__ring--outer" />
+                                <g class="hero-orbit__planet">
+                                    <circle cx="300" cy="150" r="22" class="hero-orbit__node" />
+                                    <circle cx="300" cy="150" r="38" class="hero-orbit__pulse" />
+                                </g>
+                                <g class="hero-orbit__planet hero-orbit__planet--reverse">
+                                    <circle cx="300" cy="470" r="18" class="hero-orbit__node hero-orbit__node--accent" />
+                                    <circle cx="300" cy="470" r="32" class="hero-orbit__pulse" />
+                                </g>
+                                <g class="hero-orbit__planet" style="animation-duration: 22s;">
+                                    <circle cx="430" cy="300" r="14" class="hero-orbit__node" />
+                                </g>
+                                <circle cx="210" cy="240" r="8" class="hero-orbit__spark" />
+                                <circle cx="380" cy="210" r="6" class="hero-orbit__spark" style="animation-delay: -1.2s;" />
+                                <circle cx="220" cy="380" r="10" class="hero-orbit__spark" style="animation-delay: -2.4s;" />
+                            </svg>
+                            <div class="floating-card card-1">
+                                <i class="fas fa-robot"></i>
+                                <div>
+                                    <strong>AI এজেন্ট</strong>
+                                    <span>লিড ফলোআপ স্বয়ংক্রিয়</span>
+                                </div>
+                            </div>
+                            <div class="floating-card card-2">
+                                <i class="fas fa-chart-line"></i>
+                                <div>
+                                    <strong>গ্রোথ ইনসাইট</strong>
+                                    <span>রিয়েল-টাইম বিশ্লেষণ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
