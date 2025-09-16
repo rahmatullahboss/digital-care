@@ -135,6 +135,7 @@ if (orderForm) {
 // Change site name color when header overlaps the contact section or footer
 const siteName = document.getElementById('site-name');
 const contactSection = document.getElementById('contact');
+const whySection = document.getElementById('why-us');
 const header = document.querySelector('header');
 const footer = document.querySelector('footer');
 
@@ -144,13 +145,17 @@ if (siteName && header && footer) {
 
     function updateSiteNameColor() {
         const headerHeight = header.offsetHeight;
-        const contactRect = contactSection ? contactSection.getBoundingClientRect() : null;
-        const footerRect = footer.getBoundingClientRect();
+        const isOverSection = (section) => {
+            if (!section) {
+                return false;
+            }
+            const rect = section.getBoundingClientRect();
+            return rect.top <= headerHeight && rect.bottom >= headerHeight;
+        };
 
-        const inContact = contactRect ? (contactRect.top <= headerHeight && contactRect.bottom >= headerHeight) : false;
-        const inFooter = footerRect.top <= headerHeight && footerRect.bottom >= headerHeight;
+        const isOverDarkSection = [whySection, contactSection, footer].some(isOverSection);
 
-        if (inContact || inFooter) {
+        if (isOverDarkSection) {
             siteName.classList.remove(defaultClass);
             siteName.classList.add(overlapClass);
         } else {
@@ -160,6 +165,7 @@ if (siteName && header && footer) {
     }
 
     window.addEventListener('scroll', updateSiteNameColor);
+    window.addEventListener('resize', updateSiteNameColor);
     // Run on load in case user refreshes while on contact section or footer
     updateSiteNameColor();
 }
