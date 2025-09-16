@@ -216,4 +216,145 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Trigger on load
     handleScrollAnimation();
+
+    const heroSection = document.querySelector('.hero-section');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (heroSection && window.gsap) {
+        const heroKicker = heroSection.querySelector('.hero-kicker');
+        const heroHeading = heroSection.querySelector('.hero-heading');
+        const heroSubtitle = heroSection.querySelector('.hero-subtitle');
+        const heroButtons = Array.from(heroSection.querySelectorAll('.hero-cta a'));
+        const heroStats = Array.from(heroSection.querySelectorAll('.hero-stat'));
+        const heroDevice = heroSection.querySelector('.hero-device');
+        const heroCards = Array.from(heroSection.querySelectorAll('.floating-card'));
+        const heroIcons = Array.from(heroSection.querySelectorAll('.floating-icon'));
+        const heroOrbs = Array.from(heroSection.querySelectorAll('.hero-orb'));
+
+        if (heroKicker) {
+            gsap.set(heroKicker, { y: 40, opacity: 0 });
+        }
+
+        if (heroHeading) {
+            gsap.set(heroHeading, { y: 40, opacity: 0 });
+        }
+
+        if (heroSubtitle) {
+            gsap.set(heroSubtitle, { y: 40, opacity: 0 });
+        }
+
+        if (heroButtons.length) {
+            gsap.set(heroButtons, { y: 40, opacity: 0 });
+        }
+
+        if (heroStats.length) {
+            gsap.set(heroStats, { y: 40, opacity: 0 });
+        }
+
+        if (heroDevice) {
+            gsap.set(heroDevice, { y: 60, opacity: 0, scale: 0.95 });
+        }
+
+        const timeline = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1 } });
+        let timelineOffset = 0;
+
+        if (heroKicker) {
+            timeline.to(heroKicker, { y: 0, opacity: 1 }, timelineOffset);
+            timelineOffset += 0.1;
+        }
+
+        if (heroHeading) {
+            timeline.to(heroHeading, { y: 0, opacity: 1 }, timelineOffset);
+            timelineOffset += 0.12;
+        }
+
+        if (heroSubtitle) {
+            timeline.to(heroSubtitle, { y: 0, opacity: 1 }, timelineOffset);
+            timelineOffset += 0.15;
+        }
+
+        if (heroButtons.length) {
+            timeline.to(heroButtons, { y: 0, opacity: 1, stagger: 0.08 }, timelineOffset);
+            timelineOffset += 0.18;
+        }
+
+        if (heroStats.length) {
+            timeline.to(heroStats, { y: 0, opacity: 1, stagger: 0.08 }, timelineOffset);
+            timelineOffset += 0.12;
+        }
+
+        if (heroDevice) {
+            timeline.to(heroDevice, { y: 0, opacity: 1, scale: 1, duration: 1.1 }, 0.15);
+        }
+
+        if (!prefersReducedMotion) {
+            heroCards.forEach((card, index) => {
+                const floatDistance = 16 + index * 6;
+                gsap.to(card, {
+                    y: `+=${floatDistance}`,
+                    x: index % 2 === 0 ? '+=12' : '-=12',
+                    duration: 3.6 + index,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut'
+                });
+            });
+
+            heroIcons.forEach((icon, index) => {
+                gsap.to(icon, {
+                    y: index % 2 === 0 ? '+=14' : '-=14',
+                    x: index % 2 === 0 ? '-=8' : '+=8',
+                    rotation: index % 2 === 0 ? 6 : -6,
+                    duration: 4.5 + index,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut'
+                });
+            });
+
+            heroSection.addEventListener('pointermove', (event) => {
+                const rect = heroSection.getBoundingClientRect();
+                const offsetX = ((event.clientX - rect.left) / rect.width - 0.5) * 24;
+                const offsetY = ((event.clientY - rect.top) / rect.height - 0.5) * 24;
+
+                if (heroDevice) {
+                    gsap.to(heroDevice, { x: offsetX, y: offsetY, duration: 0.8, ease: 'power2.out' });
+                }
+
+                heroCards.forEach((card, index) => {
+                    gsap.to(card, {
+                        x: offsetX * (0.2 + index * 0.05),
+                        y: offsetY * (0.2 + index * 0.04),
+                        duration: 0.8,
+                        ease: 'power2.out'
+                    });
+                });
+
+                heroIcons.forEach((icon, index) => {
+                    gsap.to(icon, {
+                        x: offsetX * (0.16 + index * 0.05),
+                        y: offsetY * (0.16 + index * 0.05),
+                        duration: 0.9,
+                        ease: 'power2.out'
+                    });
+                });
+
+                heroOrbs.forEach((orb, index) => {
+                    gsap.to(orb, {
+                        x: offsetX * (-0.3 - index * 0.05),
+                        y: offsetY * (-0.3 - index * 0.04),
+                        duration: 1.1,
+                        ease: 'power2.out'
+                    });
+                });
+            });
+
+            heroSection.addEventListener('mouseleave', () => {
+                const parallaxTargets = [heroDevice, ...heroCards, ...heroIcons, ...heroOrbs].filter(Boolean);
+                parallaxTargets.forEach((target) => {
+                    gsap.to(target, { x: 0, y: 0, duration: 1, ease: 'power3.out' });
+                });
+            });
+        }
+    }
 });
