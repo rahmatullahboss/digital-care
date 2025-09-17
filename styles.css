@@ -477,6 +477,23 @@
         .glass-card-dark:hover {
             border-color: rgba(148, 163, 184, 0.45);
         }
+        .pricing-card:not(.pricing-card-highlight) {
+            color: #0f172a;
+        }
+
+        .pricing-card:not(.pricing-card-highlight) h3 {
+            color: #0f172a;
+        }
+
+        .pricing-card:not(.pricing-card-highlight) p,
+        .pricing-card:not(.pricing-card-highlight) span,
+        .pricing-card:not(.pricing-card-highlight) li {
+            color: #1f2937;
+        }
+
+        .pricing-card:not(.pricing-card-highlight) li i {
+            color: #0f766e;
+        }
 
         .pricing-card-highlight {
             border: 1px solid rgba(255, 255, 255, 0.28);
@@ -1422,8 +1439,4 @@
             line-height: 1;
             margin-right: 0.4rem;
         }
-
-
-
-
 
