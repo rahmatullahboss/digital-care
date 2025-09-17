@@ -1,14 +1,19 @@
 // Set current year in footer
-document.getElementById('currentYear').textContent = new Date().getFullYear();
+const currentYearElement = document.getElementById('currentYear');
+if (currentYearElement) {
+    currentYearElement.textContent = new Date().getFullYear();
+}
 
 // Mobile Menu Toggle
 const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
-menuBtn.addEventListener('click', () => {
-    const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
-    menuBtn.setAttribute('aria-expanded', (!expanded).toString());
-    mobileMenu.classList.toggle('hidden');
-});
+if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', (!expanded).toString());
+        mobileMenu.classList.toggle('hidden');
+    });
+}
 
 // FAQ Accordion
 const faqButtons = document.querySelectorAll('#faq button');
