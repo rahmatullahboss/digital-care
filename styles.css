@@ -478,6 +478,31 @@
             border-color: rgba(148, 163, 184, 0.45);
         }
 
+        .pricing-card-highlight {
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            box-shadow: 0 35px 70px -35px rgba(13, 148, 136, 0.55);
+        }
+
+        .pricing-card-highlight::after {
+            display: none;
+        }
+
+        .pricing-card-highlight h3,
+        .pricing-card-highlight strong {
+            color: #ffffff;
+        }
+
+        .pricing-card-highlight p,
+        .pricing-card-highlight span,
+        .pricing-card-highlight li {
+            color: rgba(240, 253, 250, 0.9);
+        }
+
+        .pricing-card-highlight li i {
+            color: rgba(190, 242, 100, 0.95);
+        }
+
+
         .service-card-icon,
         .why-icon {
             width: 64px;
@@ -1310,17 +1335,17 @@
             position: relative;
             border-radius: 24px;
             padding: 2.25rem;
-            background: linear-gradient(150deg, rgba(255, 255, 255, 0.92), rgba(226, 232, 240, 0.75));
-            border: 1px solid rgba(226, 232, 240, 0.7);
-            box-shadow: 0 30px 60px -40px rgba(15, 23, 42, 0.45);
+            background: linear-gradient(150deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.9));
+            border: 1px solid rgba(226, 232, 240, 0.85);
+            box-shadow: 0 35px 60px -35px rgba(15, 23, 42, 0.25);
         }
 
         .frosted-panel::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(120deg, rgba(255, 255, 255, 0.4), rgba(148, 163, 184, 0));
-            opacity: 0.6;
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.55), rgba(148, 163, 184, 0));
+            opacity: 0.25;
             pointer-events: none;
         }
 
@@ -1329,11 +1354,11 @@
         }
 
         .frosted-panel p {
-            color: #475569;
+            color: #1f2937;
         }
 
         .richtext {
-            color: #475569;
+            color: #1f2937;
             font-size: 1.055rem;
             line-height: 1.8;
         }
@@ -1352,6 +1377,7 @@
 
         .richtext p {
             margin-bottom: 1.25rem;
+            color: inherit;
         }
 
         .richtext ul {
@@ -1387,3 +1413,16 @@
                 padding: 1.75rem;
             }
         }
+
+
+
+
+
+        .hero-cta a i {
+            font-size: 1rem;
+        }
+
+        .hero-cta a span {
+            line-height: 1;
+        }
+
