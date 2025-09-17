@@ -11,26 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        body { font-family: 'Hind Siliguri', sans-serif; }
-
-        /* Scroll Animation CSS (FIXED) */
-        .animate-on-scroll {
-            opacity: 0;
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            transform: translateY(30px);
-        }
-
-        .animate-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* This ensures that transform utilities from Tailwind are correctly applied with the animation */
-        .animate-on-scroll.is-visible {
-            transform: var(--tw-transform, translateY(0));
-        }
-    </style>
+        <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Header / Navbar -->
@@ -65,39 +46,51 @@
 
     <main>
         <!-- About Section -->
-        <section class="bg-white py-20">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-800">আমাদের সম্পর্কে</h1>
-                <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">ডিজিটাল কেয়ার সলিউশনস বাংলাদেশের স্বাস্থ্যসেবা প্রতিষ্ঠানগুলোর জন্য আধুনিক প্রযুক্তিনির্ভর সলিউশন প্রদান করে। আমাদের লক্ষ্য হলো হাসপাতাল ও ক্লিনিকের ডিজিটাল রূপান্তরকে সহজ করা এবং রোগীর সাথে সংযোগ স্থাপন আরও সহজ ও নিরাপদ করা।</p>
+                <section class="page-hero relative">
+            <div class="hero-gradient" aria-hidden="true"></div>
+            <div class="hero-grid" aria-hidden="true"></div>
+            <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+            <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+            <div class="container relative z-10 mx-auto px-6">
+                <div class="max-w-3xl mx-auto text-center space-y-6 md:space-y-8 md:text-left">
+                    <span class="hero-kicker inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-teal-700 shadow-sm shadow-teal-200/60 backdrop-blur">আমাদের সম্পর্কে</span>
+                    <h1 class="hero-heading text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">আমাদের সম্পর্কে</h1>
+                    <p class="hero-subtitle text-lg md:text-xl text-slate-600 max-w-2xl mx-auto md:mx-0">ডিজিটাল কেয়ার সলিউশনস বাংলাদেশের স্বাস্থ্যসেবা প্রতিষ্ঠানগুলোর জন্য আধুনিক প্রযুক্তিনির্ভর সলিউশন প্রদান করে। আমাদের লক্ষ্য হলো হাসপাতাল ও ক্লিনিকের ডিজিটাল রূপান্তরকে সহজ করা এবং রোগীর সাথে সংযোগ স্থাপন আরও সহজ ও নিরাপদ করা।</p>
+                    <div class="hero-cta flex flex-col items-center justify-center gap-4 sm:flex-row md:justify-start">
+                        <a href="services.html" class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-500 via-emerald-500 to-sky-500 px-7 py-3 text-base font-semibold text-white shadow-lg shadow-teal-500/40 transition duration-300 hover:-translate-y-0.5 hover:shadow-xl">সার্ভিসসমূহ</a>
+                        <a href="index.html#contact" class="inline-flex items-center justify-center gap-2 rounded-full border border-teal-200/70 bg-white/70 px-7 py-3 text-base font-semibold text-teal-700 shadow-sm shadow-teal-200/60 transition duration-300 hover:-translate-y-0.5 hover:border-teal-400 hover:text-teal-600">যোগাযোগ করুন</a>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Team Section -->
-        <section class="py-20">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold">আমাদের টিম</h2>
-                    <p class="text-gray-600 mt-2">আমাদের দক্ষ ও অভিজ্ঞ টিম আপনার সেবায় সর্বদা প্রস্তুত</p>
+        <section class="section-shell py-24">
+            <div class="container mx-auto px-6 section-content">
+
+                <div class="page-section-intro text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold">আমাদের টিম</h2>
+                    <p class="mt-4 text-slate-600">আমাদের দক্ষ ও অভিজ্ঞ টিম আপনার সেবায় সর্বদা প্রস্তুত</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                    <div class="text-center bg-white p-6 rounded-lg shadow-md">
-                        <img src="Rahmatullah.webp" alt="রহমতুল্লাহ জিসান" class="w-40 h-40 object-cover rounded-full mx-auto mb-4">
+                <div class="card-grid lg:grid-cols-3 mt-12">
+                    <article class="glass-card relative overflow-hidden text-center px-10 py-12 shadow-lg transition duration-300 hover:-translate-y-2 animate-on-scroll">
+                        <img src="Rahmatullah.webp" alt="রহমতুল্লাহ জিসান" class="w-32 h-32 object-cover rounded-3xl mx-auto mb-6 ring-4 ring-white/70 shadow-xl shadow-teal-500/20">
                         <h3 class="text-xl font-bold">রহমতুল্লাহ জিসান</h3>
                         <p class="text-teal-600">প্রতিষ্ঠাতা ও বিজনেস অটোমেশন স্ট্র্যাটেজিস্ট</p>
-                        <p class="mt-2 text-gray-600">আমি রহমতুল্লাহ জিসান, ছোট এবং মাঝারি ব্যবসাগুলোকে AI এবং অটোমেশনের মাধ্যমে তাদের বড় প্রতিযোগীদের সাথে পাল্লা দেওয়ার জন্য সিস্টেম তৈরি করি। আমি দেখেছি অনেক ব্যবসাই দারুণ প্রোডাক্ট থাকা সত্ত্বেও ম্যানুয়াল প্রসেসের কারণে পিছিয়ে পড়ে। আমার লক্ষ্য হলো, প্রযুক্তির জটিলতাগুলোকে সহজ করে এমন একটি সিস্টেম তৈরি করা, যা আমার ক্লায়েন্টদের স্বাধীনতা দেয় তাদের ব্যবসার প্রসারের দিকে মনোযোগ দেওয়ার।</p>
-                    </div>
-                    <div class="text-center bg-white p-6 rounded-lg shadow-md">
-                        <img src="https://via.placeholder.com/300" alt="শারমিন আক্তার" class="w-40 h-40 object-cover rounded-full mx-auto mb-4">
+                        <p class="mt-4 text-slate-600 leading-relaxed">আমি রহমতুল্লাহ জিসান, ছোট এবং মাঝারি ব্যবসাগুলোকে AI এবং অটোমেশনের মাধ্যমে তাদের বড় প্রতিযোগীদের সাথে পাল্লা দেওয়ার জন্য সিস্টেম তৈরি করি। আমি দেখেছি অনেক ব্যবসাই দারুণ প্রোডাক্ট থাকা সত্ত্বেও ম্যানুয়াল প্রসেসের কারণে পিছিয়ে পড়ে। আমার লক্ষ্য হলো, প্রযুক্তির জটিলতাগুলোকে সহজ করে এমন একটি সিস্টেম তৈরি করা, যা আমার ক্লায়েন্টদের স্বাধীনতা দেয় তাদের ব্যবসার প্রসারের দিকে মনোযোগ দেওয়ার।</p>
+                    </article>
+                    <article class="glass-card relative overflow-hidden text-center px-10 py-12 shadow-lg transition duration-300 hover:-translate-y-2 animate-on-scroll">
+                        <img src="https://via.placeholder.com/300" alt="শারমিন আক্তার" class="w-32 h-32 object-cover rounded-3xl mx-auto mb-6 ring-4 ring-white/70 shadow-xl shadow-teal-500/20">
                         <h3 class="text-xl font-bold">শারমিন আক্তার</h3>
                         <p class="text-teal-600">মার্কেটিং বিশেষজ্ঞ</p>
-                        <p class="mt-2 text-gray-600">ডিজিটাল মার্কেটিংয়ের ক্ষেত্রে ৫ বছরের অভিজ্ঞতা নিয়ে তিনি আমাদের ক্লায়েন্টদের অনলাইন উপস্থিতি বৃদ্ধি করেন।</p>
-                    </div>
-                    <div class="text-center bg-white p-6 rounded-lg shadow-md">
-                        <img src="https://via.placeholder.com/300" alt="সাজিদ হাসান" class="w-40 h-40 object-cover rounded-full mx-auto mb-4">
+                        <p class="mt-4 text-slate-600 leading-relaxed">ডিজিটাল মার্কেটিংয়ের ক্ষেত্রে ৫ বছরের অভিজ্ঞতা নিয়ে তিনি আমাদের ক্লায়েন্টদের অনলাইন উপস্থিতি বৃদ্ধি করেন।</p>
+                    </article>
+                    <article class="glass-card relative overflow-hidden text-center px-10 py-12 shadow-lg transition duration-300 hover:-translate-y-2 animate-on-scroll">
+                        <img src="https://via.placeholder.com/300" alt="সাজিদ হাসান" class="w-32 h-32 object-cover rounded-3xl mx-auto mb-6 ring-4 ring-white/70 shadow-xl shadow-teal-500/20">
                         <h3 class="text-xl font-bold">সাজিদ হাসান</h3>
                         <p class="text-teal-600">টেকনিক্যাল লিড</p>
-                        <p class="mt-2 text-gray-600">ওয়েব ডেভেলপমেন্ট ও অটোমেশনে দক্ষ সাজিদ আমাদের প্রযুক্তিগত কাজগুলো তদারকি করেন।</p>
-                    </div>
+                        <p class="mt-4 text-slate-600 leading-relaxed">ওয়েব ডেভেলপমেন্ট ও অটোমেশনে দক্ষ সাজিদ আমাদের প্রযুক্তিগত কাজগুলো তদারকি করেন।</p>
+                    </article>
                 </div>
             </div>
         </section>
@@ -105,7 +98,8 @@
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white pt-16 pb-8">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-6 section-content">
+
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                 <div class="md:col-span-2">
                     <h3 class="text-xl font-bold text-teal-500 mb-4">ডিজিটাল কেয়ার সলিউশনস</h3>
@@ -144,3 +138,10 @@
     <script src="main.js" defer></script>
 </body>
 </html>
+
+
+
+
+
+
+

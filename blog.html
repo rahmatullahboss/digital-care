@@ -5,26 +5,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Hind Siliguri', sans-serif; }
-
-        /* Scroll Animation CSS (FIXED) */
-        .animate-on-scroll {
-            opacity: 0;
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            transform: translateY(30px);
-        }
-
-        .animate-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* This ensures that transform utilities from Tailwind are correctly applied with the animation */
-        .animate-on-scroll.is-visible {
-            transform: var(--tw-transform, translateY(0));
-        }
-    </style>
+        <link rel="stylesheet" href="styles.css">
     <title>আমাদের ব্লগ | ডিজিটাল কেয়ার সলিউশনস</title>
     <link rel="icon" type="image/webp" href="/Digital care favicon.webp">
 </head>
@@ -41,7 +22,7 @@
                 <a href="affiliate.html" class="text-gray-600 hover:text-teal-600">অ্যাফিলিয়েট</a>
                 <a href="privacy-policy.html" class="text-gray-600 hover:text-teal-600">গোপনীয়তা নীতি</a>
                 <a href="index.html#contact" class="bg-teal-500 text-white px-4 py-2 rounded-full hover:bg-teal-600 transition duration-300">যোগাযোগ করুন</a>
-            </div>
+            </article>
             <div class="md:hidden">
                 <button id="menu-btn" class="text-gray-600 focus:outline-none" aria-label="মেনু খুলুন বা বন্ধ করুন" aria-expanded="false">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -56,70 +37,89 @@
             <a href="affiliate.html" class="block text-gray-600 hover:text-teal-600">অ্যাফিলিয়েট</a>
             <a href="privacy-policy.html" class="block text-gray-600 hover:text-teal-600">গোপনীয়তা নীতি</a>
             <a href="index.html#contact" class="block bg-teal-500 text-white text-center px-4 py-2 rounded-full hover:bg-teal-600 transition duration-300">যোগাযোগ করুন</a>
-        </div>
+            </article>
     </header>
-    <main class="container mx-auto px-6 py-16">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-800">আমাদের ব্লগ থেকে জানুন</h1>
-            <p class="text-lg text-gray-600 mt-2">ডিজিটাল মার্কেটিং এবং ব্যবসার সর্বাধুনিক কৌশল সম্পর্কে আপডেট থাকুন।</p>
-        </div>
+    <main>
+                <section class="page-hero relative">
+            <div class="hero-gradient" aria-hidden="true"></div>
+            <div class="hero-grid" aria-hidden="true"></div>
+            <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+            <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+            <div class="container relative z-10 mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center space-y-6">
+                    <span class="hero-kicker inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-teal-700 shadow-sm shadow-teal-200/60 backdrop-blur">আমাদের ব্লগ থেকে জানুন</span>
+                    <h1 class="hero-heading text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">আমাদের ব্লগ থেকে জানুন</h1>
+                    <p class="hero-subtitle text-lg md:text-xl text-slate-600 max-w-2xl mx-auto md:mx-0">ডিজিটাল মার্কেটিং এবং ব্যবসার সর্বাধুনিক কৌশল সম্পর্কে আপডেট থাকুন।</p>
+                    <div class="hero-cta flex flex-col items-center justify-center gap-4 sm:flex-row sm:justify-center">
+                        <a href="services.html" class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-500 via-emerald-500 to-sky-500 px-7 py-3 text-base font-semibold text-white shadow-lg shadow-teal-500/40 transition duration-300 hover:-translate-y-0.5 hover:shadow-xl">সার্ভিসসমূহ</a>
+                        <a href="index.html#contact" class="inline-flex items-center justify-center gap-2 rounded-full border border-teal-200/70 bg-white/70 px-7 py-3 text-base font-semibold text-teal-700 shadow-sm shadow-teal-200/60 transition duration-300 hover:-translate-y-0.5 hover:border-teal-400 hover:text-teal-600">যোগাযোগ করুন</a>
+            </article>
+                </div>
+            </div>
+        </section>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 items-center bg-white p-8 rounded-2xl shadow-lg">
+        <section class="section-shell py-24">
+            <div class="container mx-auto px-6 section-content">
+            <div class="glass-card relative overflow-hidden grid grid-cols-1 lg:grid-cols-2 gap-10 items-center px-10 py-12 shadow-xl mb-16 animate-on-scroll">
             <div class="order-2 lg:order-1">
                 <p class="text-teal-600 font-semibold mb-2">সর্বশেষ পোস্ট</p>
                 <h2 class="text-3xl font-bold mb-4 text-gray-900">ডিজিটাল মার্কেটিং এর ভবিষ্যৎ: ২০২৫ সালের সেরা ৫টি ট্রেন্ড</h2>
-                <p class="text-gray-600 mb-6">ডিজিটাল মার্কেটিং এর জগত প্রতিনিয়ত পরিবর্তনশীল। যা আজ কার্যকর, কাল তা পুরনো হয়ে যেতে পারে। সফলভাবে ব্যবসায় টিকে থাকতে হলে আপনাকে সময়ের চেয়ে এক ধাপ এগিয়ে থাকতে হবে...</p>
-                <div class="flex items-center text-sm text-gray-500 mb-6">
+                <p class="text-slate-600 leading-relaxed mb-6">ডিজিটাল মার্কেটিং এর জগত প্রতিনিয়ত পরিবর্তনশীল। যা আজ কার্যকর, কাল তা পুরনো হয়ে যেতে পারে। সফলভাবে ব্যবসায় টিকে থাকতে হলে আপনাকে সময়ের চেয়ে এক ধাপ এগিয়ে থাকতে হবে...</p>
+                <div class="flex flex-wrap items-center text-sm text-slate-500 mb-6 gap-2">
                     <span>২৩ আগস্ট, ২০২৫</span>
                     <span class="mx-2">&bull;</span>
                     <span>৫ মিনিট পঠন</span>
                 </div>
-                <a href="blog/digital-marketing-trends-2025.html" class="inline-block bg-teal-500 text-white font-semibold px-6 py-3 rounded-full hover:bg-teal-600 transition duration-300">পুরোটা পড়ুন &rarr;</a>
+                <a href="blog/digital-marketing-trends-2025.html" class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-500 via-emerald-500 to-sky-500 px-6 py-3 font-semibold text-white shadow-lg shadow-teal-500/40 transition duration-300 hover:-translate-y-0.5 hover:shadow-xl">পুরোটা পড়ুন &rarr;</a>
             </div>
             <div class="order-1 lg:order-2">
-                 <img src="https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=1470&auto=format&fit=crop" alt="ডিজিটাল মার্কেটিং ট্রেন্ড" class="rounded-xl object-cover w-full h-80">
+                <div class="overflow-hidden rounded-3xl shadow-[0_30px_60px_-35px_rgba(15,23,42,0.45)]">
+                    <img src="https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=1470&auto=format&fit=crop" alt="ডিজিটাল মার্কেটিং ট্রেন্ড" class="w-full h-80 object-cover">
+                </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+        <div class="card-grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+            <article class="glass-card overflow-hidden transition duration-300 hover:-translate-y-2 animate-on-scroll">
                 <img src="https://images.unsplash.com/photo-1556740738-b6a63e2775d2?q=80&w=1470&auto=format&fit=crop" alt="ছোট ব্যবসার সাফল্য" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">ছোট ব্যবসা অনলাইনে সফল করার ১০টি অব্যর্থ কৌশল</h3>
-                    <p class="text-gray-600 mb-4 line-clamp-3">আজকের ডিজিটাল যুগে, একটি ছোট ব্যবসার সফলতা অনেকাংশে নির্ভর করে তার অনলাইন উপস্থিতির ওপর...</p>
-                    <div class="flex items-center text-sm text-gray-500 pt-4 border-t border-gray-100">
+                <div class="p-8 space-y-4">
+                    <h3 class="text-2xl font-semibold text-slate-900">ছোট ব্যবসা অনলাইনে সফল করার ১০টি অব্যর্থ কৌশল</h3>
+                    <p class="text-slate-600 leading-relaxed line-clamp-3">আজকের ডিজিটাল যুগে, একটি ছোট ব্যবসার সফলতা অনেকাংশে নির্ভর করে তার অনলাইন উপস্থিতির ওপর...</p>
+                    <div class="flex flex-wrap items-center gap-2 text-sm text-slate-500 pt-4 border-t border-white/60">
                         <span>১৬ আগস্ট, ২০২৫</span>
                         <span class="mx-2">&bull;</span>
                         <span>৭ মিনিট পঠন</span>
                     </div>
                 </div>
-                <a href="blog/post1.html" class="block text-center bg-teal-500 text-white font-semibold px-6 py-3 rounded-full hover:bg-teal-600 transition duration-300">পড়ুন</a>
-            </div>
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                <a href="blog/post1.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold text-teal-700 rounded-full border border-teal-200/70 bg-white/70 shadow-sm shadow-teal-200/60 transition duration-300 hover:-translate-y-0.5 hover:border-teal-400 hover:text-teal-600">পড়ুন</a>
+            </article>
+            <article class="glass-card overflow-hidden transition duration-300 hover:-translate-y-2 animate-on-scroll">
                 <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="AI চ্যাটবট" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">AI চ্যাটবট: আপনার ব্যবসার গ্রোথ ইঞ্জিন</h3>
-                    <p class="text-gray-600 mb-4 line-clamp-3">আপনার ব্যবসার খরচ কমাতে চান? বিক্রি বাড়াতে চান? এবং গ্রাহকদের ২৪/৭ সাপোর্ট দিতে চান? উত্তরটি হলো AI চ্যাটবট...</p>
+                <div class="p-8 space-y-4">
+                    <h3 class="text-2xl font-semibold text-slate-900">AI চ্যাটবট: আপনার ব্যবসার গ্রোথ ইঞ্জিন</h3>
+                    <p class="text-slate-600 leading-relaxed line-clamp-3">আপনার ব্যবসার খরচ কমাতে চান? বিক্রি বাড়াতে চান? এবং গ্রাহকদের ২৪/৭ সাপোর্ট দিতে চান? উত্তরটি হলো AI চ্যাটবট...</p>
                 </div>
-                <a href="blog/ai-chatbot-business-growth.html" class="block text-center bg-teal-500 text-white font-semibold px-6 py-3 rounded-full hover:bg-teal-600 transition duration-300">পড়ুন</a>
-            </div>
+                <a href="blog/ai-chatbot-business-growth.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold text-teal-700 rounded-full border border-teal-200/70 bg-white/70 shadow-sm shadow-teal-200/60 transition duration-300 hover:-translate-y-0.5 hover:border-teal-400 hover:text-teal-600">পড়ুন</a>
+            </article>
 
 
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+            <article class="glass-card overflow-hidden transition duration-300 hover:-translate-y-2 animate-on-scroll">
                  <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1374&auto=format&fit=crop" alt="সোশ্যাল মিডিয়া প্ল্যাটফর্ম" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">ব্যবসা অনুযায়ী সোশ্যাল মিডিয়া: ফেসবুক, ইনস্টাগ্রাম নাকি লিংকডইন?</h3>
-                    <p class="text-gray-600 mb-4 line-clamp-3">প্রতিটি ব্যবসাই চায় সোশ্যাল মিডিয়ার মাধ্যমে গ্রাহকদের কাছে পৌঁছাতে। কিন্তু সব প্ল্যাটফর্ম সব ব্যবসার জন্য সমানভাবে কার্যকর নয়...</p>
-                     <div class="flex items-center text-sm text-gray-500 pt-4 border-t border-gray-100">
+                <div class="p-8 space-y-4">
+                    <h3 class="text-2xl font-semibold text-slate-900">ব্যবসা অনুযায়ী সোশ্যাল মিডিয়া: ফেসবুক, ইনস্টাগ্রাম নাকি লিংকডইন?</h3>
+                    <p class="text-slate-600 leading-relaxed line-clamp-3">প্রতিটি ব্যবসাই চায় সোশ্যাল মিডিয়ার মাধ্যমে গ্রাহকদের কাছে পৌঁছাতে। কিন্তু সব প্ল্যাটফর্ম সব ব্যবসার জন্য সমানভাবে কার্যকর নয়...</p>
+                     <div class="flex flex-wrap items-center gap-2 text-sm text-slate-500 pt-4 border-t border-white/60">
                         <span>১০ আগস্ট, ২০২৫</span>
                         <span class="mx-2">&bull;</span>
                         <span>৪ মিনিট পঠন</span>
                     </div>
                 </div>
-                 <a href="blog/social-media-for-business.html" class="block text-center bg-teal-500 text-white font-semibold px-6 py-3 rounded-full hover:bg-teal-600 transition duration-300">পড়ুন</a>
-            </div>
+                 <a href="blog/social-media-for-business.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold text-teal-700 rounded-full border border-teal-200/70 bg-white/70 shadow-sm shadow-teal-200/60 transition duration-300 hover:-translate-y-0.5 hover:border-teal-400 hover:text-teal-600">পড়ুন</a>
+            </article>
             
         </div>
+            </div>
+        </section>
     </main>
     <footer class="bg-gray-800 text-white pt-16 pb-8">
         <div class="container mx-auto px-6">
@@ -149,7 +149,7 @@
                         <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
                         <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in fa-lg"></i></a>
                         <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube fa-lg"></i></a>
-                    </div>
+            </article>
                 </div>
             </div>
             <div class="border-t border-gray-700 pt-6 text-center text-gray-500">
@@ -160,3 +160,8 @@
     <script src="main.js" defer></script>
     </body>
 </html>
+
+
+
+
+
