@@ -1256,8 +1256,15 @@
 
             /* Make the "ব্যবসার" pill a bit wider on mobile */
             #industry-text {
-                padding-left: 1.5rem; /* widened further for mobile */
-                padding-right: 1.5rem;
+                padding-left: 2.25rem; /* much wider on mobile */
+                padding-right: 2.25rem;
+                white-space: nowrap; /* keep as one pill without breaking */
+            }
+            
+            /* Significantly reduce width only when the word is হাসপাতালের */
+            #industry-text.narrow-pill {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
             }
 
             .contact-link {
