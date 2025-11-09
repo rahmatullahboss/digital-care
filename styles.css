@@ -1254,6 +1254,12 @@
                 font-size: 1rem;
             }
 
+            /* Make the "ব্যবসার" pill a bit wider on mobile */
+            #industry-text {
+                padding-left: 1.5rem; /* widened further for mobile */
+                padding-right: 1.5rem;
+            }
+
             .contact-link {
                 font-size: 1.05rem;
             }
