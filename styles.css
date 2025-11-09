@@ -15,8 +15,9 @@
             display: inline-block;
             transition: transform 0.6s;
             will-change: transform;
-            min-width: 8rem; /* prevent layout shift on text change */
+            width: 8.5rem; /* fixed width to prevent any layout shift */
             text-align: center; /* keep text centered in fixed width */
+            box-sizing: border-box; /* include padding in width calculation */
         }
 
         #industry-text.flip {
@@ -1256,20 +1257,20 @@
                 font-size: 1rem;
             }
 
-            /* Make the "ব্যবসার" pill a bit wider on mobile */
+            /* Make the "ব্যবসার" pill fixed width on mobile */
             #industry-text {
+                width: 11rem; /* fixed width for mobile - no layout shift */
                 padding-left: 2.25rem; /* much wider on mobile */
                 padding-right: 2.25rem;
                 white-space: nowrap; /* keep as one pill without breaking */
-                min-width: 10rem; /* larger fixed width for mobile */
                 box-sizing: border-box; /* include padding in width calculation */
             }
             
-            /* Significantly reduce width only when the word is হাসপাতালের */
+            /* Keep same fixed width even for হাসপাতালের - only change padding */
             #industry-text.narrow-pill {
+                width: 11rem; /* same fixed width as above */
                 padding-left: 0.75rem;
                 padding-right: 0.75rem;
-                min-width: 8rem; /* smaller but still fixed width */
             }
 
             .contact-link {
