@@ -1246,7 +1246,8 @@
 
         @media (max-width: 480px) {
             .hero-heading {
-                font-size: clamp(2.35rem, 8vw, 2.9rem);
+                /* Increased total by ~2pt (≈0.166rem) for mobile */
+                font-size: clamp(2.516rem, 8vw, 3.066rem);
             }
 
             .hero-subtitle {
