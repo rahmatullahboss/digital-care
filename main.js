@@ -181,9 +181,6 @@ if (industryText) {
             index = (index + 1) % words.length;
             const nextWord = words[index];
             industryText.textContent = nextWord;
-            // Toggle narrow style when the word is হাসপাতালের (hospital)
-            const isHospital = nextWord.includes('হাসপাতাল');
-            industryText.classList.toggle('narrow-pill', isHospital);
             industryText.classList.remove('flip');
         }, 600);
     }, 2000);
