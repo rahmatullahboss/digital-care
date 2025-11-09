@@ -15,7 +15,7 @@
             display: inline-block;
             transition: transform 0.6s;
             will-change: transform;
-            width: 10rem; /* larger fixed width to accommodate all text sizes */
+            width: 12rem; /* even larger fixed width for generous spacing */
             text-align: center; /* keep text centered in fixed width */
             box-sizing: border-box; /* include padding in width calculation */
         }
@@ -1259,7 +1259,7 @@
 
             /* Make the "ব্যবসার" pill fixed width on mobile */
             #industry-text {
-                width: 13rem; /* larger fixed width for mobile - fits all text comfortably */
+                width: 15rem; /* much larger fixed width for mobile - generous spacing */
                 padding-left: 2.25rem; /* much wider on mobile */
                 padding-right: 2.25rem;
                 white-space: nowrap; /* keep as one pill without breaking */
@@ -1268,7 +1268,7 @@
             
             /* Keep same fixed width even for হাসপাতালের - only change padding */
             #industry-text.narrow-pill {
-                width: 13rem; /* same larger fixed width as above */
+                width: 15rem; /* same much larger fixed width as above */
                 padding-left: 0.75rem;
                 padding-right: 0.75rem;
             }
