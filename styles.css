@@ -1255,6 +1255,159 @@
             }
         }
 
+        /* Projects Scroll Container */
+        .projects-container {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .projects-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .project-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 4rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1200px;
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+        }
+        
+        .project-card .grid {
+            max-width: 1400px; /* Wider for PC screens */
+            margin: 0 auto;
+            gap: 4rem; /* Larger gap between columns */
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); /* Smoother, longer transition */
+        }
+        
+        .project-card:hover .grid {
+            transform: translateY(-8px) scale(1.02); /* Enhanced hover effect */
+        }
+
+        /* PC Screen Optimizations */
+        @media (min-width: 1024px) {
+            .project-card {
+                padding: 6rem 4rem; /* Even more padding for large screens */
+            }
+            
+            .project-card .grid {
+                max-width: 1600px; /* Full width utilization */
+                gap: 6rem; /* Much larger gap */
+            }
+            
+            .project-card .space-y-6 > * + * {
+                margin-top: 2rem; /* Increased spacing between elements */
+            }
+            
+            .project-card h3 {
+                font-size: 2.5rem !important; /* Larger headings for PC */
+                line-height: 1.2;
+            }
+            
+            .project-card p {
+                font-size: 1.25rem !important; /* Larger text for readability */
+                line-height: 1.8;
+            }
+            
+            .project-card .grid-cols-2 {
+                gap: 2rem; /* Larger gap for metric cards */
+            }
+            
+            .project-card .rounded-2xl {
+                padding: 2rem !important; /* Larger padding for metric cards */
+            }
+            
+            .project-card .text-2xl {
+                font-size: 3rem !important; /* Bigger metrics numbers */
+            }
+            
+            .project-card .glass-card {
+                padding: 3rem; /* More padding for visual content */
+                border-radius: 24px; /* Larger border radius */
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .project-card {
+                padding: 8rem 6rem; /* Maximum padding for very large screens */
+            }
+            
+            .project-card .grid {
+                max-width: 1800px;
+                gap: 8rem;
+            }
+        }
+
+        /* Button Styles */
+        .btn-outline-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline-sm:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            color: #475569;
+            transform: translateY(-1px);
+        }
+
+        .btn-social-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #3b82f6;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-social-sm:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        /* Navigation Dots */
+        .dot {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: #14b8a6 !important;
+            transform: scale(1.2);
+        }
+
+        .dot:hover {
+            transform: scale(1.1);
+        }
+
         @media (max-width: 480px) {
             .hero-heading {
                 font-size: 2rem !important; /* Much smaller heading for mobile */
@@ -1267,6 +1420,10 @@
             #industry-text {
                 width: 12rem !important; /* Much smaller pill width for mobile */
                 padding: 0.2rem 1.5rem !important; /* Reduced padding */
+            }
+
+            .project-card {
+                padding: 1rem;
             }
 
             /* Remove mobile-specific styles - use same design across all devices */

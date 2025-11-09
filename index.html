@@ -18,6 +18,11 @@
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
         <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -376,43 +381,254 @@
                 <span class="section-pill case-pill" data-parallax-depth="0.12"></span>
             </div>
             <div class="section-content container mx-auto px-6">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-6" data-animate="fade-right">
-                        <span class="badge-soft"><i class="fa-solid fa-video"></i> লাইভ কেইস স্টাডি</span>
-                        <h2 class="text-3xl md:text-4xl font-bold text-slate-900">ই-কমার্স ব্র্যান্ডের জন্য সম্পূর্ণ অটোমেটেড গ্রোথ ইঞ্জিন</h2>
-                        <p class="text-lg text-slate-600 leading-relaxed">ফেসবুক মেসেঞ্জার, ওয়েবসাইট, কল সেন্টার এবং পেমেন্ট গেটওয়ে—সব কিছু এক সিস্টেমে যুক্ত করে ৭২% পর্যন্ত লিড-টু-সেল রেট বাড়ানো হয়েছে।</p>
-                        <div class="grid grid-cols-2 gap-4 text-left">
-                            <div class="rounded-2xl border border-teal-100 bg-white/70 p-5 shadow-sm">
-                                <p class="text-2xl font-bold text-slate-900">৭২%</p>
-                                <p class="text-sm text-slate-500">লিড-টু-অর্ডার রেট</p>
+                <div class="text-center space-y-6 mb-16" data-animate="fade-up">
+                    <span class="badge-soft"><i class="fa-solid fa-video"></i> লাইভ কেইস স্টাডি</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">আমাদের সফলতার গল্পসমূহ</h2>
+                    <p class="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">বিভিন্ন ইন্ডাস্ট্রির ব্যবসায়িক প্রতিষ্ঠানের সাথে কাজ করে আমাদের অভিজ্ঞতা ও সফলতার কিছু উদাহরণ</p>
+                </div>
+
+                <!-- Horizontal Scroll Projects -->
+                <div class="projects-container" id="projects-scroll">
+                    <div class="projects-wrapper">
+                        
+                        <!-- Project 1: E-commerce -->
+                        <div class="project-card" data-category="ecommerce">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                                <div class="space-y-6">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+                                            <i class="fa-solid fa-shopping-cart text-blue-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-sm font-semibold text-blue-600 uppercase tracking-wider">ই-কমার্স</span>
+                                            <h3 class="text-2xl font-bold text-slate-900">অনলাইন বাজার</h3>
+                                        </div>
+                                    </div>
+                                    <p class="text-lg text-slate-600 leading-relaxed">ফেসবুক মেসেঞ্জার, ওয়েবসাইট, কল সেন্টার এবং পেমেন্ট গেটওয়ে—সব কিছু এক সিস্টেমে যুক্ত করে ৭২% পর্যন্ত লিড-টু-সেল রেট বাড়ানো হয়েছে।</p>
+                                    <div class="grid grid-cols-2 gap-4 text-left">
+                                        <div class="rounded-2xl border border-blue-100 bg-white/70 p-4 shadow-sm">
+                                            <p class="text-2xl font-bold text-slate-900">৭২%</p>
+                                            <p class="text-sm text-slate-500">লিড-টু-অর্ডার রেট</p>
+                                        </div>
+                                        <div class="rounded-2xl border border-blue-100 bg-white/70 p-4 shadow-sm">
+                                            <p class="text-2xl font-bold text-slate-900">৩x</p>
+                                            <p class="text-sm text-slate-500">পুনরায় ক্রয় বৃদ্ধি</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap gap-3">
+                                        <a href="https://online-bazar.top/" target="_blank" class="btn-outline-sm">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i> লাইভ ডেমো
+                                        </a>
+                                        <a href="https://www.facebook.com/onlinebazarbarguna" target="_blank" class="btn-social-sm">
+                                            <i class="fab fa-facebook-f"></i> ফেসবুক পেজ
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="glass-card">
+                                    <div class="relative w-full pt-[56.25%]">
+                                        <iframe class="absolute inset-0 w-full h-full rounded-xl" src="https://www.loom.com/embed/d7f841578f3344cda179023e683d2e2e?sid=3d051e6d-96f8-4c9a-80a2-77b99122fbd1" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="rounded-2xl border border-sky-100 bg-white/70 p-5 shadow-sm">
-                                <p class="text-2xl font-bold text-slate-900">৩x</p>
-                                <p class="text-sm text-slate-500">পুনরায় ক্রয় বৃদ্ধি</p>
+                        </div>
+
+                        <!-- Project 2: Healthcare -->
+                        <div class="project-card" data-category="healthcare">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                                <div class="space-y-6">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                                            <i class="fa-solid fa-stethoscope text-green-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-sm font-semibold text-green-600 uppercase tracking-wider">হেলথকেয়ার</span>
+                                            <h3 class="text-2xl font-bold text-slate-900">ডাক্তার অ্যাপয়েন্টমেন্ট সিস্টেম</h3>
+                                        </div>
+                                    </div>
+                                    <p class="text-lg text-slate-600 leading-relaxed">সম্পূর্ণ স্বয়ংক্রিয় অ্যাপয়েন্টমেন্ট বুকিং, রোগীর তথ্য ব্যবস্থাপনা এবং ডাক্তার-রোগী যোগাযোগ সিস্টেম যা ৮৫% পর্যন্ত অ্যাডমিন কাজ কমিয়েছে।</p>
+                                    <div class="grid grid-cols-2 gap-4 text-left">
+                                        <div class="rounded-2xl border border-green-100 bg-white/70 p-4 shadow-sm">
+                                            <p class="text-2xl font-bold text-slate-900">৮৫%</p>
+                                            <p class="text-sm text-slate-500">অ্যাডমিন কাজ কমেছে</p>
+                                        </div>
+                                        <div class="rounded-2xl border border-green-100 bg-white/70 p-4 shadow-sm">
+                                            <p class="text-2xl font-bold text-slate-900">৫০+</p>
+                                            <p class="text-sm text-slate-500">দৈনিক অ্যাপয়েন্টমেন্ট</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap gap-3">
+                                        <a href="clinic-demo.html" class="btn-outline-sm">
+                                            <i class="fa-solid fa-circle-play"></i> ক্লিনিক ডেমো
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="glass-card">
+                                    <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-6">
+                                        <div class="space-y-4">
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm font-semibold text-green-600">আজকের অ্যাপয়েন্টমেন্ট</span>
+                                                <span class="text-2xl font-bold text-slate-900">১২</span>
+                                            </div>
+                                            <div class="space-y-3">
+                                                <div class="flex items-center gap-3 bg-white rounded-lg p-3">
+                                                    <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                                        <i class="fa-solid fa-user text-green-600 text-sm"></i>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <p class="text-sm font-medium">মোঃ রহিম উদ্দিন</p>
+                                                        <p class="text-xs text-slate-500">১০:৩০ AM</p>
+                                                    </div>
+                                                    <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">নিশ্চিত</span>
+                                                </div>
+                                                <div class="flex items-center gap-3 bg-white rounded-lg p-3">
+                                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                                        <i class="fa-solid fa-user text-blue-600 text-sm"></i>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <p class="text-sm font-medium">সালমা খাতুন</p>
+                                                        <p class="text-xs text-slate-500">১১:০০ AM</p>
+                                                    </div>
+                                                    <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">অপেক্ষমাণ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="https://online-bazar.top/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full bg-slate-900 text-white px-6 py-3 font-semibold transition duration-300 hover:bg-slate-800" data-animate="fade-up" data-delay="0.05">
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i> লাইভ ডেমো দেখুন
-                            </a>
-                            <a href="https://www.facebook.com/onlinebazarbarguna" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full bg-blue-600 text-white px-6 py-3 font-semibold transition duration-300 hover:bg-blue-700" data-animate="fade-up" data-delay="0.1">
-                                <i class="fab fa-facebook-f"></i> ফেসবুক পেজ
-                            </a>
-                            <a href="clinic-demo.html" class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-500 to-sky-500 text-white px-6 py-3 font-semibold transition duration-300 hover:from-teal-600 hover:to-sky-600" data-animate="fade-up" data-delay="0.15">
-                                <i class="fa-solid fa-circle-play"></i> ক্লিনিক ডেমো
-                            </a>
+
+                        <!-- Project 3: Real Estate -->
+                        <div class="project-card" data-category="realestate">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                                <div class="space-y-6">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
+                                            <i class="fa-solid fa-building text-purple-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-sm font-semibold text-purple-600 uppercase tracking-wider">রিয়েল এস্টেট</span>
+                                            <h3 class="text-2xl font-bold text-slate-900">প্রপার্টি ম্যানেজমেন্ট সিস্টেম</h3>
+                                        </div>
+                                    </div>
+                                    <p class="text-lg text-slate-600 leading-relaxed">প্রপার্টি লিস্টিং, গ্রাহক ইনকোয়ারি ম্যানেজমেন্ট, ভার্চুয়াল ট্যুর এবং অটোমেটেড ফলোআপ সিস্টেম যা ৬০% বেশি কোয়ালিফাইড লিড এনেছে।</p>
+                                    <div class="grid grid-cols-2 gap-4 text-left">
+                                        <div class="rounded-2xl border border-purple-100 bg-white/70 p-4 shadow-sm">
+                                            <p class="text-2xl font-bold text-slate-900">৬০%</p>
+                                            <p class="text-sm text-slate-500">বেশি কোয়ালিফাইড লিড</p>
+                                        </div>
+                                        <div class="rounded-2xl border border-purple-100 bg-white/70 p-4 shadow-sm">
+                                            <p class="text-2xl font-bold text-slate-900">৪৮ঘ</p>
+                                            <p class="text-sm text-slate-500">গড় রেসপন্স টাইম</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="glass-card">
+                                    <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-6">
+                                        <div class="space-y-4">
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm font-semibold text-purple-600">এই মাসের প্রপার্টি ভিউ</span>
+                                                <span class="text-2xl font-bold text-slate-900">২৮৫</span>
+                                            </div>
+                                            <div class="grid grid-cols-2 gap-3">
+                                                <div class="bg-white rounded-lg p-3 text-center">
+                                                    <p class="text-lg font-bold text-slate-900">১৫</p>
+                                                    <p class="text-xs text-slate-500">নতুন লিড</p>
+                                                </div>
+                                                <div class="bg-white rounded-lg p-3 text-center">
+                                                    <p class="text-lg font-bold text-slate-900">৮</p>
+                                                    <p class="text-xs text-slate-500">সাইট ভিজিট</p>
+                                                </div>
+                                            </div>
+                                            <div class="bg-white rounded-lg p-3">
+                                                <div class="flex items-center gap-2">
+                                                    <i class="fa-solid fa-home text-purple-600"></i>
+                                                    <div class="flex-1">
+                                                        <p class="text-sm font-medium">নতুন অ্যাপার্টমেন্ট - ধানমন্ডি</p>
+                                                        <p class="text-xs text-slate-500">৫ মিনিট আগে ইনকোয়ারি</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="glass-card case-video" data-animate="fade-left">
-                        <div class="relative w-full pt-[56.25%]">
-                            <iframe class="absolute inset-0 w-full h-full" src="https://www.loom.com/embed/d7f841578f3344cda179023e683d2e2e?sid=3d051e6d-96f8-4c9a-80a2-77b99122fbd1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+                        <!-- Project 4: Resort/Hotel -->
+                        <div class="project-card" data-category="resort">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                                <div class="space-y-6">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
+                                            <i class="fa-solid fa-bed text-orange-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-sm font-semibold text-orange-600 uppercase tracking-wider">হোটেল ও রিসোর্ট</span>
+                                            <h3 class="text-2xl font-bold text-slate-900">রিসোর্ট বুকিং সিস্টেম</h3>
+                                        </div>
+                                    </div>
+                                    <p class="text-lg text-slate-600 leading-relaxed">অনলাইন রুম বুকিং, গেস্ট ম্যানেজমেন্ট, পেমেন্ট প্রসেসিং এবং কাস্টমার সার্ভিস অটোমেশন যা ৯০% বুকিং প্রসেস স্বয়ংক্রিয় করেছে।</p>
+                                    <div class="grid grid-cols-2 gap-4 text-left">
+                                        <div class="rounded-2xl border border-orange-100 bg-white/70 p-4 shadow-sm">
+                                            <p class="text-2xl font-bold text-slate-900">৯০%</p>
+                                            <p class="text-sm text-slate-500">অটোমেটেড বুকিং</p>
+                                        </div>
+                                        <div class="rounded-2xl border border-orange-100 bg-white/70 p-4 shadow-sm">
+                                            <p class="text-2xl font-bold text-slate-900">২৪/৭</p>
+                                            <p class="text-sm text-slate-500">কাস্টমার সাপোর্ট</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="glass-card">
+                                    <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6">
+                                        <div class="space-y-4">
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm font-semibold text-orange-600">আজকের বুকিং স্ট্যাটাস</span>
+                                                <span class="text-2xl font-bold text-slate-900">৮৫%</span>
+                                            </div>
+                                            <div class="space-y-2">
+                                                <div class="flex justify-between text-sm">
+                                                    <span>মোট রুম</span>
+                                                    <span>৫০</span>
+                                                </div>
+                                                <div class="w-full bg-white rounded-full h-2">
+                                                    <div class="bg-gradient-to-r from-orange-400 to-orange-600 h-2 rounded-full" style="width: 85%"></div>
+                                                </div>
+                                                <div class="flex justify-between text-sm text-slate-500">
+                                                    <span>বুকড: ৪২</span>
+                                                    <span>ফাঁকা: ৮</span>
+                                                </div>
+                                            </div>
+                                            <div class="bg-white rounded-lg p-3">
+                                                <div class="flex items-center justify-between">
+                                                    <div>
+                                                        <p class="text-sm font-medium">পেন্ডিং চেক-ইন</p>
+                                                        <p class="text-xs text-slate-500">৬ জন গেস্ট</p>
+                                                    </div>
+                                                    <span class="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded">৩ PM</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
+
+                <!-- Navigation Dots -->
+                <div class="flex justify-center mt-12 space-x-2" id="project-dots">
+                    <button class="w-3 h-3 rounded-full bg-teal-500 dot active" data-project="0"></button>
+                    <button class="w-3 h-3 rounded-full bg-slate-300 dot" data-project="1"></button>
+                    <button class="w-3 h-3 rounded-full bg-slate-300 dot" data-project="2"></button>
+                    <button class="w-3 h-3 rounded-full bg-slate-300 dot" data-project="3"></button>
+                </div>
+
                 <div class="mt-16 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between bg-white/70 border border-white/60 rounded-3xl p-6 shadow-sm" data-animate="fade-up" data-delay="0.25">
                     <div class="text-left space-y-1">
                         <p class="text-sm font-semibold text-teal-600 uppercase tracking-[0.35em]">পরবর্তী সাফল্যের গল্প</p>
-                        <p class="text-lg md:text-xl text-slate-600">আপনার ব্যবসায় একই রকম অটোমেশন স্ট্যাক চাইলে আমাদের সাথে কথা বলুন।</p>
+                        <p class="text-lg md:text-xl text-slate-600">আপনার ব্যবসায় একই রকম অটোমেশন স্ট্যাক চাইলে আমাদের সাথে কথা বলুন।</p>
                     </div>
                     <a href="#contact" class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-500 via-emerald-500 to-sky-500 px-8 py-3 text-base font-semibold text-white shadow-lg transition duration-300 hover:-translate-y-0.5 hover:shadow-xl">
                         <i class="fa-solid fa-comments"></i> কৌশল সেশন বুক করুন

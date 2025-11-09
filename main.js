@@ -532,4 +532,121 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     document.body.appendChild(floatingWrapper);
+
+    // GSAP ScrollTrigger Animation for Projects
+    if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
+        gsap.registerPlugin(ScrollTrigger);
+        
+        const projectsContainer = document.getElementById('projects-scroll');
+        const projects = document.querySelectorAll('.project-card');
+        const dots = document.querySelectorAll('.dot');
+        
+        if (projectsContainer && projects.length > 0) {
+            
+            // Create timeline for each project
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: projectsContainer,
+                    start: "center center", // Section center viewport center এ এলে animation শুরু
+                    end: () => `+=${projects.length * window.innerHeight}`, // Exact 1:1 scroll distance
+                    scrub: 1.5, // Slightly slower for smoother feel
+                    pin: true,
+                    anticipatePin: 1,
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+                        const currentIndex = Math.floor(progress * projects.length);
+                        const activeIndex = Math.min(currentIndex, projects.length - 1);
+                        
+                        // Update dots with animation
+                        dots.forEach((dot, i) => {
+                            dot.classList.toggle('active', i === activeIndex);
+                            if (i === activeIndex) {
+                                gsap.to(dot, { backgroundColor: '#14b8a6', scale: 1.2, duration: 0.3 });
+                            } else {
+                                gsap.to(dot, { backgroundColor: '#cbd5e1', scale: 1, duration: 0.3 });
+                            }
+                        });
+                    }
+                }
+            });
+            
+            // Initially hide all projects except first
+            gsap.set(projects, { 
+                x: '100%', 
+                opacity: 0
+            });
+            gsap.set(projects[0], { 
+                x: '0%', 
+                opacity: 1
+            });
+            
+            // Animate each project with sequential transitions
+            projects.forEach((project, i) => {
+                if (i > 0) {
+                    // First: Exit animation (previous card goes out completely)
+                    tl.to(projects[i-1], {
+                        x: '-100%',
+                        opacity: 0,
+                        duration: 1.5,
+                        ease: "power3.inOut"
+                    }, i * 4) // Even longer gap between animations
+                    
+                    // Then: Enter animation (new card comes in after previous is gone)
+                    .to(project, {
+                        x: '0%',
+                        opacity: 1,
+                        duration: 1.5,
+                        ease: "power3.inOut"
+                    }, i * 4 + 2); // Start 0.5s after previous animation is complete
+                }
+            });
+            
+            // Dot navigation with enhanced animation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    const targetProgress = index / (projects.length - 1);
+                    gsap.to(window, {
+                        duration: 2, // Much slower for premium feel
+                        scrollTo: {
+                            y: projectsContainer.offsetTop + (targetProgress * projects.length * window.innerHeight),
+                            autoKill: true
+                        },
+                        ease: "power3.inOut" // More elegant easing
+                    });
+                });
+                
+                // Enhanced hover effects
+                dot.addEventListener('mouseenter', () => {
+                    if (!dot.classList.contains('active')) {
+                        gsap.to(dot, { 
+                            scale: 1.15, 
+                            backgroundColor: '#0d9488',
+                            duration: 0.4, 
+                            ease: "back.out(1.2)" // Bouncy effect
+                        });
+                    }
+                });
+                
+                dot.addEventListener('mouseleave', () => {
+                    if (!dot.classList.contains('active')) {
+                        gsap.to(dot, { 
+                            scale: 1, 
+                            backgroundColor: '#cbd5e1',
+                            duration: 0.4, 
+                            ease: "power2.out" 
+                        });
+                    }
+                });
+            });
+        }
+    } else {
+        // Fallback for when GSAP is not loaded
+        console.warn('GSAP not loaded, using fallback animation');
+        const projectsContainer = document.getElementById('projects-scroll');
+        const projects = document.querySelectorAll('.project-card');
+        
+        if (projects.length > 0) {
+            projects[0].classList.add('active');
+        }
+    }
 });
