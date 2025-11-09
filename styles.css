@@ -1256,8 +1256,12 @@
         }
 
         @media (max-width: 480px) {
+            .hero-heading {
+                font-size: 2rem !important; /* Much smaller heading for mobile */
+            }
+
             .hero-subtitle {
-                font-size: 0.75rem;
+                font-size: 1rem; /* Restore original paragraph size */
             }
 
             /* Remove mobile-specific styles - use same design across all devices */
