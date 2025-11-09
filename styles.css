@@ -1264,6 +1264,11 @@
                 font-size: 1rem; /* Restore original paragraph size */
             }
 
+            #industry-text {
+                width: 12rem !important; /* Much smaller pill width for mobile */
+                padding: 0.2rem 1.5rem !important; /* Reduced padding */
+            }
+
             /* Remove mobile-specific styles - use same design across all devices */
 
             .contact-link {
