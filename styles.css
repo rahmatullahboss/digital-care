@@ -1257,7 +1257,7 @@
 
         @media (max-width: 480px) {
             .hero-subtitle {
-                font-size: 1rem;
+                font-size: 0.75rem;
             }
 
             /* Remove mobile-specific styles - use same design across all devices */
