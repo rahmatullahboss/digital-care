@@ -23,9 +23,9 @@ persist = true
 
 # Custom Domains
 [[routes]]
-pattern = "digitalcare.site/*"
+pattern = "digitalcare.site"
 custom_domain = true
 
 [[routes]]
-pattern = "*.digitalcare.site/*"
+pattern = "www.digitalcare.site"
 custom_domain = true
