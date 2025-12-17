@@ -15,10 +15,19 @@ database_name = "digital-care-db"
 database_id = "aa825794-edd1-41e9-9160-ef63af2e121e"
 
 # Observability
+[observability]
+enabled = true
+head_sampling_rate = 1
+
 [observability.logs]
-enabled = false
+enabled = true
 head_sampling_rate = 1
 invocation_logs = true
+persist = true
+
+[observability.traces]
+enabled = true
+head_sampling_rate = 1
 persist = true
 
 # Custom Domains
