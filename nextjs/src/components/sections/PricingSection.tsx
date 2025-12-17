@@ -19,7 +19,7 @@ export default function PricingSection() {
           description="প্রতিটি প্যাকেজ আপনার ব্যবসার বৃদ্ধির জন্য ডিজাইন করা হয়েছে"
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 pt-6">
           {pricingPackages.map((pkg) => (
             <GlassCard
               key={pkg.name}
