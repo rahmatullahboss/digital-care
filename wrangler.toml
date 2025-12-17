@@ -20,3 +20,12 @@ enabled = false
 head_sampling_rate = 1
 invocation_logs = true
 persist = true
+
+# Custom Domains
+[[routes]]
+pattern = "digitalcare.site/*"
+custom_domain = true
+
+[[routes]]
+pattern = "www.digitalcare.site/*"
+custom_domain = true
