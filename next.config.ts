@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
+  // Remove static export for SSR support with D1
+  // output: "export",
   trailingSlash: true,
   images: {
     unoptimized: true,
@@ -16,7 +17,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "via.placeholder.com",
+        hostname: "res.cloudinary.com",
       },
     ],
   },
