@@ -27,5 +27,5 @@ pattern = "digitalcare.site/*"
 custom_domain = true
 
 [[routes]]
-pattern = "www.digitalcare.site/*"
+pattern = "*.digitalcare.site/*"
 custom_domain = true
