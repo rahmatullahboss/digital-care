@@ -1,5 +1,6 @@
 import { getD1Database } from "@/lib/db";
 import { NextResponse } from "next/server";
+import { sendEmail } from "@/lib/email";
 
 
 
@@ -22,6 +23,20 @@ export async function POST(request: Request) {
             )
             .bind(name, phone, email || null, message)
             .run();
+
+        // Send email notification
+        await sendEmail({
+            to: "rahmatullahzisan@gmail.com",
+            subject: `New Contact Message from ${name}`,
+            html: `
+                <h2>New Contact Message</h2>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Phone:</strong> ${phone}</p>
+                <p><strong>Email:</strong> ${email || "N/A"}</p>
+                <p><strong>Message:</strong></p>
+                <p>${message}</p>
+            `,
+        });
 
         return NextResponse.json({ success: true, message: "বার্তা সফলভাবে পাঠানো হয়েছে" });
     } catch (error) {

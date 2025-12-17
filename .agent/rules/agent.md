@@ -77,3 +77,5 @@ results.map((row: Record<string, unknown>) => ({
 - `site_settings` - Site configuration
 - `contact_submissions` - Contact form data
 - `affiliate_applications` - Affiliate requests
+
+##Push after every edit#

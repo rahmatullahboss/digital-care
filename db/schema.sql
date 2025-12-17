@@ -58,6 +58,21 @@ CREATE TABLE IF NOT EXISTS affiliates (
   created_at TEXT DEFAULT (datetime('now'))
 );
 
+
+-- Orders
+CREATE TABLE IF NOT EXISTS orders (
+  id TEXT PRIMARY KEY DEFAULT (lower(hex(randomblob(16)))),
+  package_name TEXT NOT NULL,
+  price TEXT NOT NULL,
+  name TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  email TEXT,
+  company_name TEXT,
+  message TEXT,
+  status TEXT DEFAULT 'pending',
+  created_at TEXT DEFAULT (datetime('now'))
+);
+
 -- Site Settings
 CREATE TABLE IF NOT EXISTS settings (
   id INTEGER PRIMARY KEY DEFAULT 1,

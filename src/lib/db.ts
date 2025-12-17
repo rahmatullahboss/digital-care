@@ -24,6 +24,19 @@ export interface Post {
     updated_at: string;
 }
 
+export interface Order {
+    id: string;
+    package_name: string;
+    price: string;
+    name: string;
+    phone: string;
+    email?: string;
+    company_name?: string;
+    message?: string;
+    status: string;
+    created_at: string;
+}
+
 export interface PricingPackage {
     id: string;
     name: string;

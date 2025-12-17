@@ -18,20 +18,25 @@ export default function ContactSection() {
     setIsSubmitting(true);
     setFormMessage(null);
 
-    const formData = new FormData();
-    Object.entries(formState).forEach(([key, value]) => formData.append(key, value));
-
     try {
-      const response = await fetch(SCRIPT_URL, { method: "POST", body: formData });
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
+      });
+
       const data = await response.json();
 
-      if (data.result === "success") {
+      if (response.ok) {
         setFormMessage({ type: "success", text: "আপনার বার্তা সফলভাবে পাঠানো হয়েছে। ধন্যবাদ!" });
         setFormState({ name: "", phone: "", email: "", message: "" });
       } else {
-        throw new Error(data.message);
+        throw new Error(data.error || "Something went wrong");
       }
-    } catch {
+    } catch (error) {
+      console.error(error);
       setFormMessage({ type: "error", text: "একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।" });
     } finally {
       setIsSubmitting(false);

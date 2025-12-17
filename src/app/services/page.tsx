@@ -46,7 +46,7 @@ export default async function ServicesPage({
 
   return (
     <>
-      <section className="hero-section relative py-16 md:py-24">
+      <section className="hero-section relative pt-16 pb-8 md:pt-24 md:pb-12">
         <div className="container mx-auto px-6 relative z-10 text-center">
           <SectionHeader
             kicker="আমাদের সেবাসমূহ"

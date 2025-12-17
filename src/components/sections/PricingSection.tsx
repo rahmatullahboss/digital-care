@@ -1,9 +1,9 @@
 import { getD1Database } from "@/lib/db";
 import { PricingPackage } from "@/lib/db";
-import { FaCheck, FaStar, FaPhone } from "react-icons/fa6";
+import { FaPhone } from "react-icons/fa6";
 import SectionHeader from "@/components/ui/SectionHeader";
-import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
+import PricingGrid from "./PricingGrid";
 
 async function getPricingPackages() {
   const db = await getD1Database();
@@ -20,6 +20,9 @@ async function getPricingPackages() {
 export default async function PricingSection() {
   const packages = await getPricingPackages();
 
+  // Use empty array fallback to prevent hydration issues if fetch fails
+  const safePackages = packages || [];
+
   return (
     <section id="pricing" className="section-shell py-24">
       <div className="container mx-auto px-6 relative z-10">
@@ -30,55 +33,7 @@ export default async function PricingSection() {
           centered
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 pt-6">
-          {packages.map((pkg) => (
-            <GlassCard
-              key={pkg.id}
-              className={`p-8 relative ${pkg.popular ? "ring-2 ring-teal-500" : ""}`}
-            >
-              {pkg.popular === 1 && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-xs font-semibold">
-                    <FaStar /> সবচেয়ে জনপ্রিয়
-                  </span>
-                </div>
-              )}
-
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-slate-900">{pkg.name}</h3>
-                <p className="text-slate-500 mt-1">{pkg.description}</p>
-                <div className="mt-4">
-                  <span className="text-4xl font-bold text-slate-900">৳{pkg.price}</span>
-                  {pkg.period && <span className="text-slate-500">/{pkg.period}</span>}
-                </div>
-              </div>
-
-              <ul className="space-y-3 mb-8">
-                {/* Parse features if strictly array of strings */}
-                {typeof pkg.features === 'object' && Array.isArray(pkg.features) && (pkg.features as string[]).map((feature: string, idx: number) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <FaCheck className="text-teal-500 mt-1 flex-shrink-0" />
-                    <span className="text-slate-600">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <Button
-                className="w-full"
-                variant={pkg.popular ? "primary" : "secondary"}
-                href="/#contact"
-              >
-                {pkg.price === "কাস্টম" ? "যোগাযোগ করুন" : "এখনই শুরু করুন"}
-              </Button>
-            </GlassCard>
-          ))}
-
-          {packages.length === 0 && (
-            <div className="col-span-full text-center py-12 text-slate-500">
-              কোন প্যাকেজ পাওয়া যায়নি
-            </div>
-          )}
-        </div>
+        <PricingGrid packages={safePackages} />
 
         <div className="text-center mt-12">
           <p className="text-slate-600 mb-4">
