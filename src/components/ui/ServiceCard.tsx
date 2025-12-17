@@ -6,7 +6,7 @@ import GlassCard from "./GlassCard";
 interface ServiceCardProps {
   href: string;
   icon: ReactNode;
-  badge: string;
+  badge?: string;
   badgeIcon?: ReactNode;
   title: string;
   description: string;
@@ -38,10 +38,12 @@ export default function ServiceCard({
           </div>
 
           {/* Badge */}
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide rounded-full bg-teal-500/10 text-teal-700 border border-teal-300/20">
-            {badgeIcon}
-            {badge}
-          </span>
+          {badge && (
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide rounded-full bg-teal-500/10 text-teal-700 border border-teal-300/20">
+              {badgeIcon}
+              {badge}
+            </span>
+          )}
 
           {/* Content */}
           <h3 className="text-xl font-semibold text-slate-900 group-hover:text-teal-600 transition-colors">

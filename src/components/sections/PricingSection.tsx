@@ -1,14 +1,24 @@
-"use client";
-
-import { useState } from "react";
+import { getD1Database } from "@/lib/db";
+import { PricingPackage } from "@/lib/db";
 import { FaCheck, FaStar, FaPhone } from "react-icons/fa6";
 import SectionHeader from "@/components/ui/SectionHeader";
 import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
-import { pricingPackages } from "@/data/pricing";
 
-export default function PricingSection() {
-  const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
+async function getPricingPackages() {
+  const db = await getD1Database();
+  const { results } = await db
+    .prepare("SELECT * FROM pricing ORDER BY order_index ASC")
+    .all();
+
+  return results.map((p: Record<string, unknown>) => ({
+    ...p,
+    features: p.features ? JSON.parse(p.features as string) : [],
+  })) as PricingPackage[];
+}
+
+export default async function PricingSection() {
+  const packages = await getPricingPackages();
 
   return (
     <section id="pricing" className="section-shell py-24">
@@ -17,15 +27,16 @@ export default function PricingSection() {
           kicker="মূল্য তালিকা"
           title="আপনার ব্যবসার জন্য সঠিক প্যাকেজ বেছে নিন"
           description="প্রতিটি প্যাকেজ আপনার ব্যবসার বৃদ্ধির জন্য ডিজাইন করা হয়েছে"
+          centered
         />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 pt-6">
-          {pricingPackages.map((pkg) => (
+          {packages.map((pkg) => (
             <GlassCard
-              key={pkg.name}
+              key={pkg.id}
               className={`p-8 relative ${pkg.popular ? "ring-2 ring-teal-500" : ""}`}
             >
-              {pkg.popular && (
+              {pkg.popular === 1 && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                   <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-xs font-semibold">
                     <FaStar /> সবচেয়ে জনপ্রিয়
@@ -43,8 +54,9 @@ export default function PricingSection() {
               </div>
 
               <ul className="space-y-3 mb-8">
-                {pkg.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3">
+                {/* Parse features if strictly array of strings */}
+                {typeof pkg.features === 'object' && Array.isArray(pkg.features) && (pkg.features as string[]).map((feature: string, idx: number) => (
+                  <li key={idx} className="flex items-start gap-3">
                     <FaCheck className="text-teal-500 mt-1 flex-shrink-0" />
                     <span className="text-slate-600">{feature}</span>
                   </li>
@@ -54,12 +66,18 @@ export default function PricingSection() {
               <Button
                 className="w-full"
                 variant={pkg.popular ? "primary" : "secondary"}
-                onClick={() => setSelectedPackage(pkg.name)}
+                href="/#contact"
               >
                 {pkg.price === "কাস্টম" ? "যোগাযোগ করুন" : "এখনই শুরু করুন"}
               </Button>
             </GlassCard>
           ))}
+
+          {packages.length === 0 && (
+            <div className="col-span-full text-center py-12 text-slate-500">
+              কোন প্যাকেজ পাওয়া যায়নি
+            </div>
+          )}
         </div>
 
         <div className="text-center mt-12">

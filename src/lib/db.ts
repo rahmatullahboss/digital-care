@@ -1,75 +1,38 @@
-import { getCloudflareContext } from "@opennextjs/cloudflare";
-
-export async function getD1Database() {
-    const { env } = await getCloudflareContext();
-    return env.DB;
-}
-
-// Types for database entities
-export interface Post {
-    id: string;
-    slug: string;
-    title: string;
-    excerpt: string | null;
-    content: string;
-    image_url: string | null;
-    published: number;
-    created_at: string;
-    updated_at: string;
-}
-
 export interface Service {
     id: string;
     slug: string;
     title: string;
-    tagline: string | null;
-    description: string | null;
-    icon: string | null;
-    features: string | null;
-    benefits: string | null;
+    tagline?: string;
+    description?: string;
+    icon?: string;
+    features: string; // JSON string in DB
+    benefits: string; // JSON string in DB
     order_index: number;
+    created_at: string;
+    updated_at: string;
 }
 
-export interface Pricing {
+export interface Post {
+    id: string;
+    slug: string;
+    title: string;
+    excerpt?: string;
+    content: string;
+    image_url?: string;
+    published: number; // 0 or 1
+    created_at: string;
+    updated_at: string;
+}
+
+export interface PricingPackage {
     id: string;
     name: string;
     price: string;
-    period: string | null;
-    description: string | null;
-    features: string | null;
-    popular: number;
+    period?: string;
+    description?: string;
+    features: string; // JSON string in DB
+    popular: number; // 0 or 1
     order_index: number;
-}
-
-export interface Contact {
-    id: string;
-    name: string;
-    phone: string;
-    email: string | null;
-    message: string;
-    status: string;
-    created_at: string;
-}
-
-export interface Affiliate {
-    id: string;
-    name: string;
-    email: string;
-    phone: string;
-    promotion_strategy: string | null;
-    status: string;
-    created_at: string;
-}
-
-export interface Settings {
-    id: number;
-    phone: string | null;
-    email: string | null;
-    address: string | null;
-    facebook_url: string | null;
-    linkedin_url: string | null;
-    youtube_url: string | null;
-    updated_at: string;
 }
 
 export interface FAQ {
@@ -79,11 +42,21 @@ export interface FAQ {
     order_index: number;
 }
 
-export interface User {
-    id: string;
-    email: string;
-    password_hash: string;
-    name: string | null;
-    role: string;
-    created_at: string;
+export interface SiteSettings {
+    id: number;
+    phone?: string;
+    email?: string;
+    address?: string;
+    facebook_url?: string;
+    linkedin_url?: string;
+    youtube_url?: string;
+    updated_at?: string;
+}
+
+
+import { getCloudflareContext } from "@opennextjs/cloudflare";
+
+export async function getD1Database() {
+    const { env } = await getCloudflareContext({ async: true });
+    return env.DB;
 }
