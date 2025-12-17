@@ -1,8 +1,22 @@
 name = "digital-care"
+main = ".open-next/worker.js"
 compatibility_date = "2024-12-01"
 compatibility_flags = ["nodejs_compat"]
 
+# OpenNext assets configuration
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+# D1 Database
 [[d1_databases]]
 binding = "DB"
 database_name = "digital-care-db"
 database_id = "aa825794-edd1-41e9-9160-ef63af2e121e"
+
+# Observability
+[observability.logs]
+enabled = false
+head_sampling_rate = 1
+invocation_logs = true
+persist = true
