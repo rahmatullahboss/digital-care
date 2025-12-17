@@ -24,7 +24,7 @@ export default async function ServicesSection() {
   const services = await getServices();
 
   return (
-    <section id="services" className="section-shell">
+    <section id="services" className="section-shell py-24">
       <div className="container mx-auto px-6 relative z-10">
         <SectionHeader
           kicker="আমাদের সার্ভিস"
