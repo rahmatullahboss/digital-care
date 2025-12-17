@@ -12,18 +12,26 @@ export const authOptions: NextAuthOptions = {
                 password: { label: "Password", type: "password" },
             },
             async authorize(credentials) {
+                console.log("[Auth] authorize called with email:", credentials?.email);
+
                 if (!credentials?.email || !credentials?.password) {
+                    console.log("[Auth] Missing credentials");
                     return null;
                 }
 
                 try {
                     const db = await getD1Database();
+                    console.log("[Auth] DB connection obtained");
+
                     const user = await db
                         .prepare("SELECT * FROM users WHERE email = ?")
                         .bind(credentials.email)
                         .first();
 
+                    console.log("[Auth] User found:", !!user, user ? { email: user.email, role: user.role } : null);
+
                     if (!user) {
+                        console.log("[Auth] No user found for email:", credentials.email);
                         return null;
                     }
 
@@ -32,10 +40,14 @@ export const authOptions: NextAuthOptions = {
                         user.password_hash as string
                     );
 
+                    console.log("[Auth] Password valid:", isPasswordValid);
+
                     if (!isPasswordValid) {
+                        console.log("[Auth] Invalid password");
                         return null;
                     }
 
+                    console.log("[Auth] Login successful for:", user.email);
                     return {
                         id: user.id as string,
                         email: user.email as string,
@@ -43,7 +55,7 @@ export const authOptions: NextAuthOptions = {
                         role: user.role as string,
                     };
                 } catch (error) {
-                    console.error("Auth error:", error);
+                    console.error("[Auth] Error:", error);
                     return null;
                 }
             },
