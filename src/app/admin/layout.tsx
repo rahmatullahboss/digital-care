@@ -1,5 +1,6 @@
 import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
+import { redirect, RedirectType } from "next/navigation";
+import { headers } from "next/headers";
 import { authOptions } from "@/lib/auth";
 import AdminNav from "@/components/admin/AdminNav";
 
@@ -8,10 +9,22 @@ export default async function AdminLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const session = await getServerSession(authOptions);
+    const headersList = await headers();
+    const pathname = headersList.get("x-pathname") || headersList.get("x-invoke-path") || "";
 
-    if (!session) {
-        redirect("/admin/login");
+    // Skip auth check for login page to prevent redirect loop
+    const isLoginPage = pathname.includes("/admin/login");
+
+    if (!isLoginPage) {
+        const session = await getServerSession(authOptions);
+        if (!session) {
+            redirect("/admin/login", RedirectType.replace);
+        }
+    }
+
+    // For login page, render children without admin nav
+    if (isLoginPage) {
+        return <>{children}</>;
     }
 
     return (
