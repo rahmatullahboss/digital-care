@@ -4,7 +4,7 @@ INSERT OR REPLACE INTO users (id, email, password_hash, name, role)
 VALUES (
   'admin-user-001',
   'admin@digitalcare.site',
-  '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy',
+  '$2b$10$i/IvOvS2DAnrhGuJHU95Be6HGpY/9iSll5vB.37Q2ko6XWwQ7H5gW',
   'Admin',
   'admin'
 );
