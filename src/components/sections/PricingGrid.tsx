@@ -70,8 +70,8 @@ export default function PricingGrid({ packages }: PricingGridProps) {
                         key={cat.id}
                         onClick={() => setActiveCategory(cat.id)}
                         className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === cat.id
-                                ? "bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-lg shadow-teal-500/25"
-                                : "bg-white/60 text-slate-600 hover:bg-white hover:shadow-md border border-slate-200"
+                            ? "bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-lg shadow-teal-500/25"
+                            : "bg-white/60 text-slate-600 hover:bg-white hover:shadow-md border border-slate-200"
                             }`}
                     >
                         {cat.icon}
@@ -87,8 +87,8 @@ export default function PricingGrid({ packages }: PricingGridProps) {
                         className={`p-8 relative flex flex-col ${pkg.popular ? "ring-2 ring-teal-500" : ""}`}
                     >
                         {pkg.popular === 1 && (
-                            <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-xs font-semibold">
+                            <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+                                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-xs font-semibold shadow-lg">
                                     <FaStar /> জনপ্রিয়
                                 </span>
                             </div>

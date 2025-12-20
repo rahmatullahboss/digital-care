@@ -16,8 +16,8 @@ export default function GlassCard({
   hover = true,
   onClick,
 }: GlassCardProps) {
-  const baseStyles = "relative rounded-3xl backdrop-blur-lg overflow-hidden transition-all duration-500";
-  
+  const baseStyles = "relative rounded-3xl backdrop-blur-lg overflow-visible transition-all duration-500";
+
   const variantStyles = {
     light: "bg-gradient-to-br from-white/90 to-slate-50/70 border border-white/60 shadow-[0_25px_55px_-30px_rgba(15,23,42,0.45)]",
     dark: "bg-gradient-to-br from-slate-900/80 to-teal-800/50 border border-slate-400/25 text-slate-200 shadow-[0_35px_60px_-35px_rgba(15,118,110,0.6)]",
