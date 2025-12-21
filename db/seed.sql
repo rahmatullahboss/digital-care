@@ -148,7 +148,7 @@ INSERT INTO pricing (id, name, price, total_value, period, description, features
 (
   'pricing-003',
   'প্রিমিয়াম ওয়েবসাইট',
-  '৫০,০০০',
+  '৮০,০০০',
   '১,২৫,০০০',
   'একবার',
   'বড় ব্যবসা ও ই-কমার্স স্টোরের জন্য',
