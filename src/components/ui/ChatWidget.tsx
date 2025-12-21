@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, FormEvent } from "react";
 import { FaRobot, FaXmark, FaPaperPlane, FaSpinner } from "react-icons/fa6";
+import { useTranslations } from "next-intl";
 
 interface Message {
     role: "user" | "assistant";
@@ -9,9 +10,10 @@ interface Message {
 }
 
 export default function ChatWidget() {
+    const t = useTranslations("Chat");
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([
-        { role: "assistant", content: "আসসালামু আলাইকুম! আমি দীপ্তি, ডিজিটাল কেয়ার এর AI সহকারী। আপনাকে কিভাবে সাহায্য করতে পারি?" }
+        { role: "assistant", content: t("greeting") }
     ]);
     const [input, setInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -46,7 +48,7 @@ export default function ChatWidget() {
         } catch {
             setMessages(prev => [...prev, { 
                 role: "assistant", 
-                content: "দুঃখিত, সমস্যা হয়েছে। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।" 
+                content: t("error") 
             }]);
         } finally {
             setIsLoading(false);
@@ -63,7 +65,7 @@ export default function ChatWidget() {
                         ? "bg-slate-700 rotate-0" 
                         : "bg-gradient-to-r from-purple-600 to-indigo-600 hover:scale-110 animate-pulse"
                 }`}
-                aria-label="Chat with AI"
+                aria-label={t("ariaLabel")}
             >
                 {isOpen ? (
                     <FaXmark className="text-white text-xl" />
@@ -81,8 +83,8 @@ export default function ChatWidget() {
                             <FaRobot className="text-white text-lg" />
                         </div>
                         <div>
-                            <h3 className="text-white font-semibold">দীপ্তি - AI সহকারী</h3>
-                            <p className="text-white/70 text-xs">সাধারণত ১ মিনিটের মধ্যে উত্তর</p>
+                            <h3 className="text-white font-semibold">{t("title")}</h3>
+                            <p className="text-white/70 text-xs">{t("responseTime")}</p>
                         </div>
                     </div>
 
@@ -121,7 +123,7 @@ export default function ChatWidget() {
                                 type="text"
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
-                                placeholder="আপনার প্রশ্ন লিখুন..."
+                                placeholder={t("placeholder")}
                                 className="flex-1 px-4 py-2.5 rounded-full border border-slate-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-100 outline-none text-sm"
                                 disabled={isLoading}
                             />

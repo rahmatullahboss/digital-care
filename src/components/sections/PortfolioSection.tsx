@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FaExternalLinkAlt, FaShoppingCart, FaHotel, FaRocket, FaHome } from "react-icons/fa";
 import SectionHeader from "@/components/ui/SectionHeader";
 import GlassCard from "@/components/ui/GlassCard";
+import { useTranslations } from "next-intl";
 
 interface Project {
     id: string;
@@ -68,7 +69,7 @@ const projects: Project[] = [
     },
 ];
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, viewLiveText }: { project: Project; viewLiveText: string }) {
     return (
         <GlassCard variant="dark" className="p-0 overflow-hidden group">
             {/* Header with screenshot or gradient */}
@@ -143,7 +144,7 @@ function ProjectCard({ project }: { project: Project }) {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-medium text-sm hover:shadow-lg hover:shadow-teal-500/25 transition-all duration-300 group/link"
                 >
-                    Live দেখুন
+                    {viewLiveText}
                     <FaExternalLinkAlt className="text-xs group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
                 </a>
             </div>
@@ -152,26 +153,28 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 export default function PortfolioSection() {
+    const t = useTranslations("Portfolio");
+
     return (
         <section id="portfolio" className="section-shell section-shell-dark py-24">
             <div className="container mx-auto px-6 relative z-10">
                 <SectionHeader
-                    kicker="আমাদের কাজের নমুনা"
-                    title="আমাদের সম্পন্ন কিছু প্রজেক্ট"
-                    description="আমরা বিভিন্ন ব্যবসার জন্য সফল ডিজিটাল সমাধান তৈরি করেছি। এখানে আমাদের কিছু উল্লেখযোগ্য কাজ দেখুন।"
+                    kicker={t("kicker")}
+                    title={t("title")}
+                    description={t("description")}
                     variant="dark"
                 />
 
                 <div className="grid md:grid-cols-2 gap-8 mt-12">
                     {projects.map((project) => (
-                        <ProjectCard key={project.id} project={project} />
+                        <ProjectCard key={project.id} project={project} viewLiveText={t("viewLive")} />
                     ))}
                 </div>
 
                 {/* More projects teaser */}
                 <div className="text-center mt-12">
                     <p className="text-slate-400">
-                        আরও প্রজেক্ট শীঘ্রই যোগ হবে...
+                        {t("moreProjects")}
                     </p>
                 </div>
             </div>

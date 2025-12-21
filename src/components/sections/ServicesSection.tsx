@@ -3,6 +3,7 @@ import { Service } from "@/lib/db";
 import ServiceCard from "@/components/ui/ServiceCard";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { FaGlobe, FaFacebook, FaRobot, FaBullhorn, FaMobile, FaArrowRight } from "react-icons/fa6";
+import { getTranslations } from "next-intl/server";
 
 // Map icons
 const iconMap: Record<string, React.ReactNode> = {
@@ -24,14 +25,15 @@ async function getServices() {
 
 export default async function ServicesSection() {
   const services = await getServices();
+  const t = await getTranslations("Services");
 
   return (
     <section id="services" className="section-shell py-24">
       <div className="container mx-auto px-6 relative z-10">
         <SectionHeader
-          kicker="আমাদের সার্ভিস"
-          title="আপনার ব্যবসার ডিজিটাল পার্টনার"
-          description="আমরা শুধু সার্ভিস দেই না, আপনার ব্যবসার বৃদ্ধিতে সাহায্য করি"
+          kicker={t("kicker")}
+          title={t("title")}
+          description={t("description")}
           centered={true}
           className="mb-16"
         />
@@ -53,4 +55,3 @@ export default async function ServicesSection() {
     </section>
   );
 }
-

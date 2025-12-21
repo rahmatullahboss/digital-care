@@ -184,5 +184,12 @@
   "LanguageSwitcher": {
     "bn": "বাংলা",
     "en": "English"
+  },
+  "Portfolio": {
+    "kicker": "Our Work",
+    "title": "Some of Our Completed Projects",
+    "description": "We have created successful digital solutions for various businesses. See some of our notable work here.",
+    "viewLive": "View Live",
+    "moreProjects": "More projects coming soon..."
   }
 }
