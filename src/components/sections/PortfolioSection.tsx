@@ -1,6 +1,7 @@
 "use client";
 
-import { FaExternalLinkAlt, FaShoppingCart, FaHotel, FaRocket } from "react-icons/fa";
+import Image from "next/image";
+import { FaExternalLinkAlt, FaShoppingCart, FaHotel, FaRocket, FaHome } from "react-icons/fa";
 import SectionHeader from "@/components/ui/SectionHeader";
 import GlassCard from "@/components/ui/GlassCard";
 
@@ -14,9 +15,22 @@ interface Project {
     tech: string[];
     link: string;
     gradient: string;
+    screenshot?: string;
 }
 
 const projects: Project[] = [
+    {
+        id: "barguna-housing",
+        title: "Barguna Housing",
+        description: "বরগুনা অঞ্চলের জমি, বাড়ি ভাড়া, হোটেল বুকিং এবং বাণিজ্যিক প্রপার্টির জন্য সম্পূর্ণ রিয়েল এস্টেট প্ল্যাটফর্ম।",
+        type: "রিয়েল এস্টেট",
+        icon: <FaHome className="text-2xl" />,
+        features: ["জমি ও ফ্ল্যাট বিক্রয়", "বাড়ি ভাড়া", "হোটেল বুকিং", "বাণিজ্যিক প্রপার্টি"],
+        tech: ["Next.js", "Tailwind CSS", "TypeScript"],
+        link: "https://bargunahousing.vercel.app",
+        gradient: "from-emerald-500 to-teal-600",
+        screenshot: "https://res.cloudinary.com/dpnccgsja/image/upload/v1766335530/portfolio/barguna-housing.png",
+    },
     {
         id: "online-bazar",
         title: "Online Bazar",
@@ -27,6 +41,7 @@ const projects: Project[] = [
         tech: ["Next.js", "Tailwind CSS", "TypeScript"],
         link: "https://online-bazar.top",
         gradient: "from-orange-500 to-pink-500",
+        screenshot: "https://res.cloudinary.com/dpnccgsja/image/upload/v1766335532/portfolio/online-bazar.png",
     },
     {
         id: "zinurooms",
@@ -38,6 +53,7 @@ const projects: Project[] = [
         tech: ["Next.js", "Tailwind CSS", "Prisma"],
         link: "https://zinurooms.vercel.app",
         gradient: "from-teal-500 to-cyan-500",
+        screenshot: "https://res.cloudinary.com/dpnccgsja/image/upload/v1766335531/portfolio/zinurooms.png",
     },
     {
         id: "online-bazar-landing",
@@ -55,18 +71,38 @@ const projects: Project[] = [
 function ProjectCard({ project }: { project: Project }) {
     return (
         <GlassCard variant="dark" className="p-0 overflow-hidden group">
-            {/* Header with gradient */}
-            <div className={`h-40 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
-                <div className="absolute inset-0 bg-black/20" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-4xl transform group-hover:scale-110 transition-transform duration-300">
-                        {project.icon}
-                    </div>
-                </div>
+            {/* Header with screenshot or gradient */}
+            <div className={`h-48 relative overflow-hidden ${!project.screenshot ? `bg-gradient-to-br ${project.gradient}` : ''}`}>
+                {project.screenshot ? (
+                    <>
+                        <Image 
+                            src={project.screenshot} 
+                            alt={project.title}
+                            fill
+                            className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
+                    </>
+                ) : (
+                    <>
+                        <div className="absolute inset-0 bg-black/20" />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-4xl transform group-hover:scale-110 transition-transform duration-300">
+                                {project.icon}
+                            </div>
+                        </div>
+                    </>
+                )}
                 {/* Type badge */}
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium">
                     {project.type}
                 </span>
+                {/* Icon overlay for screenshots */}
+                {project.screenshot && (
+                    <div className="absolute bottom-4 left-4 w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white">
+                        {project.icon}
+                    </div>
+                )}
             </div>
 
             {/* Content */}
