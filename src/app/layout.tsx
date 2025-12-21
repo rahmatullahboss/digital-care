@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingButtons from "@/components/layout/FloatingButtons";
+import ChatWidget from "@/components/ui/ChatWidget";
 
 const hindSiliguri = Hind_Siliguri({
   weight: ["400", "500", "600", "700"],
@@ -32,6 +33,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <FloatingButtons />
+        <ChatWidget />
       </body>
     </html>
   );
