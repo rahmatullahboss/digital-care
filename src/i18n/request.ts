@@ -6,8 +6,15 @@ export const locales: Locale[] = ["bn", "en"];
 export const defaultLocale: Locale = "bn";
 
 export default getRequestConfig(async () => {
-  const cookieStore = await cookies();
-  const locale = (cookieStore.get("locale")?.value as Locale) || defaultLocale;
+  let locale: Locale = defaultLocale;
+  
+  try {
+    const cookieStore = await cookies();
+    locale = (cookieStore.get("locale")?.value as Locale) || defaultLocale;
+  } catch {
+    // Fallback for Cloudflare Workers edge environment
+    locale = defaultLocale;
+  }
 
   return {
     locale,
