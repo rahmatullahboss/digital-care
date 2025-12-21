@@ -158,9 +158,13 @@ export default function PricingGrid({ packages }: PricingGridProps) {
                                 
                                 return (
                                     <li key={idx} className="flex items-start justify-between gap-2">
-                                        <div className="flex items-start gap-3">
+                                    <div className="flex items-start gap-3">
                                             <FaCheck className="text-teal-500 mt-1 flex-shrink-0" />
-                                            <span className="text-slate-600">{featureName}</span>
+                                            {featureName.startsWith('**') && featureName.endsWith('**') ? (
+                                                <span className="text-slate-800 font-bold">{featureName.slice(2, -2)}</span>
+                                            ) : (
+                                                <span className="text-slate-600">{featureName}</span>
+                                            )}
                                         </div>
                                         {featureValue && (
                                             <span className="text-slate-400 text-sm whitespace-nowrap">৳{featureValue}</span>
