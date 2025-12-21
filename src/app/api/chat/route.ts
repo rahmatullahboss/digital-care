@@ -33,29 +33,96 @@ interface ChatMessage {
   content: string;
 }
 
+// Type for all possible AI response formats
+interface AIResponse {
+  response?: string;
+  output?: string;
+  output_text?: string;
+  text?: string;
+  result?: string;
+  content?: string;
+  message?: string;
+  [key: string]: unknown;
+}
+
+/**
+ * Extract the response text from various possible AI response formats
+ */
+function extractResponseText(response: unknown): string | null {
+  if (!response) return null;
+  
+  // If it's a string, return it directly
+  if (typeof response === "string") {
+    return response;
+  }
+  
+  // If it's an object, try to extract from known fields
+  if (typeof response === "object") {
+    const res = response as AIResponse;
+    
+    // Try all possible response fields
+    const possibleFields = [
+      res.response,
+      res.output,
+      res.output_text,
+      res.text,
+      res.result,
+      res.content,
+      res.message,
+    ];
+    
+    for (const field of possibleFields) {
+      if (typeof field === "string" && field.trim()) {
+        return field;
+      }
+    }
+    
+    // For nested structures, try to stringify if it has meaningful content
+    const keys = Object.keys(res);
+    if (keys.length > 0) {
+      // Log the structure for debugging
+      console.log("AI Response structure:", JSON.stringify(res, null, 2));
+    }
+  }
+  
+  return null;
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const { message, history = [] } = await request.json();
+    const body = await request.json();
+    const { message, history = [] } = body;
+
+    console.log("[Chat API] Received request:", { message, historyLength: history.length });
 
     if (!message || typeof message !== "string") {
+      console.log("[Chat API] Invalid message:", message);
       return NextResponse.json(
         { error: "Message is required" },
         { status: 400 }
       );
     }
 
-    const { env } = await getCloudflareContext({ async: true });
-
-    // Check if AI binding exists
-    if (!env.AI) {
-      console.error("AI binding not found");
-      return NextResponse.json(
-        { error: "AI service unavailable", response: "দুঃখিত, AI সার্ভিস এখন unavailable। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।" },
-        { status: 200 }
-      );
+    let env;
+    try {
+      const context = await getCloudflareContext({ async: true });
+      env = context.env;
+    } catch (contextError) {
+      console.error("[Chat API] Failed to get Cloudflare context:", contextError);
+      return NextResponse.json({
+        response: "দুঃখিত, সার্ভিসে সমস্যা হচ্ছে। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।"
+      });
     }
 
-    // Build conversation context for GPT-OSS-120B
+    // Check if AI binding exists
+    if (!env?.AI) {
+      console.error("[Chat API] AI binding not found in environment");
+      return NextResponse.json({
+        response: "দুঃখিত, AI সার্ভিস এখন unavailable। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।"
+      });
+    }
+
+    // Build conversation context for GPT-OSS-120B (Responses API format)
     const conversationContext = history.slice(-4).map((m: ChatMessage) => 
       `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`
     ).join('\n');
@@ -64,23 +131,44 @@ export async function POST(request: NextRequest) {
       ? `${conversationContext}\nUser: ${message}`
       : message;
 
-    // Run GPT-OSS-120B model (OpenAI's open-weight model)
-    const response = await env.AI.run("@cf/openai/gpt-oss-120b", {
-      instructions: SYSTEM_PROMPT,
-      input: fullInput,
+    console.log("[Chat API] Calling AI with input:", fullInput.substring(0, 100) + "...");
+
+    let aiResponse;
+    try {
+      // Run GPT-OSS-120B model using Responses API format
+      // Documentation: https://developers.cloudflare.com/workers-ai/models/gpt-oss-120b/
+      aiResponse = await env.AI.run("@cf/openai/gpt-oss-120b", {
+        instructions: SYSTEM_PROMPT,
+        input: fullInput,
+      });
+      
+      console.log("[Chat API] Raw AI response type:", typeof aiResponse);
+      console.log("[Chat API] Raw AI response:", JSON.stringify(aiResponse, null, 2));
+    } catch (aiError) {
+      console.error("[Chat API] AI.run() failed:", aiError);
+      return NextResponse.json({
+        response: "দুঃখিত, AI সিস্টেমে সমস্যা হচ্ছে। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।"
+      });
+    }
+
+    // Extract response text from the AI response
+    const responseText = extractResponseText(aiResponse);
+    
+    if (responseText) {
+      console.log("[Chat API] Successfully extracted response:", responseText.substring(0, 100));
+      return NextResponse.json({ response: responseText });
+    }
+
+    // If we couldn't extract a response, log and return fallback
+    console.warn("[Chat API] Could not extract response text from AI response");
+    return NextResponse.json({
+      response: "দুঃখিত, আমি উত্তর দিতে পারছি না। অনুগ্রহ করে আবার চেষ্টা করুন অথবা 01639590392 নম্বরে কল করুন।"
     });
 
-    return NextResponse.json({
-      response: response.response || (response as { output?: string }).output || "দুঃখিত, আমি উত্তর দিতে পারছি না। অনুগ্রহ করে আবার চেষ্টা করুন।",
-    });
   } catch (error) {
-    console.error("Chat API error:", error);
-    return NextResponse.json(
-      { 
-        error: "Internal server error",
-        response: "দুঃখিত, কিছু সমস্যা হয়েছে। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।"
-      },
-      { status: 200 }
-    );
+    console.error("[Chat API] Unexpected error:", error);
+    return NextResponse.json({
+      response: "দুঃখিত, কিছু সমস্যা হয়েছে। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।"
+    });
   }
 }

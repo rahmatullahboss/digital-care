@@ -133,7 +133,22 @@
     "title": "Choose the Right Package for Your Business",
     "description": "Each package is designed for your business growth",
     "confused": "Confused about which package is right for you?",
-    "freeConsult": "Get Free Consultation"
+    "freeConsult": "Get Free Consultation",
+    "categories": {
+      "all": "View All",
+      "website": "Website",
+      "webapp": "Web App",
+      "mobile": "Mobile App",
+      "software": "Software",
+      "marketing": "Marketing"
+    },
+    "popular": "Popular",
+    "discount": "OFF",
+    "totalPrice": "Total Value:",
+    "yourSavings": "Your Savings:",
+    "orderNow": "Order Now",
+    "contactUs": "Contact Us",
+    "noPackages": "No packages found in this category"
   },
   "FAQ": {
     "kicker": "FAQ",
@@ -191,5 +206,28 @@
     "description": "We have created successful digital solutions for various businesses. See some of our notable work here.",
     "viewLive": "View Live",
     "moreProjects": "More projects coming soon..."
+  },
+  "FloatingButtons": {
+    "callNow": "Call Now",
+    "messageUs": "Message Us"
+  },
+  "OrderModal": {
+    "title": "Confirm Your Order",
+    "package": "Package",
+    "successTitle": "Congratulations!",
+    "successMessage": "Your order has been successfully received. Our representative will contact you soon.",
+    "name": "Your Name *",
+    "namePlaceholder": "Your name",
+    "phone": "Phone Number *",
+    "phonePlaceholder": "01XXXXXXXXX",
+    "email": "Email (Optional)",
+    "emailPlaceholder": "example@email.com",
+    "companyName": "Company Name (Optional)",
+    "companyPlaceholder": "Your company name",
+    "message": "Any special requests?",
+    "messagePlaceholder": "Write details...",
+    "error": "Sorry, could not complete the order. Please try again.",
+    "submitting": "Submitting...",
+    "submit": "Confirm Order"
   }
 }

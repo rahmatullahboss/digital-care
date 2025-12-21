@@ -6,21 +6,13 @@ import { PricingPackage } from "@/lib/db";
 import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import OrderModal from "@/components/ui/OrderModal";
+import { useTranslations } from "next-intl";
 
 interface PricingGridProps {
     packages: PricingPackage[];
 }
 
 type Category = "all" | "website" | "webapp" | "mobile" | "software" | "marketing";
-
-const categories: { id: Category; label: string; icon: React.ReactNode }[] = [
-    { id: "all", label: "সব দেখুন", icon: null },
-    { id: "website", label: "ওয়েবসাইট", icon: <FaGlobe /> },
-    { id: "webapp", label: "ওয়েব অ্যাপ", icon: <FaCode /> },
-    { id: "mobile", label: "মোবাইল অ্যাপ", icon: <FaMobileAlt /> },
-    { id: "software", label: "সফটওয়্যার", icon: <FaDesktop /> },
-    { id: "marketing", label: "মার্কেটিং", icon: <FaBullhorn /> },
-];
 
 // Map package names to categories
 function getPackageCategory(packageName: string): Category {
@@ -66,6 +58,16 @@ function toBengaliNumber(num: number): string {
 export default function PricingGrid({ packages }: PricingGridProps) {
     const [selectedPkg, setSelectedPkg] = useState<PricingPackage | null>(null);
     const [activeCategory, setActiveCategory] = useState<Category>("all");
+    const t = useTranslations("Pricing");
+
+    const categories: { id: Category; label: string; icon: React.ReactNode }[] = [
+        { id: "all", label: t("categories.all"), icon: null },
+        { id: "website", label: t("categories.website"), icon: <FaGlobe /> },
+        { id: "webapp", label: t("categories.webapp"), icon: <FaCode /> },
+        { id: "mobile", label: t("categories.mobile"), icon: <FaMobileAlt /> },
+        { id: "software", label: t("categories.software"), icon: <FaDesktop /> },
+        { id: "marketing", label: t("categories.marketing"), icon: <FaBullhorn /> },
+    ];
 
     const filteredPackages = useMemo(() => {
         if (activeCategory === "all") return packages;
@@ -115,7 +117,7 @@ export default function PricingGrid({ packages }: PricingGridProps) {
                         {pkg.popular === 1 && (
                             <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
                                 <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-xs font-semibold shadow-lg">
-                                    <FaStar /> জনপ্রিয়
+                                    <FaStar /> {t("popular")}
                                 </span>
                             </div>
                         )}
@@ -136,7 +138,7 @@ export default function PricingGrid({ packages }: PricingGridProps) {
                                         <div className="flex items-center justify-center gap-2">
                                             <span className="text-lg text-slate-400 line-through">৳{pkg.total_value}</span>
                                             <span className="px-2 py-0.5 rounded-full bg-red-100 text-red-600 text-xs font-bold">
-                                                {Math.round((1 - bengaliToNumber(pkg.price) / bengaliToNumber(pkg.total_value)) * 100)}% ছাড়
+                                                {Math.round((1 - bengaliToNumber(pkg.price) / bengaliToNumber(pkg.total_value)) * 100)}% {t("discount")}
                                             </span>
                                         </div>
                                     )}
@@ -178,11 +180,11 @@ export default function PricingGrid({ packages }: PricingGridProps) {
                         {pkg.total_value && !isCustomPrice(pkg.price) && (
                             <div className="border-t border-slate-200 pt-4 mb-6">
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-slate-500">মোট মূল্য:</span>
+                                    <span className="text-slate-500">{t("totalPrice")}</span>
                                     <span className="text-slate-400 line-through">৳{pkg.total_value}</span>
                                 </div>
                                 <div className="flex justify-between text-sm font-bold mt-1">
-                                    <span className="text-teal-600">আপনার সাশ্রয়:</span>
+                                    <span className="text-teal-600">{t("yourSavings")}</span>
                                     <span className="text-teal-600">৳{toBengaliNumber(bengaliToNumber(pkg.total_value) - bengaliToNumber(pkg.price))}</span>
                                 </div>
                             </div>
@@ -193,14 +195,14 @@ export default function PricingGrid({ packages }: PricingGridProps) {
                             variant={pkg.popular ? "primary" : "secondary"}
                             onClick={() => handleAction(pkg)}
                         >
-                            {isCustomPrice(pkg.price) ? "যোগাযোগ করুন" : "অর্ডার করুন"}
+                            {isCustomPrice(pkg.price) ? t("contactUs") : t("orderNow")}
                         </Button>
                     </GlassCard>
                 ))}
 
                 {filteredPackages.length === 0 && (
                     <div className="col-span-full text-center py-12 text-slate-500">
-                        এই ক্যাটাগরিতে কোন প্যাকেজ পাওয়া যায়নি
+                        {t("noPackages")}
                     </div>
                 )}
             </div>

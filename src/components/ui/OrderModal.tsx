@@ -3,6 +3,7 @@
 import { useState, FormEvent, useEffect } from "react";
 import { FaXmark, FaCheck } from "react-icons/fa6";
 import Button from "@/components/ui/Button";
+import { useTranslations } from "next-intl";
 
 interface OrderModalProps {
     isOpen: boolean;
@@ -21,6 +22,7 @@ export default function OrderModal({ isOpen, onClose, packageName, price }: Orde
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+    const t = useTranslations("OrderModal");
 
     // Prevent scrolling when modal is open
     useEffect(() => {
@@ -86,9 +88,9 @@ export default function OrderModal({ isOpen, onClose, packageName, price }: Orde
                     >
                         <FaXmark className="text-xl" />
                     </button>
-                    <h3 className="text-2xl font-bold">অর্ডার কনফার্ম করুন</h3>
+                    <h3 className="text-2xl font-bold">{t("title")}</h3>
                     <p className="opacity-90 mt-1">
-                        <span className="font-semibold">{packageName}</span> প্যাকেজ - <span className="font-bold">৳{price}</span>
+                        <span className="font-semibold">{packageName}</span> {t("package")} - <span className="font-bold">৳{price}</span>
                     </p>
                 </div>
 
@@ -99,17 +101,16 @@ export default function OrderModal({ isOpen, onClose, packageName, price }: Orde
                             <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <FaCheck className="text-4xl" />
                             </div>
-                            <h4 className="text-2xl font-bold text-slate-900 mb-2">অভিনন্দন!</h4>
+                            <h4 className="text-2xl font-bold text-slate-900 mb-2">{t("successTitle")}</h4>
                             <p className="text-slate-600">
-                                আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে।<br />
-                                শীঘ্রই আমাদের প্রতিনিধি আপনার সাথে যোগাযোগ করবেন।
+                                {t("successMessage")}
                             </p>
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="col-span-2 md:col-span-1">
-                                    <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1">আপনার নাম *</label>
+                                    <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1">{t("name")}</label>
                                     <input
                                         type="text"
                                         id="name"
@@ -117,11 +118,11 @@ export default function OrderModal({ isOpen, onClose, packageName, price }: Orde
                                         value={formState.name}
                                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                                         className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition-all"
-                                        placeholder="আপনার নাম"
+                                        placeholder={t("namePlaceholder")}
                                     />
                                 </div>
                                 <div className="col-span-2 md:col-span-1">
-                                    <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-1">ফোন নম্বর *</label>
+                                    <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-1">{t("phone")}</label>
                                     <input
                                         type="tel"
                                         id="phone"
@@ -129,56 +130,56 @@ export default function OrderModal({ isOpen, onClose, packageName, price }: Orde
                                         value={formState.phone}
                                         onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
                                         className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition-all"
-                                        placeholder="০১XXXXXXXXX"
+                                        placeholder={t("phonePlaceholder")}
                                     />
                                 </div>
                             </div>
 
                             <div>
-                                <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">ইমেইল (অপশনাল)</label>
+                                <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">{t("email")}</label>
                                 <input
                                     type="email"
                                     id="email"
                                     value={formState.email}
                                     onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                                     className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition-all"
-                                    placeholder="example@email.com"
+                                    placeholder={t("emailPlaceholder")}
                                 />
                             </div>
 
                             <div>
-                                <label htmlFor="companyName" className="block text-sm font-medium text-slate-700 mb-1">প্রতিষ্ঠানের নাম (অপশনাল)</label>
+                                <label htmlFor="companyName" className="block text-sm font-medium text-slate-700 mb-1">{t("companyName")}</label>
                                 <input
                                     type="text"
                                     id="companyName"
                                     value={formState.companyName}
                                     onChange={(e) => setFormState({ ...formState, companyName: e.target.value })}
                                     className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition-all"
-                                    placeholder="আপনার প্রতিষ্ঠানের নাম"
+                                    placeholder={t("companyPlaceholder")}
                                 />
                             </div>
 
                             <div>
-                                <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-1">কোন বিশেষ অনুরোধ?</label>
+                                <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-1">{t("message")}</label>
                                 <textarea
                                     id="message"
                                     rows={3}
                                     value={formState.message}
                                     onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                                     className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition-all resize-none"
-                                    placeholder="বিস্তারিত লিখুন..."
+                                    placeholder={t("messagePlaceholder")}
                                 />
                             </div>
 
                             {submitStatus === "error" && (
                                 <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg">
-                                    দুঃখিত, অর্ডারটি সম্পন্ন করা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।
+                                    {t("error")}
                                 </div>
                             )}
 
                             <div className="pt-2">
                                 <Button type="submit" className="w-full" disabled={isSubmitting}>
-                                    {isSubmitting ? "সাবমিট করা হচ্ছে..." : "অর্ডার নিশ্চিত করুন"}
+                                    {isSubmitting ? t("submitting") : t("submit")}
                                 </Button>
                             </div>
                         </form>
