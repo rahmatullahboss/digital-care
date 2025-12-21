@@ -3,18 +3,21 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-
-const navLinks = [
-  { href: "/about", label: "আমাদের সম্পর্কে" },
-  { href: "/services", label: "সার্ভিসসমূহ" },
-  { href: "/blog", label: "ব্লগ" },
-  { href: "/affiliate", label: "অ্যাফিলিয়েট" },
-  { href: "/privacy-policy", label: "গোপনীয়তা নীতি" },
-];
+import { useTranslations } from "next-intl";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isOverDark, setIsOverDark] = useState(false);
+  const t = useTranslations("Header");
+
+  const navLinks = [
+    { href: "/about", label: t("about") },
+    { href: "/services", label: t("services") },
+    { href: "/blog", label: t("blog") },
+    { href: "/affiliate", label: t("affiliate") },
+    { href: "/privacy-policy", label: t("privacy") },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,7 +54,7 @@ export default function Header() {
             isOverDark ? "text-white" : "text-teal-600"
           }`}
         >
-          ডিজিটাল কেয়ার
+          {t("brandName")}
         </Link>
 
         {/* Desktop Navigation */}
@@ -65,23 +68,27 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
+          <LanguageSwitcher />
           <Link
             href="/#contact"
             className="bg-teal-500 text-white px-4 py-2 rounded-full hover:bg-teal-600 transition duration-300"
           >
-            যোগাযোগ করুন
+            {t("contact")}
           </Link>
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-gray-600 focus:outline-none"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="মেনু খুলুন বা বন্ধ করুন"
-          aria-expanded={mobileMenuOpen}
-        >
-          {mobileMenuOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
-        </button>
+        <div className="md:hidden flex items-center gap-3">
+          <LanguageSwitcher />
+          <button
+            className="text-gray-600 focus:outline-none"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={t("menuToggle")}
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Menu */}
@@ -103,7 +110,7 @@ export default function Header() {
           className="block bg-teal-500 text-white text-center px-4 py-2 rounded-full hover:bg-teal-600 transition duration-300"
           onClick={() => setMobileMenuOpen(false)}
         >
-          যোগাযোগ করুন
+          {t("contact")}
         </Link>
       </div>
     </header>

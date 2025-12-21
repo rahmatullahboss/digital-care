@@ -2,10 +2,15 @@
 
 :root {
   --font-hind-siliguri: "Hind Siliguri", sans-serif;
+  --font-inter: "Inter", sans-serif;
 }
 
 body {
   font-family: var(--font-hind-siliguri), sans-serif;
+}
+
+.font-inter {
+  font-family: var(--font-inter), sans-serif;
 }
 
 /* ===== SECTION SHELL - Immersive section background ===== */
