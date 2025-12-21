@@ -62,8 +62,8 @@ export async function POST(request: NextRequest) {
       { role: "user", content: message },
     ];
 
-    // Run Llama 3.1 model
-    const response = await env.AI.run("@cf/meta/llama-3.1-8b-instruct", {
+    // Run Llama 3.1 70B model (best quality available)
+    const response = await env.AI.run("@cf/meta/llama-3.1-70b-instruct", {
       messages,
       max_tokens: 256,
       temperature: 0.7,
