@@ -34,17 +34,17 @@ export default function ChatWidget() {
         setIsLoading(true);
 
         try {
-            const response = await fetch("/api/bot", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    message: userMessage,
-                    history: messages.map(m => ({ role: m.role, content: m.content }))
-                }),
-            });
-
-            const data = await response.json();
-            setMessages(prev => [...prev, { role: "assistant", content: data.response }]);
+            // AI temporarily disabled - show helpful message instead
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate thinking
+            
+            const responses = [
+                "ধন্যবাদ আপনার মেসেজের জন্য! আমাদের টিম শীঘ্রই আপনার সাথে যোগাযোগ করবে। জরুরি প্রয়োজনে 01639590392 নম্বরে কল করুন।",
+                "আপনার প্রশ্নের জন্য ধন্যবাদ! বিস্তারিত জানতে সরাসরি আমাদের সাথে কথা বলুন: 01639590392",
+                "আমাদের সার্ভিস সম্পর্কে জানতে 01639590392 নম্বরে কল করুন অথবা WhatsApp এ মেসেজ করুন।"
+            ];
+            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+            
+            setMessages(prev => [...prev, { role: "assistant", content: randomResponse }]);
         } catch {
             setMessages(prev => [...prev, { 
                 role: "assistant", 

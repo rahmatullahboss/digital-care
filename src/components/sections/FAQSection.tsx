@@ -1,7 +1,7 @@
 import { getD1Database, FAQ } from "@/lib/db";
 import { FaCircleQuestion } from "react-icons/fa6";
 import SectionHeader from "@/components/ui/SectionHeader";
-import FAQItem from "@/components/ui/FAQItem";
+import FAQList from "@/components/ui/FAQList";
 import { getTranslations } from "next-intl/server";
 
 async function getFaqs() {
@@ -26,17 +26,7 @@ export default async function FAQSection() {
           description={t("description")}
         />
 
-        <div className="space-y-4 mt-12">
-          {faqs.map((faq) => (
-            <FAQItem key={faq.id} question={faq.question} answer={faq.answer} />
-          ))}
-
-          {faqs.length === 0 && (
-            <div className="text-center py-8 text-slate-500">
-              {t("empty")}
-            </div>
-          )}
-        </div>
+        <FAQList faqs={faqs} emptyMessage={t("empty")} />
       </div>
     </section>
   );

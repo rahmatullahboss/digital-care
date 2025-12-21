@@ -7,6 +7,7 @@ import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import OrderModal from "@/components/ui/OrderModal";
 import { useTranslations } from "next-intl";
+import { useTranslateDbContent } from "@/hooks/useTranslateDbContent";
 
 interface PricingGridProps {
     packages: PricingPackage[];
@@ -59,6 +60,7 @@ export default function PricingGrid({ packages }: PricingGridProps) {
     const [selectedPkg, setSelectedPkg] = useState<PricingPackage | null>(null);
     const [activeCategory, setActiveCategory] = useState<Category>("all");
     const t = useTranslations("Pricing");
+    const { translatePricings } = useTranslateDbContent();
 
     const categories: { id: Category; label: string; icon: React.ReactNode }[] = [
         { id: "all", label: t("categories.all"), icon: null },
@@ -70,9 +72,13 @@ export default function PricingGrid({ packages }: PricingGridProps) {
     ];
 
     const filteredPackages = useMemo(() => {
-        if (activeCategory === "all") return packages;
-        return packages.filter((pkg) => getPackageCategory(pkg.name) === activeCategory);
-    }, [packages, activeCategory]);
+        // Filter uses original packages (Bengali names for category matching)
+        const filtered = activeCategory === "all" 
+            ? packages 
+            : packages.filter((pkg) => getPackageCategory(pkg.name) === activeCategory);
+        // Return translated versions
+        return translatePricings(filtered);
+    }, [packages, activeCategory, translatePricings]);
 
     const handleAction = (pkg: PricingPackage) => {
         if (isCustomPrice(pkg.price)) {
