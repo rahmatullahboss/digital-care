@@ -114,127 +114,152 @@ INSERT OR REPLACE INTO services (id, slug, title, tagline, description, icon, fe
 -- Delete existing pricing data
 DELETE FROM pricing;
 
+-- Add total_value column if not exists (will be ignored if exists)
+-- Note: Run this separately if needed: ALTER TABLE pricing ADD COLUMN total_value TEXT;
+
 -- ===== ওয়েবসাইট ডেভেলপমেন্ট প্যাকেজ =====
-INSERT INTO pricing (id, name, price, period, description, features, popular, order_index) VALUES
+INSERT INTO pricing (id, name, price, total_value, period, description, features, popular, order_index) VALUES
 (
   'pricing-001',
   'বেসিক ওয়েবসাইট',
   '১০,০০০',
+  '২৫,০০০',
   'একবার',
   'ছোট ব্যবসা ও পার্সোনাল ব্র্যান্ডের জন্য',
-  '["৫ পেজ রেস্পন্সিভ ওয়েবসাইট", "মোবাইল ফ্রেন্ডলি ডিজাইন", "কন্টাক্ট ফর্ম ইন্টিগ্রেশন", "সোশ্যাল মিডিয়া লিংক", "বেসিক SEO সেটআপ", "১ মাস ফ্রি সাপোর্ট"]',
+  '[{"name": "৫ পেজ রেস্পন্সিভ ওয়েবসাইট", "value": "৮,০০০"}, {"name": "মোবাইল ফ্রেন্ডলি ডিজাইন", "value": "৩,০০০"}, {"name": "কন্টাক্ট ফর্ম ইন্টিগ্রেশন", "value": "২,০০০"}, {"name": "সোশ্যাল মিডিয়া লিংক", "value": "১,০০০"}, {"name": "বেসিক SEO সেটআপ", "value": "৩,০০০"}, {"name": "মোবাইল অ্যাপ (PWA)", "value": "৫,০০০"}, {"name": "ফ্রি হোস্টিং *", "value": "৩,০০০"}, {"name": "১ মাস ফ্রি সাপোর্ট"}]',
   0,
   1
 );
 
-INSERT INTO pricing (id, name, price, period, description, features, popular, order_index) VALUES
+INSERT INTO pricing (id, name, price, total_value, period, description, features, popular, order_index) VALUES
 (
   'pricing-002',
   'বিজনেস ওয়েবসাইট',
   '২৫,০০০',
+  '৫৫,০০০',
   'একবার',
   'প্রফেশনাল বিজনেস ও ই-কমার্সের জন্য',
-  '["১০+ পেজ কাস্টম ওয়েবসাইট", "অ্যাডমিন প্যানেল (CMS)", "ই-কমার্স ফিচার (ঐচ্ছিক)", "পেমেন্ট গেটওয়ে ইন্টিগ্রেশন", "লাইভ চ্যাট ইন্টিগ্রেশন", "অ্যাডভান্সড SEO", "স্পিড অপটিমাইজেশন", "৩ মাস ফ্রি সাপোর্ট"]',
+  '[{"name": "১০+ পেজ কাস্টম ওয়েবসাইট", "value": "১৫,০০০"}, {"name": "অ্যাডমিন প্যানেল (CMS)", "value": "৮,০০০"}, {"name": "বেসিক ই-কমার্স ফিচার", "value": "১০,০০০"}, {"name": "পেমেন্ট গেটওয়ে ইন্টিগ্রেশন", "value": "৫,০০০"}, {"name": "লাইভ চ্যাট ইন্টিগ্রেশন", "value": "৩,০০০"}, {"name": "অ্যাডভান্সড SEO", "value": "৫,০০০"}, {"name": "মোবাইল অ্যাপ (PWA)", "value": "৫,০০০"}, {"name": "ফ্রি হোস্টিং *", "value": "৪,০০০"}, {"name": "৩ মাস ফ্রি সাপোর্ট"}]',
   1,
   2
 );
 
--- ===== ওয়েব অ্যাপ্লিকেশন প্যাকেজ =====
-INSERT INTO pricing (id, name, price, period, description, features, popular, order_index) VALUES
+INSERT INTO pricing (id, name, price, total_value, period, description, features, popular, order_index) VALUES
 (
   'pricing-003',
-  'স্ট্যান্ডার্ড ওয়েব অ্যাপ',
+  'প্রিমিয়াম ওয়েবসাইট',
   '৫০,০০০',
+  '১,১০,০০০',
   'একবার',
-  'কাস্টম ওয়েব অ্যাপ্লিকেশন ডেভেলপমেন্ট',
-  '["কাস্টম ওয়েব অ্যাপ্লিকেশন", "ইউজার অথেন্টিকেশন সিস্টেম", "ড্যাশবোর্ড ও রিপোর্টিং", "ডেটাবেস ইন্টিগ্রেশন", "API ডেভেলপমেন্ট", "রেস্পন্সিভ ডিজাইন", "সিকিউরিটি ফিচার", "ডকুমেন্টেশন"]',
+  'বড় ব্যবসা ও ই-কমার্স স্টোরের জন্য',
+  '[{"name": "আনলিমিটেড পেজ", "value": "২৫,০০০"}, {"name": "অ্যাডভান্সড অ্যাডমিন প্যানেল", "value": "১৫,০০০"}, {"name": "ফুল ই-কমার্স সিস্টেম", "value": "২০,০০০"}, {"name": "মাল্টিপল পেমেন্ট গেটওয়ে", "value": "১০,০০০"}, {"name": "ইনভেন্টরি ম্যানেজমেন্ট", "value": "৮,০০০"}, {"name": "অর্ডার ট্র্যাকিং সিস্টেম", "value": "৭,০০০"}, {"name": "মোবাইল অ্যাপ (PWA)", "value": "১০,০০০"}, {"name": "প্রিমিয়াম হোস্টিং *", "value": "১০,০০০"}, {"name": "৬ মাস ফ্রি সাপোর্ট", "value": "৫,০০০"}]',
   0,
   3
 );
 
-INSERT INTO pricing (id, name, price, period, description, features, popular, order_index) VALUES
+-- ===== ওয়েব অ্যাপ্লিকেশন প্যাকেজ =====
+INSERT INTO pricing (id, name, price, total_value, period, description, features, popular, order_index) VALUES
 (
   'pricing-004',
-  'এন্টারপ্রাইজ ওয়েব অ্যাপ',
-  '১,৫০,০০০+',
+  'স্ট্যান্ডার্ড ওয়েব অ্যাপ',
+  '৫০,০০০',
+  '৯০,০০০',
   'একবার',
-  'বড় প্রতিষ্ঠানের জন্য স্কেলেবল সলিউশন',
-  '["মাল্টি-ইউজার সিস্টেম", "অ্যাডভান্সড অ্যাডমিন প্যানেল", "থার্ড পার্টি API ইন্টিগ্রেশন", "রিয়েল-টাইম নোটিফিকেশন", "অটোমেশন ফিচার", "সিকিউরিটি অডিট", "স্কেলেবল আর্কিটেকচার", "৬ মাস ফ্রি মেইন্টেনেন্স"]',
+  'কাস্টম ওয়েব অ্যাপ্লিকেশন ডেভেলপমেন্ট',
+  '[{"name": "কাস্টম ওয়েব অ্যাপ্লিকেশন", "value": "২৫,০০০"}, {"name": "ইউজার অথেন্টিকেশন সিস্টেম", "value": "১০,০০০"}, {"name": "ড্যাশবোর্ড ও রিপোর্টিং", "value": "১৫,০০০"}, {"name": "ডেটাবেস ইন্টিগ্রেশন", "value": "১০,০০০"}, {"name": "API ডেভেলপমেন্ট", "value": "১০,০০০"}, {"name": "মোবাইল অ্যাপ (PWA)", "value": "১০,০০০"}, {"name": "রেস্পন্সিভ ডিজাইন", "value": "৫,০০০"}, {"name": "সিকিউরিটি ফিচার", "value": "৫,০০০"}]',
   0,
   4
 );
 
--- ===== মোবাইল অ্যাপ প্যাকেজ =====
-INSERT INTO pricing (id, name, price, period, description, features, popular, order_index) VALUES
+INSERT INTO pricing (id, name, price, total_value, period, description, features, popular, order_index) VALUES
 (
   'pricing-005',
-  'বেসিক মোবাইল অ্যাপ',
-  '৮০,০০০',
+  'এন্টারপ্রাইজ ওয়েব অ্যাপ',
+  '১,৫০,০০০',
+  '২,৮০,০০০',
   'একবার',
-  'Android অথবা iOS অ্যাপ ডেভেলপমেন্ট',
-  '["সিঙ্গেল প্ল্যাটফর্ম (Android/iOS)", "কাস্টম UI/UX ডিজাইন", "ইউজার অথেন্টিকেশন", "পুশ নোটিফিকেশন", "API ইন্টিগ্রেশন", "অ্যাপ স্টোর সাবমিশন", "৩ মাস ফ্রি বাগ ফিক্স"]',
+  'বড় প্রতিষ্ঠানের জন্য স্কেলেবল সলিউশন',
+  '[{"name": "মাল্টি-ইউজার সিস্টেম", "value": "৪০,০০০"}, {"name": "অ্যাডভান্সড অ্যাডমিন প্যানেল", "value": "৩০,০০০"}, {"name": "থার্ড পার্টি API ইন্টিগ্রেশন", "value": "২৫,০০০"}, {"name": "রিয়েল-টাইম নোটিফিকেশন", "value": "১৫,০০০"}, {"name": "অটোমেশন ফিচার", "value": "২০,০০০"}, {"name": "সিকিউরিটি অডিট", "value": "২০,০০০"}, {"name": "মোবাইল অ্যাপ (PWA)", "value": "২০,০০০"}, {"name": "স্কেলেবল আর্কিটেকচার", "value": "৫০,০০০"}, {"name": "৬ মাস ফ্রি মেইন্টেনেন্স", "value": "৬০,০০০"}]',
   1,
   5
 );
 
-INSERT INTO pricing (id, name, price, period, description, features, popular, order_index) VALUES
+-- ===== মোবাইল অ্যাপ প্যাকেজ =====
+INSERT INTO pricing (id, name, price, total_value, period, description, features, popular, order_index) VALUES
 (
   'pricing-006',
+  'বেসিক মোবাইল অ্যাপ',
+  '৮০,০০০',
+  '১,৫০,০০০',
+  'একবার',
+  'Android অথবা iOS অ্যাপ ডেভেলপমেন্ট',
+  '[{"name": "সিঙ্গেল প্ল্যাটফর্ম (Android/iOS)", "value": "৩০,০০০"}, {"name": "কাস্টম UI/UX ডিজাইন", "value": "২৫,০০০"}, {"name": "ইউজার অথেন্টিকেশন", "value": "১৫,০০০"}, {"name": "পুশ নোটিফিকেশন", "value": "১০,০০০"}, {"name": "API ইন্টিগ্রেশন", "value": "২০,০০০"}, {"name": "অ্যাপ স্টোর সাবমিশন", "value": "১০,০০০"}, {"name": "৩ মাস ফ্রি বাগ ফিক্স", "value": "৪০,০০০"}]',
+  1,
+  6
+);
+
+INSERT INTO pricing (id, name, price, total_value, period, description, features, popular, order_index) VALUES
+(
+  'pricing-007',
   'ক্রস-প্ল্যাটফর্ম অ্যাপ',
   '১,২০,০০০',
+  '২,২০,০০০',
   'একবার',
   'Android + iOS একসাথে',
-  '["Android ও iOS উভয় প্ল্যাটফর্ম", "React Native / Flutter", "অফলাইন ফাংশনালিটি", "পেমেন্ট ইন্টিগ্রেশন", "সোশ্যাল লগইন", "অ্যানালিটিক্স ড্যাশবোর্ড", "উভয় স্টোরে সাবমিশন", "৬ মাস ফ্রি সাপোর্ট"]',
+  '[{"name": "Android ও iOS উভয় প্ল্যাটফর্ম", "value": "৬০,০০০"}, {"name": "React Native / Flutter", "value": "৩০,০০০"}, {"name": "অফলাইন ফাংশনালিটি", "value": "২০,০০০"}, {"name": "পেমেন্ট ইন্টিগ্রেশন", "value": "২৫,০০০"}, {"name": "সোশ্যাল লগইন", "value": "১৫,০০০"}, {"name": "অ্যানালিটিক্স ড্যাশবোর্ড", "value": "২০,০০০"}, {"name": "উভয় স্টোরে সাবমিশন", "value": "১০,০০০"}, {"name": "৬ মাস ফ্রি সাপোর্ট", "value": "৪০,০০০"}]',
   0,
-  6
+  7
 );
 
 -- ===== সফটওয়্যার ডেভেলপমেন্ট =====
 INSERT INTO pricing (id, name, price, period, description, features, popular, order_index) VALUES
 (
-  'pricing-007',
+  'pricing-008',
   'কাস্টম সফটওয়্যার',
   'আলোচনা সাপেক্ষে',
   '',
   'আপনার বিজনেসের জন্য কাস্টম সফটওয়্যার',
   '["রিকোয়ারমেন্ট অ্যানালাইসিস", "কাস্টম বিজনেস লজিক", "ইন্টিগ্রেশন সার্ভিস", "ডেটা মাইগ্রেশন", "ইউজার ট্রেনিং", "সোর্স কোড হ্যান্ডওভার", "মেইন্টেনেন্স কন্ট্রাক্ট", "SLA সাপোর্ট"]',
   0,
-  7
-);
-
--- ===== ডিজিটাল মার্কেটিং প্যাকেজ =====
-INSERT INTO pricing (id, name, price, period, description, features, popular, order_index) VALUES
-(
-  'pricing-008',
-  'স্টার্টার মার্কেটিং',
-  '১৫,০০০',
-  'মাস',
-  'ডিজিটাল মার্কেটিং শুরু করতে চান',
-  '["ফেসবুক পেজ ম্যানেজমেন্ট", "মাসিক ১২টি পোস্ট", "বেসিক গ্রাফিক ডিজাইন", "ফেসবুক অ্যাড ম্যানেজমেন্ট (বাজেট আলাদা)", "মাসিক রিপোর্ট", "ইনবক্স রিপ্লাই সাপোর্ট"]',
-  0,
   8
 );
 
-INSERT INTO pricing (id, name, price, period, description, features, popular, order_index) VALUES
+-- ===== ডিজিটাল মার্কেটিং প্যাকেজ =====
+INSERT INTO pricing (id, name, price, total_value, period, description, features, popular, order_index) VALUES
 (
   'pricing-009',
-  'গ্রোথ মার্কেটিং',
-  '৩০,০০০',
+  'স্টার্টার মার্কেটিং',
+  '১৫,০০০',
+  '২৮,০০০',
   'মাস',
-  'সম্পূর্ণ ডিজিটাল মার্কেটিং সার্ভিস',
-  '["মাল্টি-প্ল্যাটফর্ম ম্যানেজমেন্ট", "মাসিক ২৫+ কন্টেন্ট", "ভিডিও এডিটিং", "সম্পূর্ণ অ্যাড ম্যানেজমেন্ট", "SEO অপটিমাইজেশন", "ইমেইল মার্কেটিং", "লিড জেনারেশন", "সাপ্তাহিক রিপোর্ট ও মিটিং"]',
-  1,
+  'ডিজিটাল মার্কেটিং শুরু করতে চান',
+  '[{"name": "ফেসবুক পেজ ম্যানেজমেন্ট", "value": "৮,০০০"}, {"name": "মাসিক ১২টি পোস্ট", "value": "৬,০০০"}, {"name": "বেসিক গ্রাফিক ডিজাইন", "value": "৪,০০০"}, {"name": "ফেসবুক অ্যাড ম্যানেজমেন্ট", "value": "৫,০০০"}, {"name": "মাসিক রিপোর্ট", "value": "২,০০০"}, {"name": "ইনবক্স রিপ্লাই সাপোর্ট", "value": "৩,০০০"}]',
+  0,
   9
 );
 
-INSERT INTO pricing (id, name, price, period, description, features, popular, order_index) VALUES
+INSERT INTO pricing (id, name, price, total_value, period, description, features, popular, order_index) VALUES
 (
   'pricing-010',
+  'গ্রোথ মার্কেটিং',
+  '৩০,০০০',
+  '৫৫,০০০',
+  'মাস',
+  'সম্পূর্ণ ডিজিটাল মার্কেটিং সার্ভিস',
+  '[{"name": "মাল্টি-প্ল্যাটফর্ম ম্যানেজমেন্ট", "value": "১২,০০০"}, {"name": "মাসিক ২৫+ কন্টেন্ট", "value": "১০,০০০"}, {"name": "ভিডিও এডিটিং", "value": "৮,০০০"}, {"name": "সম্পূর্ণ অ্যাড ম্যানেজমেন্ট", "value": "৮,০০০"}, {"name": "SEO অপটিমাইজেশন", "value": "৭,০০০"}, {"name": "ইমেইল মার্কেটিং", "value": "৫,০০০"}, {"name": "লিড জেনারেশন", "value": "৫,০০০"}]',
+  1,
+  10
+);
+
+INSERT INTO pricing (id, name, price, total_value, period, description, features, popular, order_index) VALUES
+(
+  'pricing-011',
   'প্রিমিয়াম মার্কেটিং',
-  '৬০,০০০+',
+  '৬০,০০০',
+  '১,১০,০০০',
   'মাস',
   'এন্টারপ্রাইজ লেভেল মার্কেটিং সলিউশন',
-  '["ডেডিকেটেড মার্কেটিং টিম", "ব্র্যান্ড স্ট্র্যাটেজি", "ইনফ্লুয়েন্সার মার্কেটিং", "Google Ads ম্যানেজমেন্ট", "কনভার্সেশন রেট অপটিমাইজেশন", "A/B টেস্টিং", "কম্পিটিটর অ্যানালাইসিস", "২৪/৭ সাপোর্ট"]',
+  '[{"name": "ডেডিকেটেড মার্কেটিং টিম", "value": "২৫,০০০"}, {"name": "ব্র্যান্ড স্ট্র্যাটেজি", "value": "১৫,০০০"}, {"name": "ইনফ্লুয়েন্সার মার্কেটিং", "value": "২০,০০০"}, {"name": "Google Ads ম্যানেজমেন্ট", "value": "১৫,০০০"}, {"name": "কনভার্সেশন রেট অপটিমাইজেশন", "value": "১০,০০০"}, {"name": "A/B টেস্টিং", "value": "৫,০০০"}, {"name": "কম্পিটিটর অ্যানালাইসিস", "value": "১০,০০০"}, {"name": "২৪/৭ সাপোর্ট", "value": "১০,০০০"}]',
   0,
-  10
+  11
 );

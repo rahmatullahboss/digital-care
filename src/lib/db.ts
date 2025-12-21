@@ -41,9 +41,10 @@ export interface PricingPackage {
     id: string;
     name: string;
     price: string;
+    total_value?: string; // Total value of all features (for discount display)
     period?: string;
     description?: string;
-    features: string; // JSON string in DB
+    features: string; // JSON string in DB - can include {name, value} objects
     popular: number; // 0 or 1
     order_index: number;
 }

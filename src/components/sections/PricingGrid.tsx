@@ -53,7 +53,7 @@ export default function PricingGrid({ packages }: PricingGridProps) {
             if (contactSection) {
                 contactSection.scrollIntoView({ behavior: "smooth" });
             } else {
-                window.location.href = "/#contact";
+                window.location.assign("/#contact");
             }
         } else {
             // Open modal for standard packages
@@ -94,29 +94,69 @@ export default function PricingGrid({ packages }: PricingGridProps) {
                             </div>
                         )}
 
+                        {/* Pricing Display */}
                         <div className="text-center mb-6">
                             <h3 className="text-2xl font-bold text-slate-900">{pkg.name}</h3>
                             <p className="text-slate-500 mt-1">{pkg.description}</p>
-                            <div className="mt-4">
-                                {isCustomPrice(pkg.price) ? (
+                            
+                            {isCustomPrice(pkg.price) ? (
+                                <div className="mt-4">
                                     <span className="text-2xl font-bold text-teal-600">{pkg.price}</span>
-                                ) : (
-                                    <>
+                                </div>
+                            ) : (
+                                <div className="mt-4 space-y-2">
+                                    {/* Show total value with strikethrough */}
+                                    {pkg.total_value && (
+                                        <div className="flex items-center justify-center gap-2">
+                                            <span className="text-lg text-slate-400 line-through">৳{pkg.total_value}</span>
+                                            <span className="px-2 py-0.5 rounded-full bg-red-100 text-red-600 text-xs font-bold">
+                                                {Math.round((1 - parseInt(pkg.price.replace(/,/g, '')) / parseInt(pkg.total_value.replace(/,/g, ''))) * 100)}% ছাড়
+                                            </span>
+                                        </div>
+                                    )}
+                                    {/* Actual price */}
+                                    <div>
                                         <span className="text-4xl font-bold text-slate-900">৳{pkg.price}</span>
                                         {pkg.period && <span className="text-slate-500">/{pkg.period}</span>}
-                                    </>
-                                )}
-                            </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
-                        <ul className="space-y-3 mb-8 flex-grow">
-                            {typeof pkg.features === 'object' && Array.isArray(pkg.features) && (pkg.features as string[]).map((feature: string, idx: number) => (
-                                <li key={idx} className="flex items-start gap-3">
-                                    <FaCheck className="text-teal-500 mt-1 flex-shrink-0" />
-                                    <span className="text-slate-600">{feature}</span>
-                                </li>
-                            ))}
+                        {/* Features list with values */}
+                        <ul className="space-y-3 mb-6 flex-grow">
+                            {typeof pkg.features === 'object' && Array.isArray(pkg.features) && (pkg.features as Array<string | {name: string; value?: string}>).map((feature, idx: number) => {
+                                // Handle both string features and {name, value} object features
+                                const featureName = typeof feature === 'string' ? feature : feature.name;
+                                const featureValue = typeof feature === 'object' && feature.value ? feature.value : null;
+                                
+                                return (
+                                    <li key={idx} className="flex items-start justify-between gap-2">
+                                        <div className="flex items-start gap-3">
+                                            <FaCheck className="text-teal-500 mt-1 flex-shrink-0" />
+                                            <span className="text-slate-600">{featureName}</span>
+                                        </div>
+                                        {featureValue && (
+                                            <span className="text-slate-400 text-sm whitespace-nowrap">৳{featureValue}</span>
+                                        )}
+                                    </li>
+                                );
+                            })}
                         </ul>
+                        
+                        {/* Total value summary (if has total_value) */}
+                        {pkg.total_value && !isCustomPrice(pkg.price) && (
+                            <div className="border-t border-slate-200 pt-4 mb-6">
+                                <div className="flex justify-between text-sm">
+                                    <span className="text-slate-500">মোট মূল্য:</span>
+                                    <span className="text-slate-400 line-through">৳{pkg.total_value}</span>
+                                </div>
+                                <div className="flex justify-between text-sm font-bold mt-1">
+                                    <span className="text-teal-600">আপনার সাশ্রয়:</span>
+                                    <span className="text-teal-600">৳{(parseInt(pkg.total_value.replace(/,/g, '')) - parseInt(pkg.price.replace(/,/g, ''))).toLocaleString('bn-BD')}</span>
+                                </div>
+                            </div>
+                        )}
 
                         <Button
                             className="w-full mt-auto"
