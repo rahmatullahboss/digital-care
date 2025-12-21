@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
     let env: CloudflareEnv | null = null;
     try {
       const context = await getCloudflareContext({ async: true });
-      env = context.env as CloudflareEnv;
+      env = context.env as unknown as CloudflareEnv;
     } catch (contextError) {
       console.error("[Chat API] Failed to get Cloudflare context:", contextError);
     }
