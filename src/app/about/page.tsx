@@ -3,7 +3,7 @@ import { FaWandMagicSparkles, FaMessage } from "react-icons/fa6";
 import SectionHeader from "@/components/ui/SectionHeader";
 import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 
 const team = [
   {
@@ -37,8 +37,7 @@ const team = [
 
 export default async function AboutPage() {
   const t = await getTranslations("About");
-  const locale = (await import("next-intl/server")).getLocale();
-  const currentLocale = await locale();
+  const currentLocale = await getLocale();
   const isEn = currentLocale === "en";
 
   return (
