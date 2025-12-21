@@ -229,5 +229,102 @@
     "error": "Sorry, could not complete the order. Please try again.",
     "submitting": "Submitting...",
     "submit": "Confirm Order"
+  },
+  "DatabaseContent": {
+    "services": {
+      "service-001": {
+        "title": "Smart Website & Sales Funnel",
+        "tagline": "Web + Funnel",
+        "description": "We don't just build websites; we create automated systems that find customers 24/7, collect their information, and ensure sales."
+      },
+      "service-002": {
+        "title": "Complete Facebook Page Management",
+        "tagline": "Page Management",
+        "description": "From page setup to content creation, regular posting, ad management, and message automation - we handle all Facebook responsibilities."
+      },
+      "service-003": {
+        "title": "24/7 AI Sales Agent",
+        "tagline": "AI Sales",
+        "description": "No customer has to wait anymore, even on holidays or late at night. Our AI agent converts every opportunity into a sale with instant responses."
+      },
+      "service-004": {
+        "title": "Digital Marketing & Advertising",
+        "tagline": "Data Growth",
+        "description": "No more marketing based on guesswork. We analyze data to create ads and SEO strategies that ensure maximum profit on every dollar."
+      },
+      "service-005": {
+        "title": "Mobile App Development",
+        "tagline": "App Dev",
+        "description": "Custom mobile apps for your business. Reach your customers on Android and iOS platforms. Built with modern technology and beautiful design."
+      }
+    },
+    "faqs": {
+      "faq-001": {
+        "question": "What exactly do you do? Are you just a marketing agency?",
+        "answer": "We're not just a marketing agency. We're a complete digital solutions provider. We offer website development, social media management, AI chatbots, and automation solutions that improve every digital touchpoint of your business."
+      },
+      "faq-002": {
+        "question": "How long does it take to start a service?",
+        "answer": "Usually we start work within 7-10 days of signing the contract. However, this time may vary depending on project complexity. We always try to start quickly and effectively."
+      },
+      "faq-003": {
+        "question": "What is the cost of your services?",
+        "answer": "Our pricing is ROI-based. Every business has different needs, so we create customized packages. Contact us for a free strategy session to learn the right solution for your business."
+      },
+      "faq-004": {
+        "question": "How does the AI agent work?",
+        "answer": "Our AI agent talks to your customers 24/7, answers their questions, collects leads, and hands over to human sales team when needed. It can work on Facebook Messenger, website chat, and WhatsApp."
+      },
+      "faq-005": {
+        "question": "What is the best way to contact you?",
+        "answer": "You can contact us via phone (01639590392), email (rahmatullahzisan@gmail.com), or Facebook Messenger. Fill out the form below for a free strategy session."
+      }
+    },
+    "pricing": {
+      "pricing-001": {
+        "name": "Basic Website",
+        "description": "For small businesses and personal brands"
+      },
+      "pricing-002": {
+        "name": "Business Website",
+        "description": "For professional business and e-commerce"
+      },
+      "pricing-003": {
+        "name": "Premium Website",
+        "description": "For large businesses and e-commerce stores"
+      },
+      "pricing-004": {
+        "name": "Standard Web App",
+        "description": "Custom web application development"
+      },
+      "pricing-005": {
+        "name": "Enterprise Web App",
+        "description": "Scalable solution for large organizations"
+      },
+      "pricing-006": {
+        "name": "Basic Mobile App",
+        "description": "Android or iOS app development"
+      },
+      "pricing-007": {
+        "name": "Cross-Platform App",
+        "description": "Android + iOS together"
+      },
+      "pricing-008": {
+        "name": "Custom Software",
+        "description": "Custom software for your business"
+      },
+      "pricing-009": {
+        "name": "Starter Marketing",
+        "description": "Want to start digital marketing"
+      },
+      "pricing-010": {
+        "name": "Growth Marketing",
+        "description": "Complete digital marketing service"
+      },
+      "pricing-011": {
+        "name": "Premium Marketing",
+        "description": "Enterprise level marketing solution"
+      }
+    }
   }
 }
