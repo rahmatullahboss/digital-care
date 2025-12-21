@@ -1,6 +1,11 @@
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "edge";
+
+// Hardcoded account ID - this is public info (visible in Cloudflare dashboard URLs)
+const CF_ACCOUNT_ID = "474078d5f990169d7dadf4e1df83214a";
+const CF_AI_ENDPOINT = `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/ai/run/@cf/openai/gpt-oss-120b`;
 
 // Digital Care context for the AI
 const SYSTEM_PROMPT = `তুমি ডিজিটাল কেয়ার সলিউশনস এর AI সহকারী। তোমার নাম "দীপ্তি"। তুমি বাংলায় উত্তর দেবে।
@@ -32,8 +37,14 @@ interface ChatMessage {
   content: string;
 }
 
-// Cloudflare AI REST API endpoint
-const CF_AI_ENDPOINT = "https://api.cloudflare.com/client/v4/accounts";
+// Define env type
+interface CloudflareEnv {
+  CF_AI_API_TOKEN?: string;
+  AI?: {
+    run: (model: string, options: unknown) => Promise<{ response?: string }>;
+  };
+  [key: string]: unknown;
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -50,18 +61,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get credentials from environment variables
-    const accountId = process.env.CF_ACCOUNT_ID;
-    const apiToken = process.env.CF_AI_API_TOKEN;
-
-    if (!accountId || !apiToken) {
-      console.error("[Chat API] Missing Cloudflare credentials");
-      return NextResponse.json({
-        response: "দুঃখিত, AI সার্ভিস কনফিগার করা হয়নি। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।"
-      });
+    // Get environment from Cloudflare context
+    let env: CloudflareEnv | null = null;
+    try {
+      const context = await getCloudflareContext({ async: true });
+      env = context.env as CloudflareEnv;
+    } catch (contextError) {
+      console.error("[Chat API] Failed to get Cloudflare context:", contextError);
     }
 
-    // Build conversation context for GPT-OSS-120B
+    // Build conversation context
     const conversationContext = history.slice(-4).map((m: ChatMessage) => 
       `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`
     ).join('\n');
@@ -70,12 +79,37 @@ export async function POST(request: NextRequest) {
       ? `${conversationContext}\nUser: ${message}`
       : message;
 
-    console.log("[Chat API] Calling Cloudflare AI REST API...");
+    console.log("[Chat API] Calling AI with input:", fullInput.substring(0, 100) + "...");
 
-    // Call Cloudflare AI REST API
-    const aiUrl = `${CF_AI_ENDPOINT}/${accountId}/ai/run/@cf/openai/gpt-oss-120b`;
-    
-    const aiResponse = await fetch(aiUrl, {
+    // Try binding first (most efficient)
+    if (env?.AI) {
+      try {
+        console.log("[Chat API] Using AI binding");
+        const aiResponse = await env.AI.run("@cf/openai/gpt-oss-120b", {
+          instructions: SYSTEM_PROMPT,
+          input: fullInput,
+        });
+        
+        if (aiResponse?.response) {
+          console.log("[Chat API] AI binding success:", aiResponse.response.substring(0, 100));
+          return NextResponse.json({ response: aiResponse.response });
+        }
+      } catch (bindingError) {
+        console.error("[Chat API] AI binding failed:", bindingError);
+      }
+    }
+
+    // Fallback to REST API
+    const apiToken = env?.CF_AI_API_TOKEN;
+    if (!apiToken) {
+      console.error("[Chat API] No API token available");
+      return NextResponse.json({
+        response: "দুঃখিত, AI সার্ভিস কনফিগার করা হয়নি। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।"
+      });
+    }
+
+    console.log("[Chat API] Using REST API fallback");
+    const aiResponse = await fetch(CF_AI_ENDPOINT, {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${apiToken}`,
@@ -89,20 +123,17 @@ export async function POST(request: NextRequest) {
 
     if (!aiResponse.ok) {
       const errorText = await aiResponse.text();
-      console.error("[Chat API] Cloudflare AI API error:", aiResponse.status, errorText);
+      console.error("[Chat API] REST API error:", aiResponse.status, errorText);
       return NextResponse.json({
         response: "দুঃখিত, AI সিস্টেমে সমস্যা হচ্ছে। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।"
       });
     }
 
     const aiResult = await aiResponse.json();
-    console.log("[Chat API] AI response:", JSON.stringify(aiResult, null, 2));
+    console.log("[Chat API] REST API response:", JSON.stringify(aiResult, null, 2));
 
-    // Extract response from the API result
-    // Cloudflare AI API returns { result: { response: "..." }, success: true }
     const responseText = aiResult?.result?.response 
       || aiResult?.result?.output 
-      || aiResult?.result?.text
       || aiResult?.response
       || null;
 
@@ -111,8 +142,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ response: responseText });
     }
 
-    // If we couldn't extract a response, log and return fallback
-    console.warn("[Chat API] Could not extract response text from AI response");
+    console.warn("[Chat API] Could not extract response text");
     return NextResponse.json({
       response: "দুঃখিত, আমি উত্তর দিতে পারছি না। অনুগ্রহ করে আবার চেষ্টা করুন অথবা 01639590392 নম্বরে কল করুন।"
     });
