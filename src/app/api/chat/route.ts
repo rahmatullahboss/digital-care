@@ -55,22 +55,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Build messages array
-    const messages: ChatMessage[] = [
-      { role: "system", content: SYSTEM_PROMPT },
-      ...history.slice(-6), // Keep last 6 messages for context
-      { role: "user", content: message },
-    ];
+    // Build conversation context for GPT-OSS-120B
+    const conversationContext = history.slice(-4).map((m: ChatMessage) => 
+      `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`
+    ).join('\n');
+    
+    const fullInput = conversationContext 
+      ? `${conversationContext}\nUser: ${message}`
+      : message;
 
-    // Run Llama 3.1 8B Fast model (confirmed available)
-    const response = await env.AI.run("@cf/meta/llama-3.1-8b-instruct-fast", {
-      messages,
-      max_tokens: 256,
-      temperature: 0.7,
+    // Run GPT-OSS-120B model (OpenAI's open-weight model)
+    const response = await env.AI.run("@cf/openai/gpt-oss-120b", {
+      instructions: SYSTEM_PROMPT,
+      input: fullInput,
     });
 
     return NextResponse.json({
-      response: response.response || "দুঃখিত, আমি উত্তর দিতে পারছি না। অনুগ্রহ করে আবার চেষ্টা করুন।",
+      response: response.response || (response as { output?: string }).output || "দুঃখিত, আমি উত্তর দিতে পারছি না। অনুগ্রহ করে আবার চেষ্টা করুন।",
     });
   } catch (error) {
     console.error("Chat API error:", error);
