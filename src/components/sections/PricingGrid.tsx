@@ -37,6 +37,32 @@ function isCustomPrice(price: string): boolean {
     return price === "কাস্টম" || price === "আলোচনা সাপেক্ষে";
 }
 
+// Convert Bengali numerals to English numerals for parsing
+function bengaliToNumber(bengaliStr: string): number {
+    const bengaliDigits: Record<string, string> = {
+        '০': '0', '১': '1', '২': '2', '৩': '3', '৪': '4',
+        '৫': '5', '৬': '6', '৭': '7', '৮': '8', '৯': '9'
+    };
+    const englishStr = bengaliStr
+        .replace(/,/g, '')
+        .split('')
+        .map(char => bengaliDigits[char] || char)
+        .join('');
+    return parseInt(englishStr, 10) || 0;
+}
+
+// Format number to Bengali
+function toBengaliNumber(num: number): string {
+    const englishDigits: Record<string, string> = {
+        '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪',
+        '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯'
+    };
+    return num.toLocaleString('en-IN')
+        .split('')
+        .map(char => englishDigits[char] || char)
+        .join('');
+}
+
 export default function PricingGrid({ packages }: PricingGridProps) {
     const [selectedPkg, setSelectedPkg] = useState<PricingPackage | null>(null);
     const [activeCategory, setActiveCategory] = useState<Category>("all");
@@ -110,7 +136,7 @@ export default function PricingGrid({ packages }: PricingGridProps) {
                                         <div className="flex items-center justify-center gap-2">
                                             <span className="text-lg text-slate-400 line-through">৳{pkg.total_value}</span>
                                             <span className="px-2 py-0.5 rounded-full bg-red-100 text-red-600 text-xs font-bold">
-                                                {Math.round((1 - parseInt(pkg.price.replace(/,/g, '')) / parseInt(pkg.total_value.replace(/,/g, ''))) * 100)}% ছাড়
+                                                {Math.round((1 - bengaliToNumber(pkg.price) / bengaliToNumber(pkg.total_value)) * 100)}% ছাড়
                                             </span>
                                         </div>
                                     )}
@@ -153,7 +179,7 @@ export default function PricingGrid({ packages }: PricingGridProps) {
                                 </div>
                                 <div className="flex justify-between text-sm font-bold mt-1">
                                     <span className="text-teal-600">আপনার সাশ্রয়:</span>
-                                    <span className="text-teal-600">৳{(parseInt(pkg.total_value.replace(/,/g, '')) - parseInt(pkg.price.replace(/,/g, ''))).toLocaleString('bn-BD')}</span>
+                                    <span className="text-teal-600">৳{toBengaliNumber(bengaliToNumber(pkg.total_value) - bengaliToNumber(pkg.price))}</span>
                                 </div>
                             </div>
                         )}
