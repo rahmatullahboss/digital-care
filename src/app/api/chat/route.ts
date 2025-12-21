@@ -2,10 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "edge";
 
-// Hardcoded credentials - this avoids all getCloudflareContext bundling issues
-const CF_ACCOUNT_ID = "474078d5f990169d7dadf4e1df83214a";
-const CF_AI_API_TOKEN = "0Bvs2WcwkeFYJ15L2FpvGBukZyximXbNqIts0fo8";
-const CF_AI_ENDPOINT = `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/ai/run/@cf/openai/gpt-oss-120b`;
+// Google Gemini API - simple HTTP fetch (no Cloudflare bundling issues)
+const GEMINI_API_KEY = "AIzaSyBbOhA5BC515l2UkvoojF4CFFLUAzTjwiE";
+const GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 
 // Digital Care context for the AI
 const SYSTEM_PROMPT = `তুমি ডিজিটাল কেয়ার সলিউশনস এর AI সহকারী। তোমার নাম "দীপ্তি"। তুমি বাংলায় উত্তর দেবে।
@@ -37,52 +36,22 @@ interface ChatMessage {
   content: string;
 }
 
-// gpt-oss-120b response types (Responses API format)
-interface AIOutputContent {
-  text?: string;
-  type: string;
+// Gemini API types
+interface GeminiContent {
+  role: "user" | "model";
+  parts: { text: string }[];
 }
 
-interface AIOutput {
-  id: string;
-  type: string;
-  content: AIOutputContent[];
-  role?: string;
-  status?: string;
-}
-
-interface AIResult {
-  result?: {
-    output?: AIOutput[];
-    response?: string;
+interface GeminiResponse {
+  candidates?: Array<{
+    content?: {
+      parts?: Array<{ text?: string }>;
+    };
+  }>;
+  error?: {
+    message?: string;
+    code?: number;
   };
-  success?: boolean;
-}
-
-/**
- * Extract response text from gpt-oss-120b Responses API format
- * The response contains output array with message type items
- */
-function extractResponseText(aiResult: AIResult): string | null {
-  // Try Responses API format: result.output[].content[].text
-  if (aiResult?.result?.output && Array.isArray(aiResult.result.output)) {
-    for (const output of aiResult.result.output) {
-      if (output.type === "message" && output.content) {
-        for (const content of output.content) {
-          if (content.type === "output_text" && content.text) {
-            return content.text;
-          }
-        }
-      }
-    }
-  }
-  
-  // Fallback: try simple response field
-  if (aiResult?.result?.response) {
-    return aiResult.result.response;
-  }
-  
-  return null;
 }
 
 export async function POST(request: NextRequest) {
@@ -100,51 +69,75 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Build conversation context
-    const conversationContext = history.slice(-4).map((m: ChatMessage) => 
-      `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`
-    ).join('\n');
+    // Build conversation history for Gemini
+    const geminiHistory: GeminiContent[] = [];
     
-    const fullInput = conversationContext 
-      ? `${conversationContext}\nUser: ${message}`
-      : message;
+    // Add system instruction as first user message (Gemini doesn't have system role)
+    geminiHistory.push({
+      role: "user",
+      parts: [{ text: `নিম্নলিখিত নির্দেশনা মেনে চল:\n\n${SYSTEM_PROMPT}\n\nএখন আমার প্রশ্নের উত্তর দাও।` }]
+    });
+    geminiHistory.push({
+      role: "model",
+      parts: [{ text: "বুঝেছি! আমি দীপ্তি, ডিজিটাল কেয়ার সলিউশনস এর AI সহকারী। আপনাকে কীভাবে সাহায্য করতে পারি?" }]
+    });
 
-    console.log("[Chat API] Calling Cloudflare AI REST API...");
+    // Add conversation history
+    for (const msg of history.slice(-6)) {
+      geminiHistory.push({
+        role: msg.role === "user" ? "user" : "model",
+        parts: [{ text: msg.content }]
+      });
+    }
 
-    // Call Cloudflare AI REST API (Responses API format)
-    const aiResponse = await fetch(CF_AI_ENDPOINT, {
+    // Add current message
+    geminiHistory.push({
+      role: "user",
+      parts: [{ text: message }]
+    });
+
+    console.log("[Chat API] Calling Gemini API...");
+
+    // Call Gemini API
+    const geminiResponse = await fetch(`${GEMINI_ENDPOINT}?key=${GEMINI_API_KEY}`, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${CF_AI_API_TOKEN}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        instructions: SYSTEM_PROMPT,
-        input: fullInput,
+        contents: geminiHistory,
+        generationConfig: {
+          temperature: 0.7,
+          maxOutputTokens: 500,
+        },
       }),
     });
 
-    if (!aiResponse.ok) {
-      const errorText = await aiResponse.text();
-      console.error("[Chat API] Cloudflare AI API error:", aiResponse.status, errorText);
+    if (!geminiResponse.ok) {
+      const errorText = await geminiResponse.text();
+      console.error("[Chat API] Gemini API error:", geminiResponse.status, errorText);
       return NextResponse.json({
         response: "দুঃখিত, AI সিস্টেমে সমস্যা হচ্ছে। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।"
       });
     }
 
-    const aiResult: AIResult = await aiResponse.json();
-    console.log("[Chat API] AI response received, success:", aiResult.success);
+    const geminiResult: GeminiResponse = await geminiResponse.json();
+    console.log("[Chat API] Gemini response received");
 
-    // Extract response text from Responses API format
-    const responseText = extractResponseText(aiResult);
+    // Extract response text
+    const responseText = geminiResult?.candidates?.[0]?.content?.parts?.[0]?.text;
 
     if (responseText) {
-      console.log("[Chat API] Successfully extracted response:", responseText.substring(0, 100));
+      console.log("[Chat API] Success:", responseText.substring(0, 100));
       return NextResponse.json({ response: responseText });
     }
 
-    console.warn("[Chat API] Could not extract response text from AI result");
-    console.log("[Chat API] Full result:", JSON.stringify(aiResult, null, 2));
+    // Check for error
+    if (geminiResult?.error) {
+      console.error("[Chat API] Gemini error:", geminiResult.error);
+    }
+
+    console.warn("[Chat API] Could not extract response");
     return NextResponse.json({
       response: "দুঃখিত, আমি উত্তর দিতে পারছি না। অনুগ্রহ করে আবার চেষ্টা করুন অথবা 01639590392 নম্বরে কল করুন।"
     });
