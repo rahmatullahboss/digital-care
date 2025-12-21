@@ -2,7 +2,7 @@ import { getD1Database } from "@/lib/db";
 import { Service } from "@/lib/db";
 import ServiceCard from "@/components/ui/ServiceCard";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { FaGlobe, FaFacebook, FaRobot, FaBullhorn } from "react-icons/fa6";
+import { FaGlobe, FaFacebook, FaRobot, FaBullhorn, FaMobile, FaArrowRight } from "react-icons/fa6";
 
 // Map icons
 const iconMap: Record<string, React.ReactNode> = {
@@ -10,6 +10,8 @@ const iconMap: Record<string, React.ReactNode> = {
   FaFacebook: <FaFacebook />,
   FaRobot: <FaRobot />,
   FaBullhorn: <FaBullhorn />,
+  FaMobileAlt: <FaMobile />,
+  FaMobile: <FaMobile />,
 };
 
 async function getServices() {
@@ -34,14 +36,16 @@ export default async function ServicesSection() {
           className="mb-16"
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, index) => (
+        {/* Responsive grid: 1 col mobile, 2 col tablet, 3 col desktop for better 5-item layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service) => (
             <ServiceCard
               key={service.id}
               icon={iconMap[service.icon || ""] || <FaGlobe />}
               title={service.title}
-              description={service.tagline || ""}
+              description={service.tagline || service.description || ""}
               href={`/services?slug=${service.slug}`}
+              ctaIcon={<FaArrowRight />}
             />
           ))}
         </div>
@@ -49,3 +53,4 @@ export default async function ServicesSection() {
     </section>
   );
 }
+
