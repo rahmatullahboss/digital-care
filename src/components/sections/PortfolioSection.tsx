@@ -1,6 +1,6 @@
 "use client";
 
-import { FaExternalLinkAlt, FaShoppingCart, FaHotel } from "react-icons/fa";
+import { FaExternalLinkAlt, FaShoppingCart, FaHotel, FaRocket } from "react-icons/fa";
 import SectionHeader from "@/components/ui/SectionHeader";
 import GlassCard from "@/components/ui/GlassCard";
 
@@ -38,6 +38,17 @@ const projects: Project[] = [
         tech: ["Next.js", "Tailwind CSS", "Prisma"],
         link: "https://zinurooms.vercel.app",
         gradient: "from-teal-500 to-cyan-500",
+    },
+    {
+        id: "online-bazar-landing",
+        title: "Online Bazar - Landing Page",
+        description: "প্রোডাক্ট সেলস ল্যান্ডিং পেজ যা কাস্টমারদের আকৃষ্ট করে এবং কনভার্সন বাড়ায়। আকর্ষণীয় ডিজাইন ও স্মুথ ইউজার এক্সপেরিয়েন্স।",
+        type: "ল্যান্ডিং পেজ",
+        icon: <FaRocket className="text-2xl" />,
+        features: ["কনভার্সন অপটিমাইজড", "অর্ডার ফর্ম", "বোনাস সেকশন", "মোবাইল ফ্রেন্ডলি"],
+        tech: ["HTML", "CSS", "JavaScript"],
+        link: "https://onlinebazar.pages.dev",
+        gradient: "from-purple-500 to-indigo-500",
     },
 ];
 
