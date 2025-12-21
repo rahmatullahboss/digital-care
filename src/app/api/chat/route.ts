@@ -1,10 +1,13 @@
-import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "edge";
 
-// Hardcoded account ID - this is public info (visible in Cloudflare dashboard URLs)
+// Hardcoded credentials - this avoids all getCloudflareContext bundling issues
+// Account ID is public info (visible in dashboard URLs)
 const CF_ACCOUNT_ID = "474078d5f990169d7dadf4e1df83214a";
+// API Token is stored here temporarily - should be moved to env vars once OpenNext bug is fixed
+const CF_AI_API_TOKEN = "0Bvs2WcwkeFYJ15L2FpvGBukZyximXbNqIts0fo8";
+
 const CF_AI_ENDPOINT = `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/ai/run/@cf/openai/gpt-oss-120b`;
 
 // Digital Care context for the AI
@@ -37,15 +40,6 @@ interface ChatMessage {
   content: string;
 }
 
-// Define env type
-interface CloudflareEnv {
-  CF_AI_API_TOKEN?: string;
-  AI?: {
-    run: (model: string, options: unknown) => Promise<{ response?: string }>;
-  };
-  [key: string]: unknown;
-}
-
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -61,15 +55,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get environment from Cloudflare context
-    let env: CloudflareEnv | null = null;
-    try {
-      const context = await getCloudflareContext({ async: true });
-      env = context.env as unknown as CloudflareEnv;
-    } catch (contextError) {
-      console.error("[Chat API] Failed to get Cloudflare context:", contextError);
-    }
-
     // Build conversation context
     const conversationContext = history.slice(-4).map((m: ChatMessage) => 
       `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`
@@ -79,40 +64,13 @@ export async function POST(request: NextRequest) {
       ? `${conversationContext}\nUser: ${message}`
       : message;
 
-    console.log("[Chat API] Calling AI with input:", fullInput.substring(0, 100) + "...");
+    console.log("[Chat API] Calling Cloudflare AI REST API...");
 
-    // Try binding first (most efficient)
-    if (env?.AI) {
-      try {
-        console.log("[Chat API] Using AI binding");
-        const aiResponse = await env.AI.run("@cf/openai/gpt-oss-120b", {
-          instructions: SYSTEM_PROMPT,
-          input: fullInput,
-        });
-        
-        if (aiResponse?.response) {
-          console.log("[Chat API] AI binding success:", aiResponse.response.substring(0, 100));
-          return NextResponse.json({ response: aiResponse.response });
-        }
-      } catch (bindingError) {
-        console.error("[Chat API] AI binding failed:", bindingError);
-      }
-    }
-
-    // Fallback to REST API
-    const apiToken = env?.CF_AI_API_TOKEN;
-    if (!apiToken) {
-      console.error("[Chat API] No API token available");
-      return NextResponse.json({
-        response: "দুঃখিত, AI সার্ভিস কনফিগার করা হয়নি। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।"
-      });
-    }
-
-    console.log("[Chat API] Using REST API fallback");
+    // Call Cloudflare AI REST API directly (no getCloudflareContext needed)
     const aiResponse = await fetch(CF_AI_ENDPOINT, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${apiToken}`,
+        "Authorization": `Bearer ${CF_AI_API_TOKEN}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -123,17 +81,20 @@ export async function POST(request: NextRequest) {
 
     if (!aiResponse.ok) {
       const errorText = await aiResponse.text();
-      console.error("[Chat API] REST API error:", aiResponse.status, errorText);
+      console.error("[Chat API] Cloudflare AI API error:", aiResponse.status, errorText);
       return NextResponse.json({
         response: "দুঃখিত, AI সিস্টেমে সমস্যা হচ্ছে। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।"
       });
     }
 
     const aiResult = await aiResponse.json();
-    console.log("[Chat API] REST API response:", JSON.stringify(aiResult, null, 2));
+    console.log("[Chat API] AI response:", JSON.stringify(aiResult, null, 2));
 
+    // Extract response from Cloudflare AI REST API format
+    // Format: { result: { response: "..." }, success: true }
     const responseText = aiResult?.result?.response 
       || aiResult?.result?.output 
+      || aiResult?.result?.text
       || aiResult?.response
       || null;
 
