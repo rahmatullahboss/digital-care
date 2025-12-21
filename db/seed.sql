@@ -107,6 +107,19 @@ INSERT OR REPLACE INTO services (id, slug, title, tagline, description, icon, fe
   4
 );
 
+INSERT OR REPLACE INTO services (id, slug, title, tagline, description, icon, features, benefits, order_index) VALUES
+(
+  'service-005',
+  'mobile-app',
+  'মোবাইল অ্যাপ ডেভেলপমেন্ট',
+  'অ্যাপ ডেভ',
+  'আপনার ব্যবসার জন্য কাস্টম মোবাইল অ্যাপ। Android ও iOS প্ল্যাটফর্মে আপনার গ্রাহকদের হাতে পৌঁছান। আধুনিক প্রযুক্তি ও সুন্দর ডিজাইন দিয়ে তৈরি।',
+  'FaMobileAlt',
+  '["Android ও iOS অ্যাপ ডেভেলপমেন্ট", "React Native / Flutter", "কাস্টম UI/UX ডিজাইন", "API ইন্টিগ্রেশন ও ব্যাকএন্ড"]',
+  '["গ্রাহকদের হাতের মুঠোয়", "ব্র্যান্ড ভ্যালু বৃদ্ধি", "২৪/৭ অ্যাক্সেসিবিলিটি", "পুশ নোটিফিকেশন মার্কেটিং"]',
+  5
+);
+
 -- =============================================================================
 -- Pricing Data (IT Agency Packages)
 -- =============================================================================
