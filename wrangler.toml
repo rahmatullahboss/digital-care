@@ -47,3 +47,8 @@ dataset = "analytic_event"
 # Workers AI
 [ai]
 binding = "AI"
+
+# Environment Variables for Cloudflare AI REST API (fallback)
+[vars]
+CF_ACCOUNT_ID = "474078d5f990169d7dadf4e1df83214a"
+# CF_AI_API_TOKEN should be set via wrangler secret for security

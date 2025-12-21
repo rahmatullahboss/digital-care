@@ -1,4 +1,3 @@
-import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "edge";
@@ -33,60 +32,8 @@ interface ChatMessage {
   content: string;
 }
 
-// Type for all possible AI response formats
-interface AIResponse {
-  response?: string;
-  output?: string;
-  output_text?: string;
-  text?: string;
-  result?: string;
-  content?: string;
-  message?: string;
-  [key: string]: unknown;
-}
-
-/**
- * Extract the response text from various possible AI response formats
- */
-function extractResponseText(response: unknown): string | null {
-  if (!response) return null;
-  
-  // If it's a string, return it directly
-  if (typeof response === "string") {
-    return response;
-  }
-  
-  // If it's an object, try to extract from known fields
-  if (typeof response === "object") {
-    const res = response as AIResponse;
-    
-    // Try all possible response fields
-    const possibleFields = [
-      res.response,
-      res.output,
-      res.output_text,
-      res.text,
-      res.result,
-      res.content,
-      res.message,
-    ];
-    
-    for (const field of possibleFields) {
-      if (typeof field === "string" && field.trim()) {
-        return field;
-      }
-    }
-    
-    // For nested structures, try to stringify if it has meaningful content
-    const keys = Object.keys(res);
-    if (keys.length > 0) {
-      // Log the structure for debugging
-      console.log("AI Response structure:", JSON.stringify(res, null, 2));
-    }
-  }
-  
-  return null;
-}
+// Cloudflare AI REST API endpoint
+const CF_AI_ENDPOINT = "https://api.cloudflare.com/client/v4/accounts";
 
 export async function POST(request: NextRequest) {
   try {
@@ -103,28 +50,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Call getCloudflareContext DIRECTLY here - not from a separate function
-    // This is a workaround for OpenNext GitHub issue #575
-    let env;
-    try {
-      const context = await getCloudflareContext({ async: true });
-      env = context.env;
-    } catch (contextError) {
-      console.error("[Chat API] Failed to get Cloudflare context:", contextError);
+    // Get credentials from environment variables
+    const accountId = process.env.CF_ACCOUNT_ID;
+    const apiToken = process.env.CF_AI_API_TOKEN;
+
+    if (!accountId || !apiToken) {
+      console.error("[Chat API] Missing Cloudflare credentials");
       return NextResponse.json({
-        response: "দুঃখিত, সার্ভিসে সমস্যা হচ্ছে। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।"
+        response: "দুঃখিত, AI সার্ভিস কনফিগার করা হয়নি। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।"
       });
     }
 
-    // Check if AI binding exists
-    if (!env?.AI) {
-      console.error("[Chat API] AI binding not found in environment");
-      return NextResponse.json({
-        response: "দুঃখিত, AI সার্ভিস এখন unavailable। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।"
-      });
-    }
-
-    // Build conversation context for GPT-OSS-120B (Responses API format)
+    // Build conversation context for GPT-OSS-120B
     const conversationContext = history.slice(-4).map((m: ChatMessage) => 
       `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`
     ).join('\n');
@@ -133,29 +70,42 @@ export async function POST(request: NextRequest) {
       ? `${conversationContext}\nUser: ${message}`
       : message;
 
-    console.log("[Chat API] Calling AI with input:", fullInput.substring(0, 100) + "...");
+    console.log("[Chat API] Calling Cloudflare AI REST API...");
 
-    let aiResponse;
-    try {
-      // Run GPT-OSS-120B model using Responses API format
-      // Documentation: https://developers.cloudflare.com/workers-ai/models/gpt-oss-120b/
-      aiResponse = await env.AI.run("@cf/openai/gpt-oss-120b", {
+    // Call Cloudflare AI REST API
+    const aiUrl = `${CF_AI_ENDPOINT}/${accountId}/ai/run/@cf/openai/gpt-oss-120b`;
+    
+    const aiResponse = await fetch(aiUrl, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${apiToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         instructions: SYSTEM_PROMPT,
         input: fullInput,
-      });
-      
-      console.log("[Chat API] Raw AI response type:", typeof aiResponse);
-      console.log("[Chat API] Raw AI response:", JSON.stringify(aiResponse, null, 2));
-    } catch (aiError) {
-      console.error("[Chat API] AI.run() failed:", aiError);
+      }),
+    });
+
+    if (!aiResponse.ok) {
+      const errorText = await aiResponse.text();
+      console.error("[Chat API] Cloudflare AI API error:", aiResponse.status, errorText);
       return NextResponse.json({
         response: "দুঃখিত, AI সিস্টেমে সমস্যা হচ্ছে। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।"
       });
     }
 
-    // Extract response text from the AI response
-    const responseText = extractResponseText(aiResponse);
-    
+    const aiResult = await aiResponse.json();
+    console.log("[Chat API] AI response:", JSON.stringify(aiResult, null, 2));
+
+    // Extract response from the API result
+    // Cloudflare AI API returns { result: { response: "..." }, success: true }
+    const responseText = aiResult?.result?.response 
+      || aiResult?.result?.output 
+      || aiResult?.result?.text
+      || aiResult?.response
+      || null;
+
     if (responseText) {
       console.log("[Chat API] Successfully extracted response:", responseText.substring(0, 100));
       return NextResponse.json({ response: responseText });
