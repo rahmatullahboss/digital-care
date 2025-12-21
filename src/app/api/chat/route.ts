@@ -1,7 +1,18 @@
-import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "edge";
+
+// Dynamic import to avoid module resolution issues in production
+async function getEnv() {
+  try {
+    const { getCloudflareContext } = await import("@opennextjs/cloudflare");
+    const context = await getCloudflareContext({ async: true });
+    return context.env;
+  } catch (error) {
+    console.error("[Chat API] Failed to import getCloudflareContext:", error);
+    return null;
+  }
+}
 
 // Digital Care context for the AI
 const SYSTEM_PROMPT = `তুমি ডিজিটাল কেয়ার সলিউশনস এর AI সহকারী। তোমার নাম "দীপ্তি"। তুমি বাংলায় উত্তর দেবে।
@@ -103,12 +114,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    let env;
-    try {
-      const context = await getCloudflareContext({ async: true });
-      env = context.env;
-    } catch (contextError) {
-      console.error("[Chat API] Failed to get Cloudflare context:", contextError);
+    const env = await getEnv();
+    if (!env) {
+      console.error("[Chat API] Failed to get Cloudflare context");
       return NextResponse.json({
         response: "দুঃখিত, সার্ভিসে সমস্যা হচ্ছে। অনুগ্রহ করে 01639590392 নম্বরে কল করুন।"
       });
