@@ -3,11 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 export const runtime = "edge";
 
 // Hardcoded credentials - this avoids all getCloudflareContext bundling issues
-// Account ID is public info (visible in dashboard URLs)
 const CF_ACCOUNT_ID = "474078d5f990169d7dadf4e1df83214a";
-// API Token is stored here temporarily - should be moved to env vars once OpenNext bug is fixed
 const CF_AI_API_TOKEN = "0Bvs2WcwkeFYJ15L2FpvGBukZyximXbNqIts0fo8";
-
 const CF_AI_ENDPOINT = `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/ai/run/@cf/openai/gpt-oss-120b`;
 
 // Digital Care context for the AI
@@ -40,6 +37,54 @@ interface ChatMessage {
   content: string;
 }
 
+// gpt-oss-120b response types (Responses API format)
+interface AIOutputContent {
+  text?: string;
+  type: string;
+}
+
+interface AIOutput {
+  id: string;
+  type: string;
+  content: AIOutputContent[];
+  role?: string;
+  status?: string;
+}
+
+interface AIResult {
+  result?: {
+    output?: AIOutput[];
+    response?: string;
+  };
+  success?: boolean;
+}
+
+/**
+ * Extract response text from gpt-oss-120b Responses API format
+ * The response contains output array with message type items
+ */
+function extractResponseText(aiResult: AIResult): string | null {
+  // Try Responses API format: result.output[].content[].text
+  if (aiResult?.result?.output && Array.isArray(aiResult.result.output)) {
+    for (const output of aiResult.result.output) {
+      if (output.type === "message" && output.content) {
+        for (const content of output.content) {
+          if (content.type === "output_text" && content.text) {
+            return content.text;
+          }
+        }
+      }
+    }
+  }
+  
+  // Fallback: try simple response field
+  if (aiResult?.result?.response) {
+    return aiResult.result.response;
+  }
+  
+  return null;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -66,7 +111,7 @@ export async function POST(request: NextRequest) {
 
     console.log("[Chat API] Calling Cloudflare AI REST API...");
 
-    // Call Cloudflare AI REST API directly (no getCloudflareContext needed)
+    // Call Cloudflare AI REST API (Responses API format)
     const aiResponse = await fetch(CF_AI_ENDPOINT, {
       method: "POST",
       headers: {
@@ -87,23 +132,19 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const aiResult = await aiResponse.json();
-    console.log("[Chat API] AI response:", JSON.stringify(aiResult, null, 2));
+    const aiResult: AIResult = await aiResponse.json();
+    console.log("[Chat API] AI response received, success:", aiResult.success);
 
-    // Extract response from Cloudflare AI REST API format
-    // Format: { result: { response: "..." }, success: true }
-    const responseText = aiResult?.result?.response 
-      || aiResult?.result?.output 
-      || aiResult?.result?.text
-      || aiResult?.response
-      || null;
+    // Extract response text from Responses API format
+    const responseText = extractResponseText(aiResult);
 
     if (responseText) {
       console.log("[Chat API] Successfully extracted response:", responseText.substring(0, 100));
       return NextResponse.json({ response: responseText });
     }
 
-    console.warn("[Chat API] Could not extract response text");
+    console.warn("[Chat API] Could not extract response text from AI result");
+    console.log("[Chat API] Full result:", JSON.stringify(aiResult, null, 2));
     return NextResponse.json({
       response: "দুঃখিত, আমি উত্তর দিতে পারছি না। অনুগ্রহ করে আবার চেষ্টা করুন অথবা 01639590392 নম্বরে কল করুন।"
     });
