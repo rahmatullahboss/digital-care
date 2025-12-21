@@ -43,9 +43,8 @@ export default function HeroSection() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-slate-900">
               আপনার{" "}
               <span
-                className={`industry-text inline-block rounded-full bg-white/70 px-3 py-1 text-teal-600 shadow-inner shadow-white/60 ${
-                  isFlipping ? "flip" : ""
-                }`}
+                className={`industry-text inline-block rounded-full bg-white/70 px-3 py-1 text-teal-600 shadow-inner shadow-white/60 ${isFlipping ? "flip" : ""
+                  }`}
               >
                 {industryWords[industryIndex]}
               </span>{" "}
@@ -56,7 +55,7 @@ export default function HeroSection() {
             </h1>
 
             <p className="text-slate-600 text-base max-w-2xl mx-auto lg:mx-0">
-              এজেন্সি-গ্রেড ডিজাইন, স্বয়ংক্রিয় গ্রাহক সংযোগ এবং ডেটা-ভিত্তিক মার্কেটিং — সবকিছু এক জায়গায়। 
+              এজেন্সি-গ্রেড ডিজাইন, স্বয়ংক্রিয় গ্রাহক সংযোগ এবং ডেটা-ভিত্তিক মার্কেটিং — সবকিছু এক জায়গায়।
               আমাদের সাথে যুক্ত হন এবং প্রতিটি ডিজিটাল স্পর্শবিন্দুকে একটি বিক্রয় যাত্রায় পরিণত করুন।
             </p>
 
@@ -106,7 +105,7 @@ export default function HeroSection() {
                     <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">সক্রিয় প্রচারণা</p>
                     <p className="mt-2 text-2xl font-bold text-slate-900">১২</p>
                     <div className="mt-4 h-2.5 rounded-full bg-gradient-to-r from-teal-500/20 to-teal-500/80 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent animate-shimmer" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent md:animate-shimmer" />
                     </div>
                   </div>
                   <div className="rounded-2xl bg-gradient-to-br from-teal-500 via-emerald-500 to-sky-500 p-[1px] shadow-lg shadow-teal-500/40">
@@ -186,10 +185,10 @@ export default function HeroSection() {
             </div>
 
             {/* Floating icons */}
-            <div className="absolute top-[10%] right-[16%] w-14 h-14 rounded-full flex items-center justify-center text-teal-600 bg-gradient-to-br from-white/95 to-slate-200/75 shadow-lg animate-bounce">
+            <div className="absolute top-[10%] right-[16%] w-14 h-14 rounded-full flex items-center justify-center text-teal-600 bg-gradient-to-br from-white/95 to-slate-200/75 shadow-lg md:animate-bounce">
               <FaBolt />
             </div>
-            <div className="absolute bottom-[4%] left-[12%] w-14 h-14 rounded-full flex items-center justify-center text-sky-600 bg-gradient-to-br from-white/95 to-slate-200/75 shadow-lg animate-pulse">
+            <div className="absolute bottom-[4%] left-[12%] w-14 h-14 rounded-full flex items-center justify-center text-sky-600 bg-gradient-to-br from-white/95 to-slate-200/75 shadow-lg md:animate-pulse">
               <FaSignal />
             </div>
           </div>

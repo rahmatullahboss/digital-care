@@ -211,3 +211,26 @@ body {
   top: 38px;
   z-index: 0;
 }
+
+/* ===== MOBILE OPTIMIZATIONS ===== */
+@media (max-width: 768px) {
+  .hero-gradient, 
+  .hero-grid, 
+  .hero-orb, 
+  .hero-device::before, 
+  .floating-card,
+  .section-shell::before {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .floating-card {
+    transform: none !important;
+    box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.2) !important;
+  }
+  
+  .hero-orb {
+    opacity: 0.4;
+    filter: blur(40px);
+  }
+}
