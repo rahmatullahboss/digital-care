@@ -72,59 +72,59 @@
   },
   "WhyUs": {
     "kicker": "Why Choose Us",
-    "title": "Why Digital Care is the Best Choice for You",
-    "description": "We don't just provide services; we work as your business partner",
+    "title": "Why We're Your Software Partner",
+    "description": "We don't just write code; we bring your ideas to life",
     "reasons": {
       "fastResults": {
-        "title": "Fast Results",
-        "description": "Visible changes within the first 30 days. Our proven strategies work quickly."
+        "title": "Fast Delivery",
+        "description": "Agile methodology for quick and effective delivery. See progress in every sprint."
       },
       "automation": {
-        "title": "24/7 Automation",
-        "description": "Your business never sleeps. AI agents are always at your customers' service."
+        "title": "Modern Technology",
+        "description": "React, Next.js, Flutter, Node.js - scalable solutions with latest technology."
       },
       "dataDecisions": {
-        "title": "Data-Driven Decisions",
-        "description": "Make decisions with data instead of guesses. Every step is measurable."
+        "title": "Clean Code",
+        "description": "Maintainable, tested, and documented code. Easy to upgrade in the future."
       },
       "support": {
         "title": "Dedicated Support",
-        "description": "Our team is always by your side. Instant help for any problem."
+        "description": "We're with you even after project completion. Bug fixes and update support."
       },
       "secure": {
         "title": "Safe & Reliable",
-        "description": "Your data is protected. We follow the highest security standards."
+        "description": "Security best practices. We keep your data protected."
       },
       "trackRecord": {
-        "title": "Proven Track Record",
-        "description": "50+ successful projects. Our clients' success is our identity."
+        "title": "Successful Projects",
+        "description": "10+ successful projects. Our list of satisfied clients is our pride."
       }
     }
   },
   "Process": {
     "kicker": "Our Process",
-    "title": "How We Work",
-    "description": "We transform your business digitally through a well-organized process",
+    "title": "How We Deliver Projects",
+    "description": "We bring your ideas to life through a well-organized development process",
     "steps": {
       "discussion": {
         "number": "01",
-        "title": "Discussion",
-        "description": "We have an in-depth discussion to understand your business, goals, and challenges."
+        "title": "Requirements",
+        "description": "We understand and document your project needs, features, and goals."
       },
       "strategy": {
         "number": "02",
-        "title": "Strategy",
-        "description": "We create a custom digital strategy for you that delivers results."
+        "title": "Design",
+        "description": "We create UI/UX design and system architecture with your approval."
       },
       "implementation": {
         "number": "03",
-        "title": "Implementation",
-        "description": "Our skilled team sets up and integrates all systems."
+        "title": "Development",
+        "description": "Agile method coding, testing, and regular progress updates."
       },
       "launch": {
         "number": "04",
-        "title": "Launch & Optimize",
-        "description": "We ensure the best results through continuous optimization after launch."
+        "title": "Deploy & Support",
+        "description": "Go live and post-launch support and maintenance."
       }
     }
   },
