@@ -211,7 +211,29 @@
     "title": "Some of Our Completed Projects",
     "description": "We have created successful digital solutions for various businesses. See some of our notable work here.",
     "viewLive": "View Live",
-    "moreProjects": "More projects coming soon..."
+    "moreProjects": "More projects coming soon...",
+    "projects": {
+      "barguna-housing": {
+        "description": "Complete real estate platform for land, house rentals, hotel booking, and commercial properties in the Barguna region.",
+        "type": "Real Estate",
+        "features": ["Land & Flat Sales", "House Rentals", "Hotel Booking", "Commercial Property"]
+      },
+      "online-bazar": {
+        "description": "Modern e-commerce platform with premium product collection. User-friendly interface and easy shopping experience.",
+        "type": "E-commerce",
+        "features": ["Product Catalog", "Order Management", "User Profile", "Blog Section"]
+      },
+      "zinurooms": {
+        "description": "Verified hotel booking platform across Bangladesh. Quality accommodation at the best prices.",
+        "type": "Hotel Booking",
+        "features": ["Verified Properties", "Instant Booking", "Pay at Hotel", "24/7 Support"]
+      },
+      "online-bazar-landing": {
+        "description": "Product sales landing page that attracts customers and increases conversion. Attractive design and smooth user experience.",
+        "type": "Landing Page",
+        "features": ["Conversion Optimized", "Order Form", "Bonus Section", "Mobile Friendly"]
+      }
+    }
   },
   "FloatingButtons": {
     "callNow": "Call Now",

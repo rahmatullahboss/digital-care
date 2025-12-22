@@ -9,10 +9,7 @@ import { useTranslations } from "next-intl";
 interface Project {
     id: string;
     title: string;
-    description: string;
-    type: string;
     icon: React.ReactNode;
-    features: string[];
     tech: string[];
     link: string;
     gradient: string;
@@ -23,10 +20,7 @@ const projects: Project[] = [
     {
         id: "barguna-housing",
         title: "Barguna Housing",
-        description: "বরগুনা অঞ্চলের জমি, বাড়ি ভাড়া, হোটেল বুকিং এবং বাণিজ্যিক প্রপার্টির জন্য সম্পূর্ণ রিয়েল এস্টেট প্ল্যাটফর্ম।",
-        type: "রিয়েল এস্টেট",
         icon: <FaHome className="text-2xl" />,
-        features: ["জমি ও ফ্ল্যাট বিক্রয়", "বাড়ি ভাড়া", "হোটেল বুকিং", "বাণিজ্যিক প্রপার্টি"],
         tech: ["Next.js", "Tailwind CSS", "TypeScript"],
         link: "https://bargunahousing.vercel.app",
         gradient: "from-emerald-500 to-teal-600",
@@ -35,10 +29,7 @@ const projects: Project[] = [
     {
         id: "online-bazar",
         title: "Online Bazar",
-        description: "আধুনিক ই-কমার্স প্ল্যাটফর্ম যেখানে প্রিমিয়াম পণ্যের সংগ্রহ। ব্যবহারকারী-বান্ধব ইন্টারফেস এবং সহজ শপিং অভিজ্ঞতা।",
-        type: "ই-কমার্স",
         icon: <FaShoppingCart className="text-2xl" />,
-        features: ["প্রোডাক্ট ক্যাটালগ", "অর্ডার ম্যানেজমেন্ট", "ইউজার প্রোফাইল", "ব্লগ সেকশন"],
         tech: ["Next.js", "Tailwind CSS", "TypeScript"],
         link: "https://online-bazar.top",
         gradient: "from-orange-500 to-pink-500",
@@ -47,10 +38,7 @@ const projects: Project[] = [
     {
         id: "zinurooms",
         title: "ZinuRooms",
-        description: "বাংলাদেশ জুড়ে যাচাইকৃত হোটেল বুকিং প্ল্যাটফর্ম। সেরা মূল্যে মানসম্পন্ন থাকার ব্যবস্থা।",
-        type: "হোটেল বুকিং",
         icon: <FaHotel className="text-2xl" />,
-        features: ["যাচাইকৃত প্রপার্টি", "তাৎক্ষণিক বুকিং", "হোটেলে পেমেন্ট", "২৪/৭ সাপোর্ট"],
         tech: ["Next.js", "Tailwind CSS", "Prisma"],
         link: "https://zinurooms.vercel.app",
         gradient: "from-teal-500 to-cyan-500",
@@ -59,17 +47,22 @@ const projects: Project[] = [
     {
         id: "online-bazar-landing",
         title: "Online Bazar - Landing Page",
-        description: "প্রোডাক্ট সেলস ল্যান্ডিং পেজ যা কাস্টমারদের আকৃষ্ট করে এবং কনভার্সন বাড়ায়। আকর্ষণীয় ডিজাইন ও স্মুথ ইউজার এক্সপেরিয়েন্স।",
-        type: "ল্যান্ডিং পেজ",
         icon: <FaRocket className="text-2xl" />,
-        features: ["কনভার্সন অপটিমাইজড", "অর্ডার ফর্ম", "বোনাস সেকশন", "মোবাইল ফ্রেন্ডলি"],
         tech: ["HTML", "CSS", "JavaScript"],
         link: "https://onlinebazar.pages.dev",
         gradient: "from-purple-500 to-indigo-500",
     },
 ];
 
-function ProjectCard({ project, viewLiveText }: { project: Project; viewLiveText: string }) {
+interface ProjectCardProps {
+    project: Project;
+    description: string;
+    type: string;
+    features: string[];
+    viewLiveText: string;
+}
+
+function ProjectCard({ project, description, type, features, viewLiveText }: ProjectCardProps) {
     return (
         <GlassCard variant="dark" className="p-0 overflow-hidden group">
             {/* Header with screenshot or gradient */}
@@ -96,7 +89,7 @@ function ProjectCard({ project, viewLiveText }: { project: Project; viewLiveText
                 )}
                 {/* Type badge */}
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium">
-                    {project.type}
+                    {type}
                 </span>
                 {/* Icon overlay for screenshots */}
                 {project.screenshot && (
@@ -110,12 +103,12 @@ function ProjectCard({ project, viewLiveText }: { project: Project; viewLiveText
             <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
                 <p className="text-slate-300 text-sm leading-relaxed mb-4">
-                    {project.description}
+                    {description}
                 </p>
 
                 {/* Features */}
                 <div className="flex flex-wrap gap-2 mb-4">
-                    {project.features.map((feature) => (
+                    {features.map((feature) => (
                         <span
                             key={feature}
                             className="px-2 py-1 rounded-md bg-slate-700/50 text-slate-300 text-xs"
@@ -167,7 +160,14 @@ export default function PortfolioSection() {
 
                 <div className="grid md:grid-cols-2 gap-8 mt-12">
                     {projects.map((project) => (
-                        <ProjectCard key={project.id} project={project} viewLiveText={t("viewLive")} />
+                        <ProjectCard
+                            key={project.id}
+                            project={project}
+                            description={t(`projects.${project.id}.description`)}
+                            type={t(`projects.${project.id}.type`)}
+                            features={t.raw(`projects.${project.id}.features`) as string[]}
+                            viewLiveText={t("viewLive")}
+                        />
                     ))}
                 </div>
 

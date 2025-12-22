@@ -9,49 +9,55 @@ export function useTranslateDbContent() {
   const t = useTranslations("DatabaseContent");
 
   // If Bengali (default), return original content
-  // If English, return translated content from JSON
+  // If English, return translated content from JSON (with fallback to original)
 
   const translateService = (service: Service): Service => {
     if (locale === "bn") return service;
     
-    try {
-      return {
-        ...service,
-        title: t(`services.${service.id}.title`),
-        tagline: t(`services.${service.id}.tagline`),
-        description: t(`services.${service.id}.description`),
-      };
-    } catch {
-      return service; // Fallback to original if translation not found
-    }
+    // Check if translation exists using raw access
+    const titleKey = `services.${service.id}.title` as const;
+    const hasTranslation = t.has(titleKey);
+    
+    if (!hasTranslation) return service;
+    
+    return {
+      ...service,
+      title: t(`services.${service.id}.title`),
+      tagline: t(`services.${service.id}.tagline`),
+      description: t(`services.${service.id}.description`),
+    };
   };
 
   const translateFaq = (faq: FAQ): FAQ => {
     if (locale === "bn") return faq;
     
-    try {
-      return {
-        ...faq,
-        question: t(`faqs.${faq.id}.question`),
-        answer: t(`faqs.${faq.id}.answer`),
-      };
-    } catch {
-      return faq;
-    }
+    // Check if translation exists
+    const questionKey = `faqs.${faq.id}.question` as const;
+    const hasTranslation = t.has(questionKey);
+    
+    if (!hasTranslation) return faq;
+    
+    return {
+      ...faq,
+      question: t(`faqs.${faq.id}.question`),
+      answer: t(`faqs.${faq.id}.answer`),
+    };
   };
 
   const translatePricing = (pkg: PricingPackage): PricingPackage => {
     if (locale === "bn") return pkg;
     
-    try {
-      return {
-        ...pkg,
-        name: t(`pricing.${pkg.id}.name`),
-        description: t(`pricing.${pkg.id}.description`),
-      };
-    } catch {
-      return pkg;
-    }
+    // Check if translation exists
+    const nameKey = `pricing.${pkg.id}.name` as const;
+    const hasTranslation = t.has(nameKey);
+    
+    if (!hasTranslation) return pkg;
+    
+    return {
+      ...pkg,
+      name: t(`pricing.${pkg.id}.name`),
+      description: t(`pricing.${pkg.id}.description`),
+    };
   };
 
   return {
