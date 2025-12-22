@@ -311,47 +311,156 @@
     "pricing": {
       "pricing-001": {
         "name": "Basic Website",
-        "description": "For small businesses and personal brands"
+        "description": "For small businesses and personal brands",
+        "features": [
+          {"name": "5 Page Responsive Website", "value": "8,000"},
+          {"name": "Mobile Friendly Design", "value": "3,000"},
+          {"name": "**Basic E-commerce**", "value": "10,000"},
+          {"name": "Contact Form Integration", "value": "2,000"},
+          {"name": "Basic SEO Setup", "value": "3,000"},
+          {"name": "**Mobile App**", "value": "15,000"},
+          {"name": "**BDIX Cloudflare Hosting**", "value": "8,000"},
+          {"name": "1 Month Free Support", "value": "3,000"}
+        ]
       },
       "pricing-002": {
         "name": "Business Website",
-        "description": "For professional business and e-commerce"
+        "description": "For professional business and e-commerce",
+        "features": [
+          {"name": "10+ Page Custom Website", "value": "15,000"},
+          {"name": "Admin Panel (CMS)", "value": "8,000"},
+          {"name": "**Full E-commerce**", "value": "15,000"},
+          {"name": "Payment Gateway Integration", "value": "5,000"},
+          {"name": "**AI Chatbot Integration**", "value": "10,000"},
+          {"name": "Advanced SEO", "value": "5,000"},
+          {"name": "**Mobile App**", "value": "15,000"},
+          {"name": "**BDIX Cloudflare Hosting**", "value": "10,000"},
+          {"name": "3 Months Free Support", "value": "3,000"}
+        ]
       },
       "pricing-003": {
         "name": "Premium Website",
-        "description": "For large businesses and e-commerce stores"
+        "description": "For large businesses and e-commerce stores",
+        "features": [
+          {"name": "Unlimited Pages", "value": "25,000"},
+          {"name": "Advanced Admin Panel", "value": "15,000"},
+          {"name": "**Full E-commerce System**", "value": "20,000"},
+          {"name": "Multiple Payment Gateways", "value": "10,000"},
+          {"name": "**AI Chatbot Integration**", "value": "15,000"},
+          {"name": "Order Tracking System", "value": "7,000"},
+          {"name": "**Mobile App**", "value": "15,000"},
+          {"name": "**Premium BDIX Cloudflare Hosting**", "value": "15,000"},
+          {"name": "6 Months Free Support", "value": "5,000"}
+        ]
       },
       "pricing-004": {
         "name": "Standard Web App",
-        "description": "Custom web application development"
+        "description": "Custom web application development",
+        "features": [
+          {"name": "Custom Web Application", "value": "25,000"},
+          {"name": "User Authentication System", "value": "10,000"},
+          {"name": "Dashboard & Reporting", "value": "15,000"},
+          {"name": "Database Integration", "value": "10,000"},
+          {"name": "API Development", "value": "10,000"},
+          {"name": "**Mobile App**", "value": "30,000"},
+          {"name": "Responsive Design", "value": "5,000"},
+          {"name": "Security Features", "value": "5,000"}
+        ]
       },
       "pricing-005": {
         "name": "Enterprise Web App",
-        "description": "Scalable solution for large organizations"
+        "description": "Scalable solution for large organizations",
+        "features": [
+          {"name": "Multi-User System", "value": "40,000"},
+          {"name": "Advanced Admin Panel", "value": "30,000"},
+          {"name": "Third-Party API Integration", "value": "25,000"},
+          {"name": "Real-Time Notifications", "value": "15,000"},
+          {"name": "Automation Features", "value": "20,000"},
+          {"name": "Security Audit", "value": "20,000"},
+          {"name": "**Mobile App**", "value": "30,000"},
+          {"name": "Scalable Architecture", "value": "50,000"},
+          {"name": "6 Months Free Maintenance", "value": "60,000"}
+        ]
       },
       "pricing-006": {
         "name": "Basic Mobile App",
-        "description": "Android or iOS app development"
+        "description": "Android or iOS app development",
+        "features": [
+          {"name": "Single Platform (Android/iOS)", "value": "30,000"},
+          {"name": "Custom UI/UX Design", "value": "25,000"},
+          {"name": "User Authentication", "value": "15,000"},
+          {"name": "Push Notifications", "value": "10,000"},
+          {"name": "API Integration", "value": "20,000"},
+          {"name": "App Store Submission", "value": "10,000"},
+          {"name": "3 Months Free Bug Fixes", "value": "40,000"}
+        ]
       },
       "pricing-007": {
         "name": "Cross-Platform App",
-        "description": "Android + iOS together"
+        "description": "Android + iOS together",
+        "features": [
+          {"name": "Both Android & iOS Platforms", "value": "60,000"},
+          {"name": "React Native / Flutter", "value": "30,000"},
+          {"name": "Offline Functionality", "value": "20,000"},
+          {"name": "Payment Integration", "value": "25,000"},
+          {"name": "Social Login", "value": "15,000"},
+          {"name": "Analytics Dashboard", "value": "20,000"},
+          {"name": "Both Store Submissions", "value": "10,000"},
+          {"name": "6 Months Free Support", "value": "40,000"}
+        ]
       },
       "pricing-008": {
         "name": "Custom Software",
-        "description": "Custom software for your business"
+        "description": "Custom software for your business",
+        "features": [
+          "Requirement Analysis",
+          "Custom Business Logic",
+          "Integration Services",
+          "Data Migration",
+          "User Training",
+          "Source Code Handover",
+          "Maintenance Contract",
+          "SLA Support"
+        ]
       },
       "pricing-009": {
         "name": "Starter Marketing",
-        "description": "Want to start digital marketing"
+        "description": "Want to start digital marketing",
+        "features": [
+          {"name": "Facebook Page Management", "value": "8,000"},
+          {"name": "12 Monthly Posts", "value": "6,000"},
+          {"name": "Basic Graphic Design", "value": "4,000"},
+          {"name": "Facebook Ad Management", "value": "5,000"},
+          {"name": "Monthly Report", "value": "2,000"},
+          {"name": "Inbox Reply Support", "value": "3,000"}
+        ]
       },
       "pricing-010": {
         "name": "Growth Marketing",
-        "description": "Complete digital marketing service"
+        "description": "Complete digital marketing service",
+        "features": [
+          {"name": "Multi-Platform Management", "value": "12,000"},
+          {"name": "25+ Monthly Content", "value": "10,000"},
+          {"name": "Video Editing", "value": "8,000"},
+          {"name": "Complete Ad Management", "value": "8,000"},
+          {"name": "SEO Optimization", "value": "7,000"},
+          {"name": "Email Marketing", "value": "5,000"},
+          {"name": "Lead Generation", "value": "5,000"}
+        ]
       },
       "pricing-011": {
         "name": "Premium Marketing",
-        "description": "Enterprise level marketing solution"
+        "description": "Enterprise level marketing solution",
+        "features": [
+          {"name": "Dedicated Marketing Team", "value": "25,000"},
+          {"name": "Brand Strategy", "value": "15,000"},
+          {"name": "Influencer Marketing", "value": "20,000"},
+          {"name": "Google Ads Management", "value": "15,000"},
+          {"name": "Conversion Rate Optimization", "value": "10,000"},
+          {"name": "A/B Testing", "value": "5,000"},
+          {"name": "Competitor Analysis", "value": "10,000"},
+          {"name": "24/7 Support", "value": "10,000"}
+        ]
       }
     }
   },

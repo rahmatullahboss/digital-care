@@ -53,10 +53,18 @@ export function useTranslateDbContent() {
     
     if (!hasTranslation) return pkg;
     
+    // Check if features translation exists
+    const featuresKey = `pricing.${pkg.id}.features` as const;
+    const hasFeatures = t.has(featuresKey);
+    
     return {
       ...pkg,
       name: t(`pricing.${pkg.id}.name`),
       description: t(`pricing.${pkg.id}.description`),
+      // Use translated features if available
+      features: hasFeatures 
+        ? t.raw(`pricing.${pkg.id}.features`) as PricingPackage['features']
+        : pkg.features,
     };
   };
 
