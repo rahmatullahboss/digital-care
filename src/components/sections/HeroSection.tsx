@@ -48,17 +48,17 @@ export default function HeroSection() {
             </span>
 
             <h1 className="font-bold leading-tight text-slate-900">
-              <span className="text-2xl sm:text-3xl md:text-4xl">{t("titlePre")}</span>{" "}
+              <span className="text-3xl sm:text-3xl md:text-4xl">{t("titlePre")}</span>{" "}
               <span
-                className={`industry-text inline-block rounded-full bg-white/70 px-2 py-0.5 sm:px-3 sm:py-1 text-2xl sm:text-3xl md:text-4xl text-teal-600 shadow-inner shadow-white/60 ${isFlipping ? "flip" : ""
+                className={`industry-text inline-block rounded-full bg-white/70 px-2 py-0.5 sm:px-3 sm:py-1 text-3xl sm:text-3xl md:text-4xl text-teal-600 shadow-inner shadow-white/60 ${isFlipping ? "flip" : ""
                   }`}
               >
                 {industryWords[industryIndex]}
               </span>{" "}
-              <span className="text-2xl sm:text-3xl md:text-4xl bg-gradient-to-r from-teal-500 via-emerald-500 to-sky-500 bg-clip-text text-transparent">
+              <span className="text-3xl sm:text-3xl md:text-4xl bg-gradient-to-r from-teal-500 via-emerald-500 to-sky-500 bg-clip-text text-transparent">
                 {t("titleMid")}
               </span>{" "}
-              <span className="text-2xl sm:text-3xl md:text-4xl">{t("titlePost")}</span>
+              <span className="text-3xl sm:text-3xl md:text-4xl">{t("titlePost")}</span>
             </h1>
 
             <p className="text-slate-600 text-base max-w-2xl mx-auto lg:mx-0">
