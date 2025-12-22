@@ -5,7 +5,8 @@ import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
 import Image from "next/image";
-import { FaCalendar, FaClock, FaArrowRight } from "react-icons/fa6";
+import { FaCalendar, FaArrowRight } from "react-icons/fa6";
+import { getTranslations, getLocale } from "next-intl/server";
 
 // Force dynamic rendering for D1 data
 export const dynamic = "force-dynamic";
@@ -22,15 +23,17 @@ export default async function BlogPage() {
   const posts = await getPosts();
   const featuredPost = posts[0];
   const otherPosts = posts.slice(1);
+  const t = await getTranslations("BlogPage");
+  const locale = await getLocale();
 
   return (
     <>
       <section className="hero-section relative py-16 md:py-24">
         <div className="container mx-auto px-6 relative z-10 text-center">
           <SectionHeader
-            kicker="আমাদের ব্লগ"
-            title="ডিজিটাল দুনিয়ার সর্বশেষ খবর"
-            description="ব্যবসা বৃদ্ধি, টেকনোলজি এবং মার্কেটিং নিয়ে আমাদের নিয়মিত আয়োজন"
+            kicker={t("kicker")}
+            title={t("title")}
+            description={t("description")}
             centered
           />
         </div>
@@ -40,7 +43,7 @@ export default async function BlogPage() {
         <div className="container mx-auto px-6 relative z-10">
           {posts.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-slate-500">কোন ব্লগ পোস্ট পাওয়া যায়নি</p>
+              <p className="text-slate-500">{t("noPosts")}</p>
             </div>
           ) : (
             <>
@@ -60,7 +63,7 @@ export default async function BlogPage() {
                         <div className="flex items-center gap-4 text-sm text-slate-500 mb-4">
                           <span className="flex items-center gap-2">
                             <FaCalendar className="text-teal-500" />
-                            {new Date(featuredPost.created_at).toLocaleDateString("bn-BD")}
+                            {new Date(featuredPost.created_at).toLocaleDateString(locale === "en" ? "en-US" : "bn-BD")}
                           </span>
                         </div>
                         <h2 className="text-3xl font-bold text-slate-800 mb-4 group-hover:text-teal-600 transition-colors">
@@ -72,7 +75,7 @@ export default async function BlogPage() {
                           {featuredPost.excerpt}
                         </p>
                         <Button href={`/blog/${featuredPost.slug}`} icon={<FaArrowRight />}>
-                          বিস্তারিত পড়ুন
+                          {t("readDetails")}
                         </Button>
                       </div>
                     </div>
@@ -95,7 +98,7 @@ export default async function BlogPage() {
                       <div className="flex items-center gap-4 text-sm text-slate-500 mb-3">
                         <span className="flex items-center gap-2">
                           <FaCalendar className="text-teal-500" />
-                          {new Date(post.created_at).toLocaleDateString("bn-BD")}
+                          {new Date(post.created_at).toLocaleDateString(locale === "en" ? "en-US" : "bn-BD")}
                         </span>
                       </div>
                       <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-teal-600 transition-colors line-clamp-2">
@@ -108,7 +111,7 @@ export default async function BlogPage() {
                         href={`/blog/${post.slug}`}
                         className="inline-flex items-center gap-2 text-teal-600 font-semibold hover:gap-3 transition-all"
                       >
-                        আরও পড়ুন <FaArrowRight />
+                        {t("readMore")} <FaArrowRight />
                       </Link>
                     </div>
                   </GlassCard>

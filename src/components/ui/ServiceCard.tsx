@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import GlassCard from "./GlassCard";
+import { useTranslations } from "next-intl";
 
 interface ServiceCardProps {
   href: string;
@@ -24,10 +27,13 @@ export default function ServiceCard({
   title,
   description,
   features = [],
-  ctaText = "আরও জানুন",
+  ctaText,
   ctaIcon,
   className,
 }: ServiceCardProps) {
+  const t = useTranslations("Common");
+  const displayCtaText = ctaText || t("learnMore");
+
   return (
     <Link href={href} className={cn("block group", className)}>
       <GlassCard className="p-8 h-full flex flex-col">
@@ -66,7 +72,7 @@ export default function ServiceCard({
 
         {/* CTA */}
         <div className="mt-6 flex items-center text-teal-600 font-semibold group-hover:gap-2 transition-all">
-          {ctaText}
+          {displayCtaText}
           {ctaIcon && <span className="text-sm">{ctaIcon}</span>}
         </div>
       </GlassCard>

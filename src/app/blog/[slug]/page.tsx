@@ -6,8 +6,9 @@ import Button from "@/components/ui/Button";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { FaCalendar, FaClock, FaArrowLeft } from "react-icons/fa6";
+import { FaCalendar, FaArrowLeft } from "react-icons/fa6";
 import ReactMarkdown from "react-markdown";
+import { getTranslations, getLocale } from "next-intl/server";
 
 // Force dynamic rendering for D1 data
 export const dynamic = "force-dynamic";
@@ -27,6 +28,8 @@ export default async function BlogPostPage({
 }) {
   const { slug } = await params;
   const post = await getPost(slug);
+  const t = await getTranslations("BlogPostPage");
+  const locale = await getLocale();
 
   if (!post) {
     notFound();
@@ -40,10 +43,10 @@ export default async function BlogPostPage({
             href="/blog"
             className="inline-flex items-center gap-2 text-teal-400 hover:text-white mb-8 transition-colors"
           >
-            <FaArrowLeft /> সব ব্লগ পোস্ট
+            <FaArrowLeft /> {t("allPosts")}
           </Link>
           <SectionHeader
-            kicker="ব্লগ বিস্তারিত"
+            kicker={t("kicker")}
             title={post.title}
             description=""
             centered
@@ -51,7 +54,7 @@ export default async function BlogPostPage({
           <div className="flex items-center justify-center gap-6 text-slate-400 mt-6">
             <span className="flex items-center gap-2">
               <FaCalendar className="text-teal-500" />
-              {new Date(post.created_at).toLocaleDateString("bn-BD")}
+              {new Date(post.created_at).toLocaleDateString(locale === "en" ? "en-US" : "bn-BD")}
             </span>
           </div>
         </div>
@@ -77,9 +80,9 @@ export default async function BlogPostPage({
 
           <div className="mt-12 text-center">
             <h3 className="text-2xl font-bold text-white mb-4">
-              আপনার ব্যবসার জন্য সঠিক সমাধান খুঁজছেন?
+              {t("ctaTitle")}
             </h3>
-            <Button href="/#contact">বিনামূল্যে পরামর্শ নিন</Button>
+            <Button href="/#contact">{t("ctaBtn")}</Button>
           </div>
         </div>
       </section>

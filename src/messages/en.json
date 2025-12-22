@@ -462,5 +462,22 @@
         "content": "If you have questions about our privacy policy, contact: rahmatullahzisan@gmail.com or 01639590392."
       }
     }
+  },
+  "BlogPage": {
+    "kicker": "Our Blog",
+    "title": "Latest News from the Digital World",
+    "description": "Our regular updates on business growth, technology, and marketing",
+    "noPosts": "No blog posts found",
+    "readMore": "Read More",
+    "readDetails": "Read Details"
+  },
+  "BlogPostPage": {
+    "allPosts": "All Blog Posts",
+    "kicker": "Blog Details",
+    "ctaTitle": "Looking for the right solution for your business?",
+    "ctaBtn": "Get Free Consultation"
+  },
+  "Common": {
+    "learnMore": "Learn More"
   }
 }
