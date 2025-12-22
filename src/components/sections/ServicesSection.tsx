@@ -7,7 +7,7 @@ import { getTranslations } from "next-intl/server";
 async function getServices() {
   const db = await getD1Database();
   const { results } = await db
-    .prepare("SELECT * FROM services WHERE id != 'service-004' ORDER BY order_index ASC")
+    .prepare("SELECT * FROM services WHERE id NOT IN ('service-002', 'service-004') ORDER BY order_index ASC")
     .all();
   return results as Service[];
 }
