@@ -3,6 +3,12 @@
 import { useTranslations, useLocale } from "next-intl";
 import { Service, FAQ, PricingPackage } from "@/lib/db";
 
+// Extended service type with parsed features/benefits (used after JSON.parse)
+interface ParsedService extends Omit<Service, 'features' | 'benefits'> {
+  features: string[];
+  benefits: string[];
+}
+
 // Hook to translate database content based on current locale
 export function useTranslateDbContent() {
   const locale = useLocale();
@@ -11,7 +17,7 @@ export function useTranslateDbContent() {
   // If Bengali (default), return original content
   // If English, return translated content from JSON (with fallback to original)
 
-  const translateService = (service: Service): Service => {
+  const translateService = <T extends Service | ParsedService>(service: T): T => {
     if (locale === "bn") return service;
     
     // Check if translation exists using raw access
@@ -26,19 +32,22 @@ export function useTranslateDbContent() {
     const hasFeatures = t.has(featuresKey);
     const hasBenefits = t.has(benefitsKey);
     
+    // Get translated features/benefits
+    const translatedFeatures = hasFeatures 
+      ? t.raw(`services.${service.id}.features`)
+      : service.features;
+    const translatedBenefits = hasBenefits 
+      ? t.raw(`services.${service.id}.benefits`)
+      : service.benefits;
+    
     return {
       ...service,
       title: t(`services.${service.id}.title`),
       tagline: t(`services.${service.id}.tagline`),
       description: t(`services.${service.id}.description`),
-      // Use translated features and benefits if available
-      features: hasFeatures 
-        ? t.raw(`services.${service.id}.features`) as string[]
-        : service.features,
-      benefits: hasBenefits 
-        ? t.raw(`services.${service.id}.benefits`) as string[]
-        : service.benefits,
-    };
+      features: translatedFeatures,
+      benefits: translatedBenefits,
+    } as T;
   };
 
   const translateFaq = (faq: FAQ): FAQ => {
@@ -86,7 +95,7 @@ export function useTranslateDbContent() {
     translateService,
     translateFaq,
     translatePricing,
-    translateServices: (services: Service[]) => services.map(translateService),
+    translateServices: <T extends Service | ParsedService>(services: T[]) => services.map(s => translateService(s)),
     translateFaqs: (faqs: FAQ[]) => faqs.map(translateFaq),
     translatePricings: (packages: PricingPackage[]) => packages.map(translatePricing),
   };
