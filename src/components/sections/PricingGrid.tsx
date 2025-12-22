@@ -87,7 +87,8 @@ export default function PricingGrid({ packages }: PricingGridProps) {
         { id: "webapp", label: t("categories.webapp"), icon: <FaCode /> },
         { id: "mobile", label: t("categories.mobile"), icon: <FaMobileAlt /> },
         { id: "software", label: t("categories.software"), icon: <FaDesktop /> },
-        { id: "marketing", label: t("categories.marketing"), icon: <FaBullhorn /> },
+        // Marketing category temporarily hidden
+        // { id: "marketing", label: t("categories.marketing"), icon: <FaBullhorn /> },
     ];
 
     const filteredPackages = useMemo(() => {

@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 async function getServices() {
   const db = await getD1Database();
   const { results } = await db
-    .prepare("SELECT * FROM services ORDER BY order_index ASC")
+    .prepare("SELECT * FROM services WHERE id != 'service-004' ORDER BY order_index ASC")
     .all();
 
   // Parse JSON

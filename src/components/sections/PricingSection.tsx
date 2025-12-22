@@ -9,7 +9,7 @@ import { getTranslations } from "next-intl/server";
 async function getPricingPackages() {
   const db = await getD1Database();
   const { results } = await db
-    .prepare("SELECT * FROM pricing ORDER BY order_index ASC")
+    .prepare("SELECT * FROM pricing WHERE id NOT IN ('pricing-009', 'pricing-010', 'pricing-011') ORDER BY order_index ASC")
     .all();
 
   return results.map((p: Record<string, unknown>) => ({
