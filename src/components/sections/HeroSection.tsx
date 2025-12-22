@@ -47,18 +47,18 @@ export default function HeroSection() {
               {t("badge")}
             </span>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-slate-900">
-              {t("titlePre")}{" "}
+            <h1 className="font-bold leading-tight text-slate-900">
+              <span className="text-3xl sm:text-4xl md:text-5xl">{t("titlePre")}</span>{" "}
               <span
-                className={`industry-text inline-block rounded-full bg-white/70 px-3 py-1 text-teal-600 shadow-inner shadow-white/60 ${isFlipping ? "flip" : ""
+                className={`industry-text inline-block rounded-full bg-white/70 px-3 py-1 text-3xl sm:text-4xl md:text-5xl text-teal-600 shadow-inner shadow-white/60 ${isFlipping ? "flip" : ""
                   }`}
               >
                 {industryWords[industryIndex]}
               </span>{" "}
-              <span className="bg-gradient-to-r from-teal-500 via-emerald-500 to-sky-500 bg-clip-text text-transparent">
+              <span className="text-3xl sm:text-4xl md:text-5xl bg-gradient-to-r from-teal-500 via-emerald-500 to-sky-500 bg-clip-text text-transparent">
                 {t("titleMid")}
               </span>{" "}
-              {t("titlePost")}
+              <span className="text-3xl sm:text-4xl md:text-5xl">{t("titlePost")}</span>
             </h1>
 
             <p className="text-slate-600 text-base max-w-2xl mx-auto lg:mx-0">
