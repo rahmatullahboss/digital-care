@@ -267,27 +267,87 @@
       "service-001": {
         "title": "Smart Website & Sales Funnel",
         "tagline": "Web + Funnel",
-        "description": "We don't just build websites; we create automated systems that find customers 24/7, collect their information, and ensure sales."
+        "description": "We don't just build websites; we create automated systems that find customers 24/7, collect their information, and ensure sales.",
+        "features": [
+          "Conversion-focused landing pages & funnels",
+          "CRM & automated follow-up integration",
+          "Mobile-friendly responsive design",
+          "Fast loading & SEO optimized"
+        ],
+        "benefits": [
+          "24/7 automated lead generation",
+          "Convert every visitor into a customer",
+          "Increased sales & time savings",
+          "Professional brand image"
+        ]
       },
       "service-002": {
         "title": "Complete Facebook Page Management",
         "tagline": "Page Management",
-        "description": "From page setup to content creation, regular posting, ad management, and message automation - we handle all Facebook responsibilities."
+        "description": "From page setup to content creation, regular posting, ad management, and message automation - we handle all Facebook responsibilities.",
+        "features": [
+          "Branded content calendar & creative design",
+          "Inbox, comment & ad management",
+          "Regular posting & engagement",
+          "Performance reporting"
+        ],
+        "benefits": [
+          "Save time & effort",
+          "Consistent brand presence",
+          "More engagement & reach",
+          "Professional social media image"
+        ]
       },
       "service-003": {
         "title": "24/7 AI Sales Agent",
         "tagline": "AI Sales",
-        "description": "No customer has to wait anymore, even on holidays or late at night. Our AI agent converts every opportunity into a sale with instant responses."
+        "description": "No customer has to wait anymore, even on holidays or late at night. Our AI agent converts every opportunity into a sale with instant responses.",
+        "features": [
+          "Instant conversation & follow-up",
+          "Lead handover & reporting for sales team",
+          "Messenger, website & WhatsApp support",
+          "Custom trained AI model"
+        ],
+        "benefits": [
+          "24/7 customer service",
+          "No lead missed",
+          "Fast response time",
+          "Scalable sales solution"
+        ]
       },
       "service-004": {
         "title": "Digital Marketing & Advertising",
         "tagline": "Data Growth",
-        "description": "No more marketing based on guesswork. We analyze data to create ads and SEO strategies that ensure maximum profit on every dollar."
+        "description": "No more marketing based on guesswork. We analyze data to create ads and SEO strategies that ensure maximum profit on every dollar.",
+        "features": [
+          "Data-driven ads & SEO strategy",
+          "Monthly ROI analysis & strategy updates",
+          "Targeted Facebook & Google Ads",
+          "Competitor analysis"
+        ],
+        "benefits": [
+          "Maximum ROI",
+          "Targeted reach",
+          "Better results at lower cost",
+          "Data-driven decisions"
+        ]
       },
       "service-005": {
         "title": "Mobile App Development",
         "tagline": "App Dev",
-        "description": "Custom mobile apps for your business. Reach your customers on Android and iOS platforms. Built with modern technology and beautiful design."
+        "description": "Custom mobile apps for your business. Reach your customers on Android and iOS platforms. Built with modern technology and beautiful design.",
+        "features": [
+          "Android & iOS app development",
+          "React Native / Flutter",
+          "Custom UI/UX design",
+          "API integration & backend"
+        ],
+        "benefits": [
+          "Customers at your fingertips",
+          "Increased brand value",
+          "24/7 accessibility",
+          "Push notification marketing"
+        ]
       }
     },
     "faqs": {

@@ -20,11 +20,24 @@ export function useTranslateDbContent() {
     
     if (!hasTranslation) return service;
     
+    // Check if features and benefits translations exist
+    const featuresKey = `services.${service.id}.features` as const;
+    const benefitsKey = `services.${service.id}.benefits` as const;
+    const hasFeatures = t.has(featuresKey);
+    const hasBenefits = t.has(benefitsKey);
+    
     return {
       ...service,
       title: t(`services.${service.id}.title`),
       tagline: t(`services.${service.id}.tagline`),
       description: t(`services.${service.id}.description`),
+      // Use translated features and benefits if available
+      features: hasFeatures 
+        ? t.raw(`services.${service.id}.features`) as string[]
+        : service.features,
+      benefits: hasBenefits 
+        ? t.raw(`services.${service.id}.benefits`) as string[]
+        : service.benefits,
     };
   };
 
