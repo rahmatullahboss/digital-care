@@ -332,5 +332,135 @@
         "description": "Enterprise level marketing solution"
       }
     }
+  },
+  "ServicesPage": {
+    "kicker": "Our Services",
+    "title": "Best Services with Modern Technology",
+    "description": "We are by your side at every step of your business",
+    "allServices": "All Services",
+    "features": "What's Included",
+    "benefits": "Why You Need This",
+    "noFeatures": "No features added",
+    "noBenefits": "No benefits added",
+    "noServiceSelected": "No service selected",
+    "orderBtn": "Order Now",
+    "pricingBtn": "View Pricing"
+  },
+  "AffiliatePage": {
+    "badge": "Be Part of Our Success",
+    "title": "Affiliate Program",
+    "description": "Join Digital Care Solutions affiliate program. Earn attractive commissions on every successful sale.",
+    "applyNow": "Apply Now",
+    "viewServices": "View Services",
+    "whyJoin": "Why Join Our Affiliate Program?",
+    "whyJoinDesc": "We are committed to ensuring our partners' success",
+    "benefits": {
+      "commission": {
+        "title": "Attractive Commission",
+        "description": "We offer the industry's best commission rates. Earn from every referral."
+      },
+      "demand": {
+        "title": "High-Demand Services",
+        "description": "Websites, Facebook automation, and AI chatbots for businesses are now essential."
+      },
+      "support": {
+        "title": "Marketing Support",
+        "description": "We'll provide banners, content, and marketing materials to help you succeed."
+      }
+    },
+    "howItWorks": "How It Works",
+    "howItWorksDesc": "Start earning in just 3 easy steps",
+    "steps": {
+      "step1": {
+        "number": "1",
+        "title": "Apply",
+        "description": "Fill out the form below to apply. We'll contact you within 48 hours."
+      },
+      "step2": {
+        "number": "2",
+        "title": "Promote",
+        "description": "After approval, you'll get a unique referral link. Share it on social media."
+      },
+      "step3": {
+        "number": "3",
+        "title": "Earn Commission",
+        "description": "When someone buys through your link, you'll automatically receive commission."
+      }
+    },
+    "whoCanJoin": "Who Can Be Our Partner?",
+    "partners": {
+      "bloggers": {
+        "title": "Bloggers & Content Creators",
+        "description": "Those who write or create videos about digital marketing."
+      },
+      "agencies": {
+        "title": "Marketing Agencies & Freelancers",
+        "description": "Those looking for automation solutions for their clients."
+      },
+      "consultants": {
+        "title": "Business Consultants",
+        "description": "Those who help clients improve their business."
+      },
+      "customers": {
+        "title": "Our Satisfied Customers",
+        "description": "Those who benefited from our services and want to recommend others."
+      }
+    },
+    "formTitle": "Apply to Become an Affiliate",
+    "form": {
+      "name": "Your Name",
+      "namePlaceholder": "Your full name",
+      "email": "Email",
+      "emailPlaceholder": "Your email",
+      "phone": "Phone Number",
+      "phonePlaceholder": "01XXXXXXXXX",
+      "strategy": "Promotion Strategy",
+      "strategyPlaceholder": "How will you promote? (Blog, YouTube, Facebook groups)",
+      "submitting": "Submitting...",
+      "submit": "Submit Application",
+      "success": "Your application has been submitted successfully. We'll contact you soon!",
+      "error": "Something went wrong. Please try again."
+    }
+  },
+  "PrivacyPage": {
+    "badge": "Privacy Policy",
+    "title": "Privacy Policy",
+    "description": "At Digital Care Solutions, we give the highest priority to your data privacy.",
+    "servicesBtn": "Services",
+    "contactBtn": "Contact Us",
+    "sections": {
+      "section1": {
+        "title": "1. What Information Do We Collect?",
+        "content": "We collect personal information you provide (name, email, phone number, company name, etc.) when you fill out forms on our website, join our affiliate program, or contact us directly. Additionally, analytics tools may collect browser, device, and usage behavior data."
+      },
+      "section2": {
+        "title": "2. Purpose of Information Use",
+        "content": "Collected information is primarily used to provide services, customer support, notify about offers or updates, and improve our service quality. We never sell or illegally use your information to third parties."
+      },
+      "section3": {
+        "title": "3. Cookies & Tracking Technologies",
+        "content": "We use cookies in a limited scope to improve user experience and analyze website functionality. You can disable cookies from browser settings, but some website features may not work properly."
+      },
+      "section4": {
+        "title": "4. Information Security",
+        "content": "We use modern security measures to protect your personal information from unauthorized access, modification, or disclosure. However, 100% security cannot be guaranteed for internet data transmission."
+      },
+      "section5": {
+        "title": "5. Third-Party Services",
+        "content": "We may use third-party services like payment gateways, analytics, or automation tools. These service providers have their own privacy policies. We cannot control their activities but try to ensure data protection under contract."
+      },
+      "section6": {
+        "title": "6. User Rights",
+        "content": "You can request to view, correct, or delete your personal information that we have. If you don't want to receive marketing messages, you can unsubscribe at any time."
+      },
+      "section7": {
+        "title": "7. Policy Changes",
+        "content": "This privacy policy may change from time to time due to technology or legal reasons. We will notify significant changes through website notice or email."
+      },
+      "section8": {
+        "title": "8. Contact",
+        "content": "If you have questions about our privacy policy, contact: rahmatullahzisan@gmail.com or 01639590392."
+      }
+    }
   }
 }
