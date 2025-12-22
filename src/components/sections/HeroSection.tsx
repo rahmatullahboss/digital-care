@@ -42,7 +42,7 @@ export default function HeroSection() {
         <div className="grid items-center gap-16 lg:grid-cols-2">
           {/* Left: Copy */}
           <div className="max-w-xl mx-auto space-y-6 text-center lg:mx-0 lg:text-left">
-            <span className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-white/50 bg-white/70 px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em] sm:tracking-[0.35em] text-teal-700 shadow-sm shadow-teal-200/60 backdrop-blur">
+            <span className="inline-flex items-center gap-1 sm:gap-2 rounded-full border border-white/50 bg-white/70 px-2 py-1 sm:px-4 sm:py-2 text-[9px] sm:text-xs font-semibold uppercase tracking-[0.15em] sm:tracking-[0.35em] text-teal-700 shadow-sm shadow-teal-200/60 backdrop-blur">
               <FaShapes className="text-teal-500" />
               {t("badge")}
             </span>
