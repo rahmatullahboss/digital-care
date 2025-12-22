@@ -52,6 +52,47 @@ INSERT OR REPLACE INTO faq (id, question, answer, order_index) VALUES
   5
 );
 
+-- Additional FAQs (from remote database)
+INSERT OR REPLACE INTO faq (id, question, answer, order_index) VALUES
+(
+  'faq-1',
+  'আপনাদের সার্ভিস নিতে কত সময় লাগে?',
+  'সাধারণত আমরা ২৪-৪৮ ঘণ্টার মধ্যে কাজ শুরু করি। জরুরি প্রয়োজনে একই দিনে কাজ শুরু করা সম্ভব।',
+  6
+);
+
+INSERT OR REPLACE INTO faq (id, question, answer, order_index) VALUES
+(
+  'faq-2',
+  'পেমেন্ট পদ্ধতি কি কি?',
+  'আমরা বিকাশ, নগদ, রকেট এবং ব্যাংক ট্রান্সফার সাপোর্ট করি। ৫০% অগ্রিম এবং বাকি কাজ শেষে।',
+  7
+);
+
+INSERT OR REPLACE INTO faq (id, question, answer, order_index) VALUES
+(
+  'faq-3',
+  'সোশ্যাল মিডিয়া মার্কেটিংয়ে কি কি অন্তর্ভুক্ত?',
+  'ফেসবুক, ইনস্টাগ্রাম পেজ ম্যানেজমেন্ট, কন্টেন্ট তৈরি, বুস্টিং, এড ক্যাম্পেইন এবং মাসিক রিপোর্ট অন্তর্ভুক্ত।',
+  8
+);
+
+INSERT OR REPLACE INTO faq (id, question, answer, order_index) VALUES
+(
+  'faq-4',
+  'রিফান্ড পলিসি কি?',
+  'কাজ শুরুর আগে ১০০% রিফান্ড। কাজ শুরুর পর সম্পন্ন কাজের জন্য রিফান্ড প্রযোজ্য নয়।',
+  9
+);
+
+INSERT OR REPLACE INTO faq (id, question, answer, order_index) VALUES
+(
+  'faq-5',
+  'আপনাদের সাথে কিভাবে যোগাযোগ করব?',
+  'হোয়াটসঅ্যাপ, ফেসবুক মেসেঞ্জার বা ইমেইলে যোগাযোগ করতে পারেন। আমরা ২৪/৭ সাপোর্ট দিই।',
+  10
+);
+
 -- =============================================================================
 -- Services Data (from src/data/services.ts)
 -- =============================================================================
