@@ -182,7 +182,7 @@ body {
   display: inline-block;
   transition: transform 0.6s;
   will-change: transform;
-  width: 18rem;
+  width: 14rem;
   padding: 0.15rem 1.5rem;
   text-align: center;
   white-space: nowrap;
