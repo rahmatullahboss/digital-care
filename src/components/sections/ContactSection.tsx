@@ -63,7 +63,7 @@ export default function ContactSection() {
               </span>
               <div>
                 <p className="text-sm text-teal-200">{t("phone")}</p>
-                <a href="tel:01639590392" className="text-lg font-semibold hover:text-teal-300 transition-colors">01639590392</a>
+                <a href="tel:01570260118" className="text-lg font-semibold hover:text-teal-300 transition-colors">01570260118</a>
               </div>
             </div>
 

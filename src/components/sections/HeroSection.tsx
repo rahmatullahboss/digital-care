@@ -50,7 +50,7 @@ export default function HeroSection() {
             <h1 className="font-bold leading-tight text-slate-900">
               <span className="text-3xl sm:text-3xl md:text-4xl">{t("titlePre")}</span>{" "}
               <span
-                className={`industry-text inline-block rounded-full bg-white/70 px-2 py-0.5 sm:px-3 sm:py-1 text-3xl sm:text-3xl md:text-4xl text-teal-600 shadow-inner shadow-white/60 ${isFlipping ? "flip" : ""
+                className={`industry-text inline-block rounded-full bg-white/70 px-1.5 py-0 sm:px-3 sm:py-1 text-3xl sm:text-3xl md:text-4xl text-teal-600 shadow-inner shadow-white/60 ${isFlipping ? "flip" : ""
                   }`}
               >
                 {industryWords[industryIndex]}
