@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingButtons from "@/components/layout/FloatingButtons";
-import ChatWidget from "@/components/ui/ChatWidget";
+// import ChatWidget from "@/components/ui/ChatWidget"; // Hidden for now
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 
@@ -23,8 +23,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ডিজিটাল কেয়ার সলিউশনস | ব্যবসা প্রতিষ্ঠানের জন্য আধুনিক ডিজিটাল মার্কেটিং",
-  description: "ব্যবসা প্রতিষ্ঠানের জন্য AI-নির্ভর ডিজিটাল মার্কেটিং, ২৪/৭ সেলস মেশিন ওয়েবসাইট, স্বয়ংক্রিয় লিড জেনারেশন ও কখনো লিড হারাবেন না AI এজেন্ট",
+  title: "ডিজিটাল কেয়ার সলিউশনস | ওয়েবসাইট, ওয়েব অ্যাপ ও মোবাইল অ্যাপ ডেভেলপমেন্ট",
+  description: "কাস্টম ওয়েবসাইট, ওয়েব অ্যাপ্লিকেশন, মোবাইল অ্যাপ এবং সব ধরনের প্রোগ্রামিং সলিউশন। আধুনিক প্রযুক্তি দিয়ে আপনার ব্যবসাকে ডিজিটাল করুন।",
   icons: {
     icon: "/favicon.webp",
   },
@@ -46,7 +46,7 @@ export default async function RootLayout({
           <main>{children}</main>
           <Footer />
           <FloatingButtons />
-          <ChatWidget />
+          {/* <ChatWidget /> */}
         </NextIntlClientProvider>
       </body>
     </html>

@@ -109,7 +109,7 @@ export default function HeroSection() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="rounded-2xl bg-white/90 p-4 shadow-inner shadow-slate-200">
                     <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">{t("dashboard.activeCampaigns")}</p>
-                    <p className="mt-2 text-2xl font-bold text-slate-900">১২</p>
+                    <p className="mt-2 text-2xl font-bold text-slate-900">৮</p>
                     <div className="mt-4 h-2.5 rounded-full bg-gradient-to-r from-teal-500/20 to-teal-500/80 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent md:animate-shimmer" />
                     </div>
@@ -117,7 +117,7 @@ export default function HeroSection() {
                   <div className="rounded-2xl bg-gradient-to-br from-teal-500 via-emerald-500 to-sky-500 p-[1px] shadow-lg shadow-teal-500/40">
                     <div className="rounded-[18px] bg-white/95 p-4">
                       <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">{t("dashboard.conversions")}</p>
-                      <p className="mt-2 text-2xl font-bold text-slate-900">৪.৮x</p>
+                      <p className="mt-2 text-2xl font-bold text-slate-900">৯৮%</p>
                       <p className="text-xs text-slate-500">{t("dashboard.last30Days")}</p>
                     </div>
                   </div>
@@ -137,15 +137,15 @@ export default function HeroSection() {
                   </svg>
                   <div className="mt-4 grid grid-cols-3 gap-3 text-xs text-slate-500">
                     <div>
-                      <span className="block text-base font-semibold text-slate-900">২.১কে</span>
+                      <span className="block text-base font-semibold text-slate-900">৩৯০+</span>
                       {t("dashboard.totalVisits")}
                     </div>
                     <div>
-                      <span className="block text-base font-semibold text-slate-900">৭৬%</span>
+                      <span className="block text-base font-semibold text-slate-900">৯৫%</span>
                       {t("dashboard.leadsQualified")}
                     </div>
                     <div>
-                      <span className="block text-base font-semibold text-slate-900">২.৪মি</span>
+                      <span className="block text-base font-semibold text-slate-900">১-২ সঃ</span>
                       {t("dashboard.avgResponse")}
                     </div>
                   </div>

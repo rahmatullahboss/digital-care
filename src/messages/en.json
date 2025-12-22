@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "Digital Care Solutions | Modern Digital Marketing for Businesses",
-    "description": "AI-powered digital marketing for businesses, 24/7 sales machine websites, automated lead generation, and never-lose-a-lead AI agents"
+    "title": "Digital Care Solutions | Website, Web App & Mobile App Development",
+    "description": "Custom websites, web applications, mobile apps and all kinds of programming solutions. Digitize your business with modern technology."
   },
   "Header": {
     "brandName": "Digital Care",
@@ -15,7 +15,7 @@
   },
   "Footer": {
     "brandName": "Digital Care Solutions",
-    "description": "We help healthcare institutions in Bangladesh succeed in the digital world through modern technology. Our goal is to create a reliable digital bridge between you and your patients.",
+    "description": "We provide custom software solutions - websites, web applications, mobile apps and all kinds of programming work. We digitize your business with modern technology.",
     "importantLinks": "Important Links",
     "solutions": "Solutions",
     "process": "Our Process",
@@ -25,50 +25,50 @@
     "copyright": "Digital Care Solutions. All rights reserved."
   },
   "Hero": {
-    "badge": "Digital Solutions Agency",
+    "badge": "Software Development Agency",
     "titlePre": "Your",
-    "titleMid": "Digital Transformation",
+    "titleMid": "Software Solution",
     "titlePost": "Starts Here",
     "industries": {
-      "business": "Business",
-      "resort": "Resort",
-      "hospital": "Hospital",
-      "ecommerce": "E-commerce"
+      "business": "Startup",
+      "resort": "E-commerce",
+      "hospital": "Enterprise",
+      "ecommerce": "Agency"
     },
-    "description": "Agency-grade design, automated customer engagement, and data-driven marketing — all in one place. Join us and turn every digital touchpoint into a sales journey.",
-    "ctaStrategy": "Free Strategy Session",
-    "ctaVideo": "Watch Success Story",
+    "description": "From websites, web apps, mobile apps to all kinds of programming work — we do it all. We bring your ideas to life with modern technology and beautiful design.",
+    "ctaStrategy": "Free Consultation",
+    "ctaVideo": "See Our Work",
     "stats": {
-      "automation": "95%",
-      "automationLabel": "Lead response increase with automation",
-      "campaigns": "50+",
-      "campaignsLabel": "Agency-style digital campaigns",
-      "support": "24/7",
-      "supportLabel": "AI agent ready for your customers"
+      "automation": "10+",
+      "automationLabel": "Successful projects delivered",
+      "campaigns": "3",
+      "campaignsLabel": "Platforms (Web, Mobile, Desktop)",
+      "support": "1+",
+      "supportLabel": "Years of programming experience"
     },
     "dashboard": {
-      "live": "Live Dashboard",
-      "activeCampaigns": "Active Campaigns",
-      "conversions": "Conversions",
-      "last30Days": "Last 30 days",
-      "leadFlow": "Real-time Lead Flow",
-      "totalVisits": "Total Visits",
-      "leadsQualified": "Leads Qualified",
-      "avgResponse": "Avg Response"
+      "live": "Live Projects",
+      "activeCampaigns": "Ongoing Projects",
+      "conversions": "Client Satisfaction",
+      "last30Days": "Always",
+      "leadFlow": "Development Progress",
+      "totalVisits": "Code Commits",
+      "leadsQualified": "Tests Passed",
+      "avgResponse": "Delivery Time"
     },
     "floatingCards": {
-      "aiAssistant": "AI Assistant",
-      "autoFollowUp": "Auto Follow-up",
-      "growthPulse": "Growth Pulse",
-      "roiTracking": "ROI Tracking",
-      "smartInbox": "Smart Inbox",
-      "multichannel": "Multichannel Response"
+      "aiAssistant": "Full Stack",
+      "autoFollowUp": "Web & Mobile",
+      "growthPulse": "Clean Code",
+      "roiTracking": "Quality Code",
+      "smartInbox": "Agile Dev",
+      "multichannel": "Fast Delivery"
     }
   },
   "Services": {
     "kicker": "Our Services",
-    "title": "Your Business Digital Partner",
-    "description": "We don't just provide services, we help grow your business"
+    "title": "Your Software Development Partner",
+    "description": "Websites, web apps, mobile apps and all kinds of custom software solutions"
   },
   "WhyUs": {
     "kicker": "Why Choose Us",
