@@ -148,7 +148,11 @@
     "yourSavings": "Your Savings:",
     "orderNow": "Order Now",
     "contactUs": "Contact Us",
-    "noPackages": "No packages found in this category"
+    "noPackages": "No packages found in this category",
+    "periods": {
+      "একবার": "One Time",
+      "মাস": "Month"
+    }
   },
   "FAQ": {
     "kicker": "FAQ",
@@ -306,6 +310,26 @@
       "faq-005": {
         "question": "What is the best way to contact you?",
         "answer": "You can contact us via phone (01639590392), email (rahmatullahzisan@gmail.com), or Facebook Messenger. Fill out the form below for a free strategy session."
+      },
+      "faq-1": {
+        "question": "How long does it take to get your service?",
+        "answer": "We usually start work within 24-48 hours. For urgent needs, we can start the same day."
+      },
+      "faq-2": {
+        "question": "What are the payment methods?",
+        "answer": "We support bKash, Nagad, Rocket, and bank transfer. 50% advance payment and the rest upon completion."
+      },
+      "faq-3": {
+        "question": "What is included in social media marketing?",
+        "answer": "Facebook, Instagram page management, content creation, boosting, ad campaigns, and monthly reports are included."
+      },
+      "faq-4": {
+        "question": "What is the refund policy?",
+        "answer": "100% refund before work starts. After work starts, refund is not applicable for completed work."
+      },
+      "faq-5": {
+        "question": "How do I contact you?",
+        "answer": "You can contact us via WhatsApp, Facebook Messenger, or email. We provide 24/7 support."
       }
     },
     "pricing": {

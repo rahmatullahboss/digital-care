@@ -151,7 +151,7 @@ export default function PricingGrid({ packages }: PricingGridProps) {
                                     {/* Actual price */}
                                     <div>
                                         <span className="text-4xl font-bold text-slate-900">৳{pkg.price}</span>
-                                        {pkg.period && <span className="text-slate-500">/{pkg.period}</span>}
+                                        {pkg.period && <span className="text-slate-500">/{t.has(`periods.${pkg.period}`) ? t(`periods.${pkg.period}`) : pkg.period}</span>}
                                     </div>
                                 </div>
                             )}
