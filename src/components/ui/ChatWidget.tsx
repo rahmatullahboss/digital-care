@@ -34,17 +34,24 @@ export default function ChatWidget() {
         setIsLoading(true);
 
         try {
-            // AI temporarily disabled - show helpful message instead
+            // AI temporarily disabled - show helpful message with keyword matching
             await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate thinking
             
-            const responses = [
-                "ধন্যবাদ আপনার মেসেজের জন্য! আমাদের টিম শীঘ্রই আপনার সাথে যোগাযোগ করবে। জরুরি প্রয়োজনে 01639590392 নম্বরে কল করুন।",
-                "আপনার প্রশ্নের জন্য ধন্যবাদ! বিস্তারিত জানতে সরাসরি আমাদের সাথে কথা বলুন: 01639590392",
-                "আমাদের সার্ভিস সম্পর্কে জানতে 01639590392 নম্বরে কল করুন অথবা WhatsApp এ মেসেজ করুন।"
-            ];
-            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+            const msgLower = userMessage.toLowerCase();
+            let response: string;
             
-            setMessages(prev => [...prev, { role: "assistant", content: randomResponse }]);
+            // Keyword matching for common queries
+            if (msgLower.includes('package') || msgLower.includes('প্যাকেজ') || msgLower.includes('price') || msgLower.includes('দাম') || msgLower.includes('cost') || msgLower.includes('খরচ')) {
+                response = t("responses.packages");
+            } else if (msgLower.includes('service') || msgLower.includes('সার্ভিস') || msgLower.includes('কি করেন') || msgLower.includes('what do you do')) {
+                response = t("responses.services");
+            } else if (msgLower.includes('contact') || msgLower.includes('যোগাযোগ') || msgLower.includes('phone') || msgLower.includes('ফোন') || msgLower.includes('call') || msgLower.includes('কল')) {
+                response = t("responses.contact");
+            } else {
+                response = t("responses.default");
+            }
+            
+            setMessages(prev => [...prev, { role: "assistant", content: response }]);
         } catch {
             setMessages(prev => [...prev, { 
                 role: "assistant", 
