@@ -352,44 +352,44 @@
     },
     "faqs": {
       "faq-001": {
-        "question": "What exactly do you do? Are you just a marketing agency?",
-        "answer": "We're not just a marketing agency. We're a complete digital solutions provider. We offer website development, social media management, AI chatbots, and automation solutions that improve every digital touchpoint of your business."
+        "question": "What software development services do you offer?",
+        "answer": "We offer website development, web applications, mobile apps (Android & iOS), e-commerce solutions, and custom software development services. We use modern technologies including React, Next.js, Flutter, Node.js."
       },
       "faq-002": {
-        "question": "How long does it take to start a service?",
-        "answer": "Usually we start work within 7-10 days of signing the contract. However, this time may vary depending on project complexity. We always try to start quickly and effectively."
+        "question": "How long does it take to build a website or app?",
+        "answer": "Project timeline varies by complexity. Simple website 1-2 weeks, e-commerce 2-3 weeks, and custom web/mobile app can take 4-8 weeks. We work in agile method so you'll see progress every week."
       },
       "faq-003": {
-        "question": "What is the cost of your services?",
-        "answer": "Our pricing is ROI-based. Every business has different needs, so we create customized packages. Contact us for a free strategy session to learn the right solution for your business."
+        "question": "How does your pricing work?",
+        "answer": "We have various packages - Basic website starts from ৳10,000, Business website ৳25,000, Mobile app starts from ৳80,000. For custom projects, get a free consultation."
       },
       "faq-004": {
-        "question": "How does the AI agent work?",
-        "answer": "Our AI agent talks to your customers 24/7, answers their questions, collects leads, and hands over to human sales team when needed. It can work on Facebook Messenger, website chat, and WhatsApp."
+        "question": "Will I get support after project completion?",
+        "answer": "Yes! Every project includes free support - Basic package 1 month, Business package 3 months, Premium package 6 months. After that, you can opt for monthly maintenance packages."
       },
       "faq-005": {
         "question": "What is the best way to contact you?",
-        "answer": "You can contact us via phone (01639590392), email (rahmatullahzisan@gmail.com), or Facebook Messenger. Fill out the form below for a free strategy session."
+        "answer": "Phone: 01570260118, WhatsApp: 01739416661, Email: rahmatullahzisan@gmail.com. Fill out the contact form for free consultation or call directly."
       },
       "faq-1": {
-        "question": "How long does it take to get your service?",
-        "answer": "We usually start work within 24-48 hours. For urgent needs, we can start the same day."
+        "question": "What technologies do you use?",
+        "answer": "Frontend: React, Next.js, Tailwind CSS. Mobile: Flutter, React Native. Backend: Node.js, Python. Database: PostgreSQL, MongoDB, Cloudflare D1. Hosting: Cloudflare, Vercel, AWS."
       },
       "faq-2": {
         "question": "What are the payment methods?",
-        "answer": "We support bKash, Nagad, Rocket, and bank transfer. 50% advance payment and the rest upon completion."
+        "answer": "We support bKash, Nagad, Rocket, and bank transfer. 50% advance payment and remaining 50% after project delivery."
       },
       "faq-3": {
-        "question": "What is included in social media marketing?",
-        "answer": "Facebook, Instagram page management, content creation, boosting, ad campaigns, and monthly reports are included."
+        "question": "Will I get the source code?",
+        "answer": "Yes! Complete source code is handed over after project completion. Code is transferred via GitHub/GitLab. Documentation is also provided."
       },
       "faq-4": {
-        "question": "What is the refund policy?",
-        "answer": "100% refund before work starts. After work starts, refund is not applicable for completed work."
+        "question": "Will the mobile app work on both Android and iOS?",
+        "answer": "Yes! We build cross-platform apps using Flutter or React Native that work on both Android and iOS. Separate native apps can also be built."
       },
       "faq-5": {
-        "question": "How do I contact you?",
-        "answer": "You can contact us via WhatsApp, Facebook Messenger, or email. We provide 24/7 support."
+        "question": "Do you provide hosting?",
+        "answer": "Yes! We provide BDIX Cloudflare hosting service which is super fast in Bangladesh. Free hosting is included in website packages. SSL certificate is also free."
       }
     },
     "pricing": {
