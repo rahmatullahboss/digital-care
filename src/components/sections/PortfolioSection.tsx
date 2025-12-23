@@ -57,7 +57,7 @@ const projects: Project[] = [
         title: "TalentHunt BD",
         icon: <FaUsers className="text-2xl" />,
         tech: ["Next.js", "Tailwind CSS", "TypeScript"],
-        link: "https://talenthuntbd.digitalcare.site",
+        link: "https://thbd.digitalcare.site",
         gradient: "from-blue-500 to-cyan-500",
         screenshot: "https://res.cloudinary.com/dpnccgsja/image/upload/v1766460725/portfolio/talenthuntbd.png",
     },
