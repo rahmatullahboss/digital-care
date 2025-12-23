@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FaExternalLinkAlt, FaShoppingCart, FaHotel, FaRocket, FaHome } from "react-icons/fa";
+import { FaExternalLinkAlt, FaShoppingCart, FaHotel, FaRocket, FaHome, FaUsers } from "react-icons/fa";
 import SectionHeader from "@/components/ui/SectionHeader";
 import GlassCard from "@/components/ui/GlassCard";
 import { useTranslations } from "next-intl";
@@ -51,6 +51,15 @@ const projects: Project[] = [
         tech: ["HTML", "CSS", "JavaScript"],
         link: "https://onlinebazar.pages.dev",
         gradient: "from-purple-500 to-indigo-500",
+    },
+    {
+        id: "talenthunt-bd",
+        title: "TalentHunt BD",
+        icon: <FaUsers className="text-2xl" />,
+        tech: ["Next.js", "Tailwind CSS", "TypeScript"],
+        link: "https://talenthuntbd.digitalcare.site",
+        gradient: "from-blue-500 to-cyan-500",
+        screenshot: "https://res.cloudinary.com/dpnccgsja/image/upload/v1766453037/portfolio/talenthuntbd.png",
     },
 ];
 

@@ -236,6 +236,11 @@
         "description": "Product sales landing page that attracts customers and increases conversion. Attractive design and smooth user experience.",
         "type": "Landing Page",
         "features": ["Conversion Optimized", "Order Form", "Bonus Section", "Mobile Friendly"]
+      },
+      "talenthunt-bd": {
+        "description": "Modern Upwork-style marketplace for Bangladeshi freelancers. Connects vetted talent with global clients.",
+        "type": "Freelance Marketplace",
+        "features": ["Vetted Freelancers", "Escrow Payment", "Milestone Tracking", "24/7 Support"]
       }
     }
   },
