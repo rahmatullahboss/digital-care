@@ -59,7 +59,7 @@ const projects: Project[] = [
         tech: ["Next.js", "Tailwind CSS", "TypeScript"],
         link: "https://talenthuntbd.digitalcare.site",
         gradient: "from-blue-500 to-cyan-500",
-        screenshot: "https://res.cloudinary.com/dpnccgsja/image/upload/v1766453037/portfolio/talenthuntbd.png",
+        screenshot: "https://res.cloudinary.com/dpnccgsja/image/upload/v1766460725/portfolio/talenthuntbd.png",
     },
 ];
 
