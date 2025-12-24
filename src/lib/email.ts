@@ -86,7 +86,7 @@ async function sendViaWebhook({ to, subject, html }: EmailOptions) {
 
         if (response.ok) {
             console.log("Email sent via webhook");
-            return { success: true };
+            return { success: true, messageId: "webhook" };
         }
         return null;
     } catch (error) {
