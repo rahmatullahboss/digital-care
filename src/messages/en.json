@@ -222,7 +222,7 @@
         "type": "Real Estate",
         "features": ["Land & Flat Sales", "House Rentals", "Hotel Booking", "Commercial Property"]
       },
-      "online-bazar": {
+      "dc-store": {
         "description": "Modern e-commerce platform with premium product collection. User-friendly interface and easy shopping experience.",
         "type": "E-commerce",
         "features": ["Product Catalog", "Order Management", "User Profile", "Blog Section"]
