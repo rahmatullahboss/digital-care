@@ -7,8 +7,9 @@ import ProcessSection from "@/components/sections/ProcessSection";
 import FAQSection from "@/components/sections/FAQSection";
 import ContactSection from "@/components/sections/ContactSection";
 
-// Force dynamic rendering since we use D1 database
-export const dynamic = "force-dynamic";
+// ISR: Cache for 60 seconds, revalidate in background
+// Note: Only works with manual deploy (./deploy.sh)
+export const revalidate = 60;
 
 
 export default function HomePage() {

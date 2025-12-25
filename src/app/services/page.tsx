@@ -4,8 +4,9 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import ServiceContent from "@/components/ui/ServiceContent";
 import { getTranslations } from "next-intl/server";
 
-// Force dynamic rendering for D1 data
-export const dynamic = "force-dynamic";
+// ISR: Cache for 60 seconds, revalidate in background
+// Note: Only works with manual deploy (./deploy.sh)
+export const revalidate = 60;
 
 async function getServices() {
   const db = await getD1Database();
