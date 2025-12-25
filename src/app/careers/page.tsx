@@ -106,7 +106,7 @@ export default function CareersPage() {
               {t("openPositions.applyBtn")}
             </Button>
             <Button 
-              href="https://wa.me/8801739416661" 
+              href="https://wa.me/8801570260118" 
               variant="secondary"
               className="!bg-emerald-50 !text-emerald-700 hover:!bg-emerald-100 border-emerald-200"
               icon={<FaWhatsapp className="text-emerald-600" />}

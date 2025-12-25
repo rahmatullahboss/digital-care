@@ -21,9 +21,9 @@ import { cn } from "@/lib/utils"; // Assuming utils exists, otherwise will creat
 
 const siteConfig = {
     name: "Digital Care Solutions",
-    whatsapp: "+8801639590392",
-    facebookPageId: "digitalcaresolutions", // Update with real ID
-    phone: "01639590392"
+    whatsapp: "+8801570260118",
+    facebookPageId: "digitalcaresolutions",
+    phone: "01570260118"
 };
 
 function formatPrice(amount: number | string): string {

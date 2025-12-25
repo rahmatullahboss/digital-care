@@ -189,13 +189,13 @@
     "responseTime": "Usually responds within 1 minute",
     "greeting": "Hello! I'm Dipti, Digital Care's assistant. How can I help you?",
     "placeholder": "Type your question...",
-    "error": "Sorry, something went wrong. Please call 01739416661.",
+    "error": "Sorry, something went wrong. Please call 01570260118.",
     "ariaLabel": "Chat with AI",
     "responses": {
-      "packages": "📦 Our Packages:\n\n🌐 Website:\n• Basic (5 pages + e-commerce): ৳10,000\n• Business (10+ pages + AI chatbot): ৳25,000\n• Premium (Unlimited): ৳80,000\n\n📱 Mobile App:\n• Basic (Android/iOS): ৳80,000\n• Cross-platform: ৳120,000\n\n📈 Marketing (Monthly):\n• Starter: ৳15,000\n• Growth: ৳30,000\n\nCall 01739416661 for details!",
-      "contact": "📞 Contact:\n• Phone: 01739416661\n• Email: rahmatullahzisan@gmail.com\n• WhatsApp: 01739416661\n\nWe're available 9 AM - 9 PM!",
-      "services": "🛠️ Our Services:\n\n1️⃣ Smart Website & Sales Funnel\n2️⃣ Facebook Page Management\n3️⃣ AI Sales Agent (24/7 Chatbot)\n4️⃣ Digital Marketing & Advertising\n5️⃣ Mobile App Development\n\nCall for free strategy session: 01739416661",
-      "default": "Thank you for your message! 🙏\n\nType 'packages' to see our packages.\n\nFor urgent needs, call directly:\n📞 01739416661"
+      "packages": "📦 Our Packages:\n\n🌐 Website:\n• Basic (5 pages + e-commerce): ৳10,000\n• Business (10+ pages + AI chatbot): ৳25,000\n• Premium (Unlimited): ৳80,000\n\n📱 Mobile App:\n• Basic (Android/iOS): ৳80,000\n• Cross-platform: ৳120,000\n\n📈 Marketing (Monthly):\n• Starter: ৳15,000\n• Growth: ৳30,000\n\nCall 01570260118 for details!",
+      "contact": "📞 Contact:\n• Phone: 01570260118\n• Email: rahmatullahzisan@gmail.com\n• WhatsApp: 01570260118\n\nWe're available 9 AM - 9 PM!",
+      "services": "🛠️ Our Services:\n\n1️⃣ Smart Website & Sales Funnel\n2️⃣ Facebook Page Management\n3️⃣ AI Sales Agent (24/7 Chatbot)\n4️⃣ Digital Marketing & Advertising\n5️⃣ Mobile App Development\n\nCall for free strategy session: 01570260118",
+      "default": "Thank you for your message! 🙏\n\nType 'packages' to see our packages.\n\nFor urgent needs, call directly:\n📞 01570260118"
     }
   },
   "About": {
@@ -375,7 +375,7 @@
       },
       "faq-005": {
         "question": "What is the best way to contact you?",
-        "answer": "Phone: 01739416661, WhatsApp: 01739416661, Email: rahmatullahzisan@gmail.com. Fill out the contact form for free consultation or call directly."
+        "answer": "Phone: 01570260118, WhatsApp: 01570260118, Email: rahmatullahzisan@gmail.com. Fill out the contact form for free consultation or call directly."
       },
       "faq-1": {
         "question": "What technologies do you use?",
@@ -684,7 +684,7 @@
       },
       "section8": {
         "title": "8. Contact",
-        "content": "If you have questions about our privacy policy, contact: rahmatullahzisan@gmail.com or 01739416661."
+        "content": "If you have questions about our privacy policy, contact: rahmatullahzisan@gmail.com or 01570260118."
       }
     }
   },
