@@ -203,15 +203,19 @@ export async function POST(req: Request) {
   // Log request for debugging
   console.log(`Chat API called with ${messages.length} messages`);
   
-  // Use OpenRouter via OpenAI-compatible API
+  // Use OpenRouter via OpenAI-compatible API with required headers
   const openrouter = createOpenAI({
     baseURL: "https://openrouter.ai/api/v1",
     apiKey: openRouterKey,
+    headers: {
+      "HTTP-Referer": "https://digitalcare.site",
+      "X-Title": "Digital Care Solutions",
+    },
   });
 
   try {
     const result = streamText({
-      model: openrouter("google/gemma-3-27b-it:free"),
+      model: openrouter("xiaomi/mimo-v2-flash:free"),
       system: systemPrompt,
       messages: enhancedMessages,
       temperature: 0.3,
