@@ -405,22 +405,6 @@ export function ChatBot() {
 
   return (
     <>
-      {/* Floating Trigger Button (Always visible when chat is closed) */}
-      {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-24 md:bottom-28 right-4 z-40 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 shadow-lg flex items-center justify-center hover:scale-110 transition-transform duration-200 group"
-          aria-label="Open chat"
-        >
-          <Bot className="w-6 h-6 md:w-7 md:h-7 text-white" />
-          <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
-          {/* Tooltip */}
-          <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-white px-3 py-1.5 rounded-lg shadow-md text-sm font-medium text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-            AI Assistant
-          </span>
-        </button>
-      )}
-
       {/* Chat Window - positioned on right side */}
       <div
         className={cn(
