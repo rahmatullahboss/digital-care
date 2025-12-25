@@ -90,35 +90,35 @@ export function useTranslateDbContent() {
     };
   };
 
+  // For jobs: database stores Bengali in _bn columns, English in regular columns
+  // When locale is Bengali, use _bn fields; when English, use regular fields
   const translateJob = (job: Job): Job => {
-    if (locale === "bn") return job;
+    if (locale === "bn") {
+      // Bengali locale: use _bn fields from database, fallback to regular fields
+      return {
+        ...job,
+        title: job.title_bn || job.title,
+        department: job.department_bn || job.department,
+        type: job.type_bn || job.type,
+        location: job.location_bn || job.location,
+        description: job.description_bn || job.description,
+        salary_range: job.salary_range_bn || job.salary_range,
+        responsibilities: job.responsibilities_bn?.length > 0 ? job.responsibilities_bn : job.responsibilities,
+        requirements: job.requirements_bn?.length > 0 ? job.requirements_bn : job.requirements,
+      };
+    }
     
-    // Check if translation exists
-    const titleKey = `jobs.${job.id}.title` as const;
-    const hasTranslation = t.has(titleKey);
-    
-    if (!hasTranslation) return job;
-    
-    // Check if responsibilities and requirements translations exist
-    const responsibilitiesKey = `jobs.${job.id}.responsibilities` as const;
-    const requirementsKey = `jobs.${job.id}.requirements` as const;
-    const hasResponsibilities = t.has(responsibilitiesKey);
-    const hasRequirements = t.has(requirementsKey);
-    
+    // English locale: use regular fields (which contain English content)
     return {
       ...job,
-      title: t(`jobs.${job.id}.title`),
-      department: t.has(`jobs.${job.id}.department`) ? t(`jobs.${job.id}.department`) : job.department,
-      type: t.has(`jobs.${job.id}.type`) ? t(`jobs.${job.id}.type`) : job.type,
-      location: t.has(`jobs.${job.id}.location`) ? t(`jobs.${job.id}.location`) : job.location,
-      description: t.has(`jobs.${job.id}.description`) ? t(`jobs.${job.id}.description`) : job.description,
-      salary_range: t.has(`jobs.${job.id}.salary_range`) ? t(`jobs.${job.id}.salary_range`) : job.salary_range,
-      responsibilities: hasResponsibilities 
-        ? t.raw(`jobs.${job.id}.responsibilities`) as string[]
-        : job.responsibilities,
-      requirements: hasRequirements 
-        ? t.raw(`jobs.${job.id}.requirements`) as string[]
-        : job.requirements,
+      title: job.title,
+      department: job.department,
+      type: job.type,
+      location: job.location,
+      description: job.description,
+      salary_range: job.salary_range,
+      responsibilities: job.responsibilities,
+      requirements: job.requirements,
     };
   };
 

@@ -60,13 +60,21 @@ export interface Job {
     id: string;
     slug: string;
     title: string;
+    title_bn: string | null;
     department: string | null;
+    department_bn: string | null;
     type: string | null;
+    type_bn: string | null;
     location: string | null;
+    location_bn: string | null;
     description: string | null;
+    description_bn: string | null;
     responsibilities: string[];
+    responsibilities_bn: string[];
     requirements: string[];
+    requirements_bn: string[];
     salary_range: string | null;
+    salary_range_bn: string | null;
     is_active: number;
     order_index: number;
 }
