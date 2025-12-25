@@ -56,6 +56,21 @@ export interface FAQ {
     order_index: number;
 }
 
+export interface Job {
+    id: string;
+    slug: string;
+    title: string;
+    department: string | null;
+    type: string | null;
+    location: string | null;
+    description: string | null;
+    responsibilities: string[];
+    requirements: string[];
+    salary_range: string | null;
+    is_active: number;
+    order_index: number;
+}
+
 export interface CareerApplication {
     id: number;
     name: string;

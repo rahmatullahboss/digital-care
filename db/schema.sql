@@ -98,13 +98,21 @@ CREATE TABLE IF NOT EXISTS jobs (
   id TEXT PRIMARY KEY DEFAULT (lower(hex(randomblob(16)))),
   slug TEXT UNIQUE NOT NULL,
   title TEXT NOT NULL,
+  title_bn TEXT, -- Bengali Title
   department TEXT,
+  department_bn TEXT, -- Bengali Department
   type TEXT, -- 'full-time', 'part-time', 'remote', 'contract'
+  type_bn TEXT, -- Bengali Type
   location TEXT,
+  location_bn TEXT, -- Bengali Location
   description TEXT,
-  responsibilities TEXT, -- JSON array
-  requirements TEXT, -- JSON array
+  description_bn TEXT, -- Bengali Description
+  responsibilities TEXT, -- JSON array (EN)
+  responsibilities_bn TEXT, -- JSON array (BN)
+  requirements TEXT, -- JSON array (EN)
+  requirements_bn TEXT, -- JSON array (BN)
   salary_range TEXT,
+  salary_range_bn TEXT, -- Bengali Salary Range
   is_active INTEGER DEFAULT 1,
   order_index INTEGER DEFAULT 0,
   created_at TEXT DEFAULT (datetime('now'))

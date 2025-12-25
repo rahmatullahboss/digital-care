@@ -324,17 +324,25 @@ INSERT INTO pricing (id, name, price, total_value, period, description, features
 -- Delete existing jobs
 DELETE FROM jobs;
 
-INSERT INTO jobs (id, slug, title, department, type, location, description, responsibilities, requirements, salary_range, is_active, order_index) VALUES
+INSERT INTO jobs (id, slug, title, title_bn, department, department_bn, type, type_bn, location, location_bn, description, description_bn, responsibilities, responsibilities_bn, requirements, requirements_bn, salary_range, salary_range_bn, is_active, order_index) VALUES
 (
   'job-001',
   'junior-social-media-manager',
   'Junior Social Media Manager (Entry Level)',
+  'জুনিয়র সোশ্যাল মিডিয়া ম্যানেজার (এন্ট্রি লেভেল)',
   'Marketing',
+  'মার্কেটিং',
   'Part-time / Remote',
+  'পার্ট-টাইম / রিমোট',
   'Remote',
+  'রিমোট',
   'We need a Junior SMM for our IT Services (Website/Web App/Mobile App). Tasks are basic, we provide templates + guidelines. Low budget (starting) - will increase based on performance.',
+  'আমাদের আইটি সার্ভিসের (ওয়েবসাইট / ওয়েব অ্যাপ / মোবাইল অ্যাপ) জন্য একজন জুনিয়র সোশ্যাল মিডিয়া ম্যানেজার প্রয়োজন। কাজগুলো বেসিক, আমরা টেমপ্লেট এবং গাইডলাইন দিয়ে দেব। শুরুতে বাজেট কম - তবে পারফরম্যান্সের ভিত্তিতে বাড়বে।',
+  '["Schedule posts/stories using AI", "Reply to Inbox/WhatsApp (Scripts provided)", "Update leads in Google Sheets + Follow-up messages"]',
   '["AI দিয়ে সপ্তাহে কয়েক দিন পোস্ট/স্টোরি শিডিউল করা", "ইনবক্স/WhatsApp রিপ্লাই দেওয়া (স্ক্রিপ্ট দেওয়া হবে)", "গুগল শীটে লিড লিস্ট আপডেট করা + ফলো-আপ মেসেজ পাঠানো"]',
+  '["Basic AI knowledge", "Willingness to work regularly", "Good communication skills", "Can dedicate some time daily (Part-time)"]',
   '["বেসিক AI জ্ঞান", "নিয়মিত কাজ করার ইচ্ছা", "ভালো কমিউনিকেশন স্কিল", "প্রতিদিন কিছু সময় দিতে পারা (Part-time)"]',
+  'Low initially, will increase based on performance',
   'শুরুতে কম, পারফরম্যান্স অনুযায়ী বাড়বে',
   1,
   1

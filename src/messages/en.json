@@ -556,6 +556,27 @@
           {"name": "24/7 Support", "value": "10,000"}
         ]
       }
+    },
+    "jobs": {
+      "job-001": {
+        "title": "Junior Social Media Manager (Entry Level)",
+        "department": "Marketing",
+        "type": "Part-time / Remote",
+        "location": "Remote",
+        "description": "We need a Junior SMM for our IT Services (Website/Web App/Mobile App). Tasks are basic, we provide templates + guidelines. Low budget (starting) - will increase based on performance.",
+        "salary_range": "Low initially, will increase based on performance",
+        "responsibilities": [
+          "Schedule posts/stories using AI",
+          "Reply to Inbox/WhatsApp (Scripts provided)",
+          "Update leads in Google Sheets + Follow-up messages"
+        ],
+        "requirements": [
+          "Basic AI knowledge",
+          "Willingness to work regularly",
+          "Good communication skills",
+          "Can dedicate some time daily (Part-time)"
+        ]
+      }
     }
   },
   "ServicesPage": {
@@ -730,26 +751,8 @@
         "description": "Current opportunities to join our team",
         "applyBtn": "Apply Now",
         "noOpenings": "No specific openings right now, but we are always looking for talent.",
-        "jobs": {
-            "social_media_entry": {
-                "title": "Junior Social Media Manager (Entry Level)",
-                "type": "Part-time / Remote",
-                "location": "Remote",
-                "department": "Marketing",
-                "description": "We need a Junior SMM for our IT Services (Website/Web App/Mobile App). Tasks are basic, we provide templates + guidelines. Low budget (starting) - will increase based on performance.",
-                "responsibilities": [
-                    "Schedule posts/stories few days a week (using AI)",
-                    "Reply to Inbox/WhatsApp (scripts provided)",
-                    "Update Lead List (Google Sheet) + send follow-up messages"
-                ],
-                "requirements": [
-                    "Basic AI knowledge",
-                    "Willingness to work regularly",
-                    "Polite communication skills",
-                    "Daily availability (Part-time)"
-                ]
-            }
-        }
+        "responsibilitiesLabel": "Responsibilities:",
+        "requirementsLabel": "Requirements:"
     },
     "applicationForm": {
         "title": "Apply for",

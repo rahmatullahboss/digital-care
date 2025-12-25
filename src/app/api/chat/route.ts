@@ -208,7 +208,7 @@ export async function POST(req: Request) {
     });
 
     const result = streamText({
-      model: openrouter("xiaomi/mimo-vl-7b-flash:free"),
+      model: openrouter("xiaomi/mimo-v2-flash:free"),
       system: systemPrompt,
       messages: enhancedMessages,
       temperature: 0, // Set to 0 for less hallucination

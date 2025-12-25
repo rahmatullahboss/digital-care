@@ -5,11 +5,13 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import { FaBolt, FaLightbulb, FaRocket, FaUsers, FaArrowRight, FaWhatsapp, FaXmark } from "react-icons/fa6";
-import { useState, useEffect } from "react";
-import type { Job } from "@/app/api/jobs/route";
+import { useState, useEffect, useMemo } from "react";
+import { Job } from "@/lib/db";
+import { useTranslateDbContent } from "@/hooks/useTranslateDbContent";
 
 export default function CareersPage() {
   const t = useTranslations("CareersPage");
+  const { translateJobs } = useTranslateDbContent();
   const [selectedJob, setSelectedJob] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">("idle");
@@ -180,7 +182,7 @@ export default function CareersPage() {
                 </div>
               </div>
             ) : jobs.length > 0 ? (
-              jobs.map((job) => (
+              translateJobs(jobs).map((job) => (
                 <GlassCard key={job.id} className="p-6 md:p-8" hover={true}>
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-6">
                     <div>
@@ -225,17 +227,17 @@ export default function CareersPage() {
 
                   <div className="grid md:grid-cols-2 gap-8 pt-6 border-t border-slate-100">
                     <div>
-                      <h4 className="font-semibold text-slate-900 mb-3">দায়িত্বসমূহ:</h4>
+                      <h4 className="font-semibold text-slate-900 mb-3">{t("openPositions.responsibilitiesLabel")}</h4>
                       <ul className="list-disc list-inside space-y-2 text-slate-600">
-                        {job.responsibilities.map((item, idx) => (
+                        {job.responsibilities.map((item: string, idx: number) => (
                           <li key={idx}>{item}</li>
                         ))}
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-slate-900 mb-3">যোগ্যতা:</h4>
+                      <h4 className="font-semibold text-slate-900 mb-3">{t("openPositions.requirementsLabel")}</h4>
                       <ul className="list-disc list-inside space-y-2 text-slate-600">
-                        {job.requirements.map((item, idx) => (
+                        {job.requirements.map((item: string, idx: number) => (
                           <li key={idx}>{item}</li>
                         ))}
                       </ul>
