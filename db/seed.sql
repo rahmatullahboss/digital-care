@@ -316,3 +316,26 @@ INSERT INTO pricing (id, name, price, total_value, period, description, features
   0,
   11
 );
+
+-- =============================================================================
+-- Jobs/Career Positions Data
+-- =============================================================================
+
+-- Delete existing jobs
+DELETE FROM jobs;
+
+INSERT INTO jobs (id, slug, title, department, type, location, description, responsibilities, requirements, salary_range, is_active, order_index) VALUES
+(
+  'job-001',
+  'junior-social-media-manager',
+  'Junior Social Media Manager (Entry Level)',
+  'Marketing',
+  'Part-time / Remote',
+  'Remote',
+  'We need a Junior SMM for our IT Services (Website/Web App/Mobile App). Tasks are basic, we provide templates + guidelines. Low budget (starting) - will increase based on performance.',
+  '["AI দিয়ে সপ্তাহে কয়েক দিন পোস্ট/স্টোরি শিডিউল করা", "ইনবক্স/WhatsApp রিপ্লাই দেওয়া (স্ক্রিপ্ট দেওয়া হবে)", "গুগল শীটে লিড লিস্ট আপডেট করা + ফলো-আপ মেসেজ পাঠানো"]',
+  '["বেসিক AI জ্ঞান", "নিয়মিত কাজ করার ইচ্ছা", "ভালো কমিউনিকেশন স্কিল", "প্রতিদিন কিছু সময় দিতে পারা (Part-time)"]',
+  'শুরুতে কম, পারফরম্যান্স অনুযায়ী বাড়বে',
+  1,
+  1
+);

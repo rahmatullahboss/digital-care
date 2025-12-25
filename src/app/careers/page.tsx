@@ -5,13 +5,16 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import { FaBolt, FaLightbulb, FaRocket, FaUsers, FaArrowRight, FaWhatsapp, FaXmark } from "react-icons/fa6";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import type { Job } from "@/app/api/jobs/route";
 
 export default function CareersPage() {
   const t = useTranslations("CareersPage");
   const [selectedJob, setSelectedJob] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">("idle");
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -20,6 +23,23 @@ export default function CareersPage() {
     cvLink: "",
     message: ""
   });
+
+  // Fetch jobs from API
+  useEffect(() => {
+    async function fetchJobs() {
+      try {
+        const response = await fetch("/api/jobs");
+        const data = await response.json();
+        setJobs(data.jobs || []);
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+        setJobs([]);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchJobs();
+  }, []);
 
   const values = [
     {
@@ -34,10 +54,6 @@ export default function CareersPage() {
       key: "teamwork",
       icon: <FaUsers className="w-8 h-8 text-emerald-500" />,
     },
-  ];
-
-  const jobs = [
-    "social_media_entry",
   ];
 
   const handleApply = (jobTitle: string) => {
@@ -156,62 +172,77 @@ export default function CareersPage() {
           />
 
           <div className="grid gap-6 max-w-4xl mx-auto">
-            {jobs.length > 0 ? (
-              jobs.map((jobKey) => {
-                const responsibilities = t.raw(`openPositions.jobs.${jobKey}.responsibilities`) as string[];
-                const requirements = t.raw(`openPositions.jobs.${jobKey}.requirements`) as string[];
-
-                return (
-                  <GlassCard key={jobKey} className="p-6 md:p-8" hover={true}>
-                    <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-6">
-                      <div>
-                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">
-                           {t(`openPositions.jobs.${jobKey}.title`)}
-                        </h3>
-                        <div className="flex flex-wrap gap-3 text-sm text-slate-500 mb-4">
+            {isLoading ? (
+              <div className="text-center py-10">
+                <div className="animate-pulse">
+                  <div className="h-32 bg-slate-100 rounded-2xl mb-4"></div>
+                  <div className="h-32 bg-slate-100 rounded-2xl"></div>
+                </div>
+              </div>
+            ) : jobs.length > 0 ? (
+              jobs.map((job) => (
+                <GlassCard key={job.id} className="p-6 md:p-8" hover={true}>
+                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-6">
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">
+                         {job.title}
+                      </h3>
+                      <div className="flex flex-wrap gap-3 text-sm text-slate-500 mb-4">
+                        {job.department && (
                           <span className="bg-slate-100 px-3 py-1 rounded-full">
-                             {t(`openPositions.jobs.${jobKey}.department`)}
+                            {job.department}
                           </span>
+                        )}
+                        {job.type && (
                           <span className="bg-slate-100 px-3 py-1 rounded-full">
-                             {t(`openPositions.jobs.${jobKey}.type`)}
+                            {job.type}
                           </span>
+                        )}
+                        {job.location && (
                           <span className="bg-slate-100 px-3 py-1 rounded-full">
-                             {t(`openPositions.jobs.${jobKey}.location`)}
+                            {job.location}
                           </span>
-                        </div>
+                        )}
+                      </div>
+                      {job.description && (
                         <p className="text-slate-600 mb-6 max-w-2xl">
-                          {t(`openPositions.jobs.${jobKey}.description`)}
+                          {job.description}
                         </p>
-                      </div>
-                      <button 
-                        onClick={() => handleApply(t(`openPositions.jobs.${jobKey}.title`))}
-                        className="inline-flex items-center justify-center rounded-full bg-teal-600 px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-teal-700 hover:shadow-lg hover:shadow-teal-500/30 whitespace-nowrap"
-                      >
-                         {t("openPositions.applyBtn")}
-                      </button>
+                      )}
+                      {job.salary_range && (
+                        <p className="text-sm text-teal-600 font-medium mb-4">
+                          💰 {job.salary_range}
+                        </p>
+                      )}
                     </div>
+                    <button 
+                      onClick={() => handleApply(job.title)}
+                      className="inline-flex items-center justify-center rounded-full bg-teal-600 px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-teal-700 hover:shadow-lg hover:shadow-teal-500/30 whitespace-nowrap"
+                    >
+                       {t("openPositions.applyBtn")}
+                    </button>
+                  </div>
 
-                    <div className="grid md:grid-cols-2 gap-8 pt-6 border-t border-slate-100">
-                      <div>
-                        <h4 className="font-semibold text-slate-900 mb-3">Responsibilities:</h4>
-                        <ul className="list-disc list-inside space-y-2 text-slate-600">
-                          {Array.isArray(responsibilities) && responsibilities.map((item, idx) => (
-                            <li key={idx}>{item}</li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-slate-900 mb-3">Requirements:</h4>
-                        <ul className="list-disc list-inside space-y-2 text-slate-600">
-                           {Array.isArray(requirements) && requirements.map((item, idx) => (
-                            <li key={idx}>{item}</li>
-                          ))}
-                        </ul>
-                      </div>
+                  <div className="grid md:grid-cols-2 gap-8 pt-6 border-t border-slate-100">
+                    <div>
+                      <h4 className="font-semibold text-slate-900 mb-3">দায়িত্বসমূহ:</h4>
+                      <ul className="list-disc list-inside space-y-2 text-slate-600">
+                        {job.responsibilities.map((item, idx) => (
+                          <li key={idx}>{item}</li>
+                        ))}
+                      </ul>
                     </div>
-                  </GlassCard>
-                );
-              })
+                    <div>
+                      <h4 className="font-semibold text-slate-900 mb-3">যোগ্যতা:</h4>
+                      <ul className="list-disc list-inside space-y-2 text-slate-600">
+                        {job.requirements.map((item, idx) => (
+                          <li key={idx}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </GlassCard>
+              ))
             ) : (
                 <div className="text-center py-10">
                     <p className="text-slate-500">{t("openPositions.noOpenings")}</p>

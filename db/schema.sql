@@ -93,6 +93,23 @@ CREATE TABLE IF NOT EXISTS faq (
   order_index INTEGER DEFAULT 0
 );
 
+-- Jobs/Career Positions
+CREATE TABLE IF NOT EXISTS jobs (
+  id TEXT PRIMARY KEY DEFAULT (lower(hex(randomblob(16)))),
+  slug TEXT UNIQUE NOT NULL,
+  title TEXT NOT NULL,
+  department TEXT,
+  type TEXT, -- 'full-time', 'part-time', 'remote', 'contract'
+  location TEXT,
+  description TEXT,
+  responsibilities TEXT, -- JSON array
+  requirements TEXT, -- JSON array
+  salary_range TEXT,
+  is_active INTEGER DEFAULT 1,
+  order_index INTEGER DEFAULT 0,
+  created_at TEXT DEFAULT (datetime('now'))
+);
+
 -- Admin Users
 CREATE TABLE IF NOT EXISTS users (
   id TEXT PRIMARY KEY DEFAULT (lower(hex(randomblob(16)))),

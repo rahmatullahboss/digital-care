@@ -16,34 +16,48 @@ const siteConfig = {
     facebookPageId: "digitalcaresolutions",
 };
 
-// Fetch services from database for AI context
-async function fetchServices() {
+// Fetch all website content from database for AI context
+async function fetchWebsiteContent() {
   try {
     const db = await getD1Database();
     
     // Fetch services
     const servicesResult = await db.prepare(
-        "SELECT title, tagline, description FROM services LIMIT 10"
+        "SELECT title, tagline, description, features, benefits FROM services"
     ).all();
     
     // Fetch pricing packages
     const pricingResult = await db.prepare(
-        "SELECT name, price, period, description, features FROM pricing LIMIT 10"
+        "SELECT name, price, period, description, features FROM pricing ORDER BY order_index"
+    ).all();
+
+    // Fetch FAQ - this contains a lot of useful info about the company
+    const faqResult = await db.prepare(
+        "SELECT question, answer FROM faq ORDER BY order_index"
+    ).all();
+
+    // Fetch active jobs/career positions
+    const jobsResult = await db.prepare(
+        "SELECT title, department, type, location, description, responsibilities, requirements, salary_range FROM jobs WHERE is_active = 1 ORDER BY order_index"
     ).all();
 
     return {
-      services: servicesResult.results as { title: string; tagline?: string; description?: string }[],
-      packages: pricingResult.results as { name: string; price: number; period: string; description?: string }[],
+      services: servicesResult.results as { title: string; tagline?: string; description?: string; features?: string; benefits?: string }[],
+      packages: pricingResult.results as { name: string; price: string; period: string; description?: string; features?: string }[],
+      faqs: faqResult.results as { question: string; answer: string }[],
+      jobs: jobsResult.results as { title: string; department?: string; type?: string; location?: string; description?: string; responsibilities?: string; requirements?: string; salary_range?: string }[],
     };
   } catch (error) {
-    console.error("Error fetching services for chat:", error);
-    return { services: [], packages: [] };
+    console.error("Error fetching website content for chat:", error);
+    return { services: [], packages: [], faqs: [], jobs: [] };
   }
 }
 
 function generateSystemPrompt(
-  services: { title: string; tagline?: string; description?: string }[],
-  packages: { name: string; price: number; period: string; description?: string }[]
+  services: { title: string; tagline?: string; description?: string; features?: string; benefits?: string }[],
+  packages: { name: string; price: string; period: string; description?: string; features?: string }[],
+  faqs: { question: string; answer: string }[],
+  jobs: { title: string; department?: string; type?: string; location?: string; description?: string; responsibilities?: string; requirements?: string; salary_range?: string }[]
 ) {
   const servicesList = services.length > 0
     ? services.map(s => `• ${s.title}: ${s.tagline || s.description?.substring(0, 100) || ''}`).join('\n')
@@ -52,6 +66,32 @@ function generateSystemPrompt(
   const packagesList = packages.length > 0
     ? packages.map(p => `• ${p.name}: ৳${p.price}/${p.period} - ${p.description || ''}`).join('\n')
     : 'Packages data not available';
+
+  const faqList = faqs.length > 0
+    ? faqs.map(f => `Q: ${f.question}\nA: ${f.answer}`).join('\n\n')
+    : 'FAQ data not available';
+
+  const jobsList = jobs.length > 0
+    ? jobs.map(j => {
+        let jobInfo = `• **${j.title}**\n  - বিভাগ: ${j.department || 'N/A'}\n  - ধরন: ${j.type || 'N/A'}\n  - লোকেশন: ${j.location || 'N/A'}\n  - বিবরণ: ${j.description || ''}`;
+        if (j.responsibilities) {
+          try {
+            const resp = JSON.parse(j.responsibilities);
+            jobInfo += `\n  - দায়িত্ব: ${resp.join(', ')}`;
+          } catch { /* ignore */ }
+        }
+        if (j.requirements) {
+          try {
+            const req = JSON.parse(j.requirements);
+            jobInfo += `\n  - যোগ্যতা: ${req.join(', ')}`;
+          } catch { /* ignore */ }
+        }
+        if (j.salary_range) {
+          jobInfo += `\n  - বেতন: ${j.salary_range}`;
+        }
+        return jobInfo;
+      }).join('\n\n')
+    : 'বর্তমানে কোন পজিশন খোলা নেই।';
 
   return `You are a friendly and helpful customer support assistant for "${siteConfig.name}" (${siteConfig.nameEn}).
 We are a digital marketing and web development agency in Bangladesh.
@@ -75,6 +115,17 @@ ${servicesList}
 ## OUR PACKAGES
 ${packagesList}
 
+## FREQUENTLY ASKED QUESTIONS (Company Info from Database)
+${faqList}
+
+## CAREER OPPORTUNITIES (From Database)
+${jobsList}
+
+**How to Apply:**
+- Visit our Careers page: digitalcare.site/careers
+- Or send CV to: ${siteConfig.email}
+- Or message on WhatsApp: ${siteConfig.whatsapp}
+
 ## HOW TO HELP CUSTOMERS
 1. **Understand their needs first** - Ask what problem they're trying to solve
 2. **Listen carefully** - Don't assume what they want
@@ -89,6 +140,7 @@ ${packagesList}
 - **Digital Marketing**: Ask about their goals, current challenges, budget
 - **AI Chatbot**: Explain how it can help their business 24/7
 - **Facebook Marketing**: Ask about their products/services, target audience
+- **Jobs/Career/Work**: Direct them to Careers page or share contact info
 
 ## CONTACT INFORMATION (Always provide when relevant)
 - 📞 Phone: ${siteConfig.phone}
@@ -96,29 +148,34 @@ ${packagesList}
 - ✉️ Email: ${siteConfig.email}
 - 📍 Address: ${siteConfig.address}
 - ⏰ Available: সকাল ৯টা - রাত ৯টা (9 AM - 9 PM)
+- 🌐 Careers: digitalcare.site/careers
 
 ## IMPORTANT RULES
 1. DO NOT use any special product formatting like [PRODUCT:...]
 2. Respond in natural, conversational language
-3. If you don't know something, say so and offer to connect them with a human
-4. For complex queries, encourage them to call or schedule a meeting
-5. Always be helpful, even if they're just asking general questions
+3. Use information from the FAQ section to answer common questions
+4. If you don't know something, say so and offer to connect them with a human
+5. For complex queries, encourage them to call or schedule a meeting
+6. Always be helpful, even if they're just asking general questions
 
 ## EXAMPLE CONVERSATIONS
 User: "আমি একটা ওয়েবসাইট বানাতে চাই"
 You: "আসসালামু আলাইকুম! 😊 ওয়েবসাইট বানানোর কথা ভাবছেন, চমৎকার! আপনার ব্যবসা সম্পর্কে একটু জানতে চাই - কী ধরনের ব্যবসা আপনার? এবং ওয়েবসাইটে কী কী ফিচার চাইছেন?"
 
 User: "price koto?"
-You: "আমাদের ওয়েবসাইট প্যাকেজ শুরু হয় ৳১০,০০০ থেকে। কিন্তু সঠিক দাম নির্ভর করবে আপনার প্রয়োজনের উপর। একটু বলুন কী ধরনের ফিচার লাগবে - তাহলে সঠিক প্যাকেজ সাজেস্ট করতে পারব!"`;
+You: "আমাদের ওয়েবসাইট প্যাকেজ শুরু হয় ৳১০,০০০ থেকে। কিন্তু সঠিক দাম নির্ভর করবে আপনার প্রয়োজনের উপর। একটু বলুন কী ধরনের ফিচার লাগবে - তাহলে সঠিক প্যাকেজ সাজেস্ট করতে পারব!"
+
+User: "job lagbe" or "আমি কাজ করতে চাই"
+You: "আমাদের Careers পেজে বর্তমান সব পজিশন দেখতে পাবেন: digitalcare.site/careers 🎉 আগ্রহী হলে সেখানে আবেদন করতে পারেন, অথবা সরাসরি CV পাঠাতে পারেন: ${siteConfig.email}"`;
 }
 
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
 
-  // Fetch services from database for context
-  const { services, packages } = await fetchServices();
+  // Fetch all website content from database for context
+  const { services, packages, faqs, jobs } = await fetchWebsiteContent();
   
-  const systemPrompt = generateSystemPrompt(services, packages);
+  const systemPrompt = generateSystemPrompt(services, packages, faqs, jobs);
   const enhancedMessages = await convertToModelMessages(messages);
 
   const groqKey = process.env.GROQ_API_KEY;
