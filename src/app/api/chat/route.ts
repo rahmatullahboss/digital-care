@@ -1,4 +1,4 @@
-import { createOpenAI } from "@ai-sdk/openai";
+import { createOpenRouter } from "@openrouter/ai-sdk-provider";
 import { streamText, type UIMessage } from "ai";
 import { getD1Database } from "@/lib/db";
 
@@ -215,14 +215,9 @@ export async function POST(req: Request) {
   // Log request for debugging
   console.log(`Chat API called with ${messages.length} messages`);
   
-  // Use OpenRouter via OpenAI-compatible API with required headers
-  const openrouter = createOpenAI({
-    baseURL: "https://openrouter.ai/api/v1",
+  // Use official OpenRouter AI SDK provider
+  const openrouter = createOpenRouter({
     apiKey: openRouterKey,
-    headers: {
-      "HTTP-Referer": "https://digitalcare.site",
-      "X-Title": "Digital Care Solutions",
-    },
   });
 
   try {
