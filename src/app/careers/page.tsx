@@ -5,7 +5,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import { FaBolt, FaLightbulb, FaRocket, FaUsers, FaArrowRight, FaWhatsapp, FaXmark } from "react-icons/fa6";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { Job } from "@/lib/db";
 import { useTranslateDbContent } from "@/hooks/useTranslateDbContent";
 

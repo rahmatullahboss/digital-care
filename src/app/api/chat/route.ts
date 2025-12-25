@@ -200,18 +200,21 @@ export async function POST(req: Request) {
     );
   }
 
-  try {
-    // Use OpenRouter via OpenAI-compatible API
-    const openrouter = createOpenAI({
-      baseURL: "https://openrouter.ai/api/v1",
-      apiKey: openRouterKey,
-    });
+  // Log request for debugging
+  console.log(`Chat API called with ${messages.length} messages`);
+  
+  // Use OpenRouter via OpenAI-compatible API
+  const openrouter = createOpenAI({
+    baseURL: "https://openrouter.ai/api/v1",
+    apiKey: openRouterKey,
+  });
 
+  try {
     const result = streamText({
-      model: openrouter("xiaomi/mimo-v2-flash:free"),
+      model: openrouter("google/gemma-3-27b-it:free"),
       system: systemPrompt,
       messages: enhancedMessages,
-      temperature: 0, // Set to 0 for less hallucination
+      temperature: 0.3,
     });
     return result.toUIMessageStreamResponse();
   } catch (error) {
