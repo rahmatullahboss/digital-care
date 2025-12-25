@@ -1,5 +1,12 @@
 import { defineCloudflareConfig } from "@opennextjs/cloudflare";
+import kvIncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/kv-incremental-cache";
+import d1NextTagCache from "@opennextjs/cloudflare/overrides/tag-cache/d1-next-tag-cache";
 
+// ISR Configuration:
+// - KV Cache: Stores cached pages (fast key-value storage with built-in edge caching)
+// - D1 Tag Cache: Enables on-demand revalidation via revalidatePath/revalidateTag
 export default defineCloudflareConfig({
-    // interactive: false, // Force non-interactive mode if supported, but typically defining the config is enough
+  incrementalCache: kvIncrementalCache,
+  tagCache: d1NextTagCache,
 });
+

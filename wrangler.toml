@@ -14,6 +14,17 @@ binding = "DB"
 database_name = "digital-care-db"
 database_id = "aa825794-edd1-41e9-9160-ef63af2e121e"
 
+# D1 Tag Cache for ISR on-demand revalidation
+[[d1_databases]]
+binding = "NEXT_TAG_CACHE_D1"
+database_name = "digital-care-db"
+database_id = "aa825794-edd1-41e9-9160-ef63af2e121e"
+
+# KV Namespace for ISR Cache
+[[kv_namespaces]]
+binding = "NEXT_INC_CACHE_KV"
+id = "8ff35b4c682846fb9bf2f11c768f034a"
+
 # Observability
 [observability]
 enabled = true
