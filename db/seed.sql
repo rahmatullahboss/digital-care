@@ -242,8 +242,8 @@ INSERT INTO pricing (id, name, price, total_value, period, description, features
 (
   'pricing-006',
   'বেসিক মোবাইল অ্যাপ',
-  '৮০,০০০',
-  '১,৫০,০০০',
+  '৩০,০০০',
+  '১,০০,০০০',
   'একবার',
   'Android অথবা iOS অ্যাপ ডেভেলপমেন্ট',
   '[{"name": "সিঙ্গেল প্ল্যাটফর্ম (Android/iOS)", "value": "৩০,০০০"}, {"name": "কাস্টম UI/UX ডিজাইন", "value": "২৫,০০০"}, {"name": "ইউজার অথেন্টিকেশন", "value": "১৫,০০০"}, {"name": "পুশ নোটিফিকেশন", "value": "১০,০০০"}, {"name": "API ইন্টিগ্রেশন", "value": "২০,০০০"}, {"name": "অ্যাপ স্টোর সাবমিশন", "value": "১০,০০০"}, {"name": "৩ মাস ফ্রি বাগ ফিক্স", "value": "৪০,০০০"}]',
@@ -254,11 +254,11 @@ INSERT INTO pricing (id, name, price, total_value, period, description, features
 INSERT INTO pricing (id, name, price, total_value, period, description, features, popular, order_index) VALUES
 (
   'pricing-007',
-  'ক্রস-প্ল্যাটফর্ম অ্যাপ',
-  '১,২০,০০০',
-  '২,২০,০০০',
+  'অ্যাডভান্সড মোবাইল অ্যাপ',
+  '৮০,০০০',
+  '১,৮০,০০০',
   'একবার',
-  'Android + iOS একসাথে',
+  'Android + iOS উভয় প্ল্যাটফর্ম',
   '[{"name": "Android ও iOS উভয় প্ল্যাটফর্ম", "value": "৬০,০০০"}, {"name": "React Native / Flutter", "value": "৩০,০০০"}, {"name": "অফলাইন ফাংশনালিটি", "value": "২০,০০০"}, {"name": "পেমেন্ট ইন্টিগ্রেশন", "value": "২৫,০০০"}, {"name": "সোশ্যাল লগইন", "value": "১৫,০০০"}, {"name": "অ্যানালিটিক্স ড্যাশবোর্ড", "value": "২০,০০০"}, {"name": "উভয় স্টোরে সাবমিশন", "value": "১০,০০০"}, {"name": "৬ মাস ফ্রি সাপোর্ট", "value": "৪০,০০০"}]',
   0,
   7
