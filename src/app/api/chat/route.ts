@@ -1,5 +1,5 @@
 import { createOpenAI } from "@ai-sdk/openai";
-import { streamText, convertToModelMessages, type UIMessage } from "ai";
+import { streamText, type UIMessage } from "ai";
 import { getD1Database } from "@/lib/db";
 
 // Using default runtime for OpenNext compatibility
@@ -187,7 +187,19 @@ export async function POST(req: Request) {
   const { services, packages, faqs, jobs } = await fetchWebsiteContent();
   
   const systemPrompt = generateSystemPrompt(services, packages, faqs, jobs);
-  const enhancedMessages = await convertToModelMessages(messages);
+  
+  // Convert UIMessages to simple format that OpenRouter understands
+  // The AI SDK v6 convertToModelMessages creates complex parts that OpenRouter doesn't support
+  const simpleMessages = messages.map((msg) => {
+    const textContent = msg.parts
+      .filter((part): part is { type: "text"; text: string } => part.type === "text")
+      .map((part) => part.text)
+      .join("");
+    return {
+      role: msg.role as "user" | "assistant",
+      content: textContent,
+    };
+  });
 
   const openRouterKey = process.env.OPENROUTER_API_KEY;
 
@@ -217,7 +229,7 @@ export async function POST(req: Request) {
     const result = streamText({
       model: openrouter("xiaomi/mimo-v2-flash:free"),
       system: systemPrompt,
-      messages: enhancedMessages,
+      messages: simpleMessages,
       temperature: 0.3,
     });
     return result.toUIMessageStreamResponse();
