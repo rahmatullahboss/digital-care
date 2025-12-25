@@ -59,7 +59,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start">
                 <FaPhone className="mt-1 mr-2 flex-shrink-0" />
-                01570260118
+                01739416661
               </li>
               <li className="flex items-start">
                 <FaEnvelope className="mt-1 mr-2 flex-shrink-0" />

@@ -25,16 +25,31 @@ export default function ServiceGrid({ services }: ServiceGridProps) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {translatedServices.map((service) => (
-        <ServiceCard
-          key={service.id}
-          icon={iconMap[service.icon || ""] || <FaGlobe />}
-          title={service.title}
-          description={service.tagline || service.description || ""}
-          href={`/services?slug=${service.slug}`}
-          ctaIcon={<FaArrowRight />}
-        />
-      ))}
+      {translatedServices.map((service) => {
+        // Safe parsing of features
+        let features: string[] = [];
+        try {
+          if (Array.isArray(service.features)) {
+            features = service.features;
+          } else if (typeof service.features === 'string') {
+            features = JSON.parse(service.features);
+          }
+        } catch {
+          features = [];
+        }
+
+        return (
+          <ServiceCard
+            key={service.id}
+            icon={iconMap[service.icon || ""] || <FaGlobe />}
+            title={service.title}
+            description={service.tagline || service.description || ""}
+            features={features.slice(0, 3)}
+            href={`/services?slug=${service.slug}`}
+            ctaIcon={<FaArrowRight />}
+          />
+        );
+      })}
     </div>
   );
 }

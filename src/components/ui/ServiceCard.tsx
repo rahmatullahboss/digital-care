@@ -36,7 +36,7 @@ export default function ServiceCard({
 
   return (
     <Link href={href} className={cn("block group", className)}>
-      <GlassCard className="p-8 h-full flex flex-col">
+        <GlassCard className="p-8 h-full flex flex-col hover:!border-teal-400/40 hover:!shadow-teal-500/20">
         <div className="space-y-4 flex-1">
           {/* Icon */}
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-50 via-white to-emerald-50 flex items-center justify-center text-teal-600 text-2xl shadow-lg shadow-teal-500/20 group-hover:scale-105 group-hover:-translate-y-0.5 transition-transform duration-300">

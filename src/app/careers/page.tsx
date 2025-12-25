@@ -38,9 +38,6 @@ export default function CareersPage() {
 
   const jobs = [
     "social_media_entry",
-    "frontend",
-    "marketing",
-    "content",
   ];
 
   const handleApply = (jobTitle: string) => {
@@ -109,7 +106,7 @@ export default function CareersPage() {
               {t("openPositions.applyBtn")}
             </Button>
             <Button 
-              href="https://wa.me/01639590392" 
+              href="https://wa.me/8801739416661" 
               variant="secondary"
               className="!bg-emerald-50 !text-emerald-700 hover:!bg-emerald-100 border-emerald-200"
               icon={<FaWhatsapp className="text-emerald-600" />}
@@ -160,37 +157,67 @@ export default function CareersPage() {
 
           <div className="grid gap-6 max-w-4xl mx-auto">
             {jobs.length > 0 ? (
-              jobs.map((jobKey) => (
-                <GlassCard key={jobKey} className="p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6" hover={true}>
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">
-                       {t(`openPositions.jobs.${jobKey}.title`)}
-                    </h3>
-                    <div className="flex flex-wrap gap-3 text-sm text-slate-500">
-                      <span className="bg-slate-100 px-3 py-1 rounded-full">
-                         {t(`openPositions.jobs.${jobKey}.department`)}
-                      </span>
-                      <span className="bg-slate-100 px-3 py-1 rounded-full">
-                         {t(`openPositions.jobs.${jobKey}.type`)}
-                      </span>
-                      <span className="bg-slate-100 px-3 py-1 rounded-full">
-                         {t(`openPositions.jobs.${jobKey}.location`)}
-                      </span>
+              jobs.map((jobKey) => {
+                const responsibilities = t.raw(`openPositions.jobs.${jobKey}.responsibilities`) as string[];
+                const requirements = t.raw(`openPositions.jobs.${jobKey}.requirements`) as string[];
+
+                return (
+                  <GlassCard key={jobKey} className="p-6 md:p-8" hover={true}>
+                    <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-6">
+                      <div>
+                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">
+                           {t(`openPositions.jobs.${jobKey}.title`)}
+                        </h3>
+                        <div className="flex flex-wrap gap-3 text-sm text-slate-500 mb-4">
+                          <span className="bg-slate-100 px-3 py-1 rounded-full">
+                             {t(`openPositions.jobs.${jobKey}.department`)}
+                          </span>
+                          <span className="bg-slate-100 px-3 py-1 rounded-full">
+                             {t(`openPositions.jobs.${jobKey}.type`)}
+                          </span>
+                          <span className="bg-slate-100 px-3 py-1 rounded-full">
+                             {t(`openPositions.jobs.${jobKey}.location`)}
+                          </span>
+                        </div>
+                        <p className="text-slate-600 mb-6 max-w-2xl">
+                          {t(`openPositions.jobs.${jobKey}.description`)}
+                        </p>
+                      </div>
+                      <button 
+                        onClick={() => handleApply(t(`openPositions.jobs.${jobKey}.title`))}
+                        className="inline-flex items-center justify-center rounded-full bg-teal-600 px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-teal-700 hover:shadow-lg hover:shadow-teal-500/30 whitespace-nowrap"
+                      >
+                         {t("openPositions.applyBtn")}
+                      </button>
                     </div>
-                  </div>
-                  <button 
-                    onClick={() => handleApply(t(`openPositions.jobs.${jobKey}.title`))}
-                    className="inline-flex items-center justify-center rounded-full bg-teal-600 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-teal-700 hover:shadow-lg hover:shadow-teal-500/30"
-                  >
-                     {t("openPositions.applyBtn")}
-                  </button>
-                </GlassCard>
-              ))
+
+                    <div className="grid md:grid-cols-2 gap-8 pt-6 border-t border-slate-100">
+                      <div>
+                        <h4 className="font-semibold text-slate-900 mb-3">Responsibilities:</h4>
+                        <ul className="list-disc list-inside space-y-2 text-slate-600">
+                          {Array.isArray(responsibilities) && responsibilities.map((item, idx) => (
+                            <li key={idx}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-slate-900 mb-3">Requirements:</h4>
+                        <ul className="list-disc list-inside space-y-2 text-slate-600">
+                           {Array.isArray(requirements) && requirements.map((item, idx) => (
+                            <li key={idx}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </GlassCard>
+                );
+              })
             ) : (
                 <div className="text-center py-10">
                     <p className="text-slate-500">{t("openPositions.noOpenings")}</p>
                 </div>
             )}
+            
           </div>
         </div>
       </section>
@@ -254,7 +281,7 @@ export default function CareersPage() {
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1">{t("applicationForm.cvLink")}</label>
                     <input 
-                      type="url" 
+                      type="text" 
                       placeholder={t("applicationForm.cvPlaceholder")}
                       className="w-full rounded-xl border-slate-200 focus:border-teal-500 focus:ring-teal-500"
                       value={formData.cvLink}

@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingButtons from "@/components/layout/FloatingButtons";
-// import ChatWidget from "@/components/ui/ChatWidget"; // Hidden for now
+import { ChatBot } from "@/components/chat/ChatBot";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 
@@ -46,7 +46,7 @@ export default async function RootLayout({
           <main>{children}</main>
           <Footer />
           <FloatingButtons />
-          {/* <ChatWidget /> */}
+          <ChatBot />
         </NextIntlClientProvider>
       </body>
     </html>

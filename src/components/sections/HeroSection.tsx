@@ -1,203 +1,85 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { FaShapes, FaPlay, FaWandMagicSparkles, FaRobot, FaChartLine, FaMessage, FaBolt, FaSignal } from "react-icons/fa6";
+import { useEffect, useRef, useMemo } from "react";
+import { FaArrowRight, FaBolt, FaPlay } from "react-icons/fa6";
 import Button from "@/components/ui/Button";
 import { useTranslations } from "next-intl";
+import gsap from "gsap";
+import { TextPlugin } from "gsap/TextPlugin";
+
+gsap.registerPlugin(TextPlugin);
 
 export default function HeroSection() {
-  const [industryIndex, setIndustryIndex] = useState(0);
-  const [isFlipping, setIsFlipping] = useState(false);
   const t = useTranslations("Hero");
+  const textRef = useRef<HTMLSpanElement>(null);
+  const cursorRef = useRef<HTMLSpanElement>(null);
 
-  const industryWords = [
+  const industryWords = useMemo(() => [
     t("industries.business"),
     t("industries.resort"),
     t("industries.hospital"),
     t("industries.ecommerce"),
-  ];
+  ], [t]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIsFlipping(true);
-      setTimeout(() => {
-        setIndustryIndex((prev) => (prev + 1) % industryWords.length);
-        setIsFlipping(false);
-      }, 600);
-    }, 2000);
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ repeat: -1 });
+      
+      industryWords.forEach((word) => {
+        tl.to(textRef.current, { duration: 1, text: word, ease: "none" })
+          .to({}, { duration: 2 })
+          .to(textRef.current, { duration: 0.5, text: "", ease: "none" });
+      });
 
-    return () => clearInterval(interval);
-  }, [industryWords.length]);
+      // Cursor animation
+      gsap.to(cursorRef.current, {
+        opacity: 0,
+        ease: "power2.inOut",
+        repeat: -1,
+        yoyo: true,
+        duration: 0.5 
+      });
+    });
+
+    return () => ctx.revert();
+  }, [industryWords]);
 
   return (
-    <section className="hero-section relative py-24 md:py-32">
+    <section className="relative py-24 md:py-32 overflow-hidden">
       {/* Background elements */}
-      <div className="hero-gradient" aria-hidden="true" />
-      <div className="hero-grid" aria-hidden="true" />
-      <div className="hero-orb hero-orb-1" aria-hidden="true" />
-      <div className="hero-orb hero-orb-2" aria-hidden="true" />
-      <div className="hero-orb hero-orb-3" aria-hidden="true" />
-
-      <div className="container relative z-10 mx-auto px-6">
-        <div className="grid items-center gap-16 lg:grid-cols-2">
-          {/* Left: Copy */}
-          <div className="max-w-xl mx-auto space-y-6 text-center lg:mx-0 lg:text-left">
-            <span className="inline-flex items-center gap-1 sm:gap-2 rounded-full border border-white/50 bg-white/70 px-2 py-1 sm:px-4 sm:py-2 text-[9px] sm:text-xs font-semibold uppercase tracking-[0.15em] sm:tracking-[0.35em] text-teal-700 shadow-sm shadow-teal-200/60 backdrop-blur">
-              <FaShapes className="text-teal-500" />
+      <div className="hero-gradient absolute inset-0 opacity-50 pointer-events-none" />
+      
+      <div className="container relative z-10 mx-auto px-6 text-center">
+        <div className="flex justify-center mb-8">
+            <span className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50/80 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-teal-700 shadow-sm backdrop-blur">
+              <FaBolt className="text-teal-500" />
               {t("badge")}
             </span>
+        </div>
 
-            <h1 className="font-bold leading-tight text-slate-900">
-              <span className="text-3xl sm:text-3xl md:text-4xl">{t("titlePre")}</span>{" "}
-              <span
-                className={`industry-text inline-block rounded-full bg-white/70 px-1.5 py-0 sm:px-3 sm:py-1 text-3xl sm:text-3xl md:text-4xl text-teal-600 shadow-inner shadow-white/60 ${isFlipping ? "flip" : ""
-                  }`}
-              >
-                {industryWords[industryIndex]}
-              </span>{" "}
-              <span className="text-3xl sm:text-3xl md:text-4xl bg-gradient-to-r from-teal-500 via-emerald-500 to-sky-500 bg-clip-text text-transparent">
-                {t("titleMid")}
-              </span>{" "}
-              <span className="text-3xl sm:text-3xl md:text-4xl">{t("titlePost")}</span>
-            </h1>
+        <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-8 leading-tight max-w-4xl mx-auto">
+          {t("titlePre")}{" "}
+          <span className="text-teal-600 inline-block min-w-[200px] md:min-w-[280px] text-left">
+             <span ref={textRef}></span>
+             <span ref={cursorRef} className="ml-1 font-light">|</span>
+          </span>{" "}
+          <span className="bg-gradient-to-r from-teal-500 via-emerald-500 to-sky-500 bg-clip-text text-transparent">
+            {t("titleMid")}
+          </span>{" "}
+          {t("titlePost")}
+        </h1>
 
-            <p className="text-slate-600 text-base max-w-2xl mx-auto lg:mx-0">
-              {t("description")}
-            </p>
+        <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+          {t("description")}
+        </p>
 
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
-              <Button href="#contact" icon={<FaWandMagicSparkles />}>
-                {t("ctaStrategy")}
-              </Button>
-              <Button href="#case-study" variant="secondary" icon={<FaPlay />}>
-                {t("ctaVideo")}
-              </Button>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-4 pt-8 text-left sm:grid-cols-3">
-              <div className="rounded-2xl border border-white/60 bg-white/80 p-4 shadow-sm shadow-teal-100/40 backdrop-blur">
-                <p className="text-2xl font-bold text-slate-900">{t("stats.automation")}</p>
-                <p className="text-xs text-slate-500">{t("stats.automationLabel")}</p>
-              </div>
-              <div className="rounded-2xl border border-white/60 bg-white/80 p-4 shadow-sm shadow-teal-100/40 backdrop-blur">
-                <p className="text-2xl font-bold text-slate-900">{t("stats.campaigns")}</p>
-                <p className="text-xs text-slate-500">{t("stats.campaignsLabel")}</p>
-              </div>
-              <div className="rounded-2xl border border-white/60 bg-white/80 p-4 shadow-sm shadow-teal-100/40 backdrop-blur col-span-2 sm:col-span-1">
-                <p className="text-2xl font-bold text-slate-900">{t("stats.support")}</p>
-                <p className="text-xs text-slate-500">{t("stats.supportLabel")}</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Right: Dashboard Visual */}
-          <div className="relative mx-auto w-full max-w-xl">
-            <div className="hero-device">
-              <div className="mb-6 flex items-center justify-between">
-                <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-slate-300">
-                  <span className="block h-3 w-3 rounded-full bg-teal-400/80" />
-                  <span className="block h-3 w-3 rounded-full bg-emerald-400/80" />
-                  <span className="block h-3 w-3 rounded-full bg-sky-400/80" />
-                </div>
-                <span className="rounded-full bg-teal-50 px-3 py-1 text-xs font-semibold text-teal-600">
-                  {t("dashboard.live")}
-                </span>
-              </div>
-
-              <div className="relative space-y-6">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="rounded-2xl bg-white/90 p-4 shadow-inner shadow-slate-200">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">{t("dashboard.activeCampaigns")}</p>
-                    <p className="mt-2 text-2xl font-bold text-slate-900">৮</p>
-                    <div className="mt-4 h-2.5 rounded-full bg-gradient-to-r from-teal-500/20 to-teal-500/80 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent md:animate-shimmer" />
-                    </div>
-                  </div>
-                  <div className="rounded-2xl bg-gradient-to-br from-teal-500 via-emerald-500 to-sky-500 p-[1px] shadow-lg shadow-teal-500/40">
-                    <div className="rounded-[18px] bg-white/95 p-4">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">{t("dashboard.conversions")}</p>
-                      <p className="mt-2 text-2xl font-bold text-slate-900">৯৮%</p>
-                      <p className="text-xs text-slate-500">{t("dashboard.last30Days")}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="rounded-3xl bg-white/90 p-5 shadow-lg shadow-slate-200/50">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">{t("dashboard.leadFlow")}</p>
-                  <svg viewBox="0 0 420 160" className="mt-4 w-full h-32" aria-label="Lead flow chart">
-                    <defs>
-                      <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="rgba(14, 165, 233, 0.45)" />
-                        <stop offset="100%" stopColor="rgba(16, 185, 129, 0.05)" />
-                      </linearGradient>
-                    </defs>
-                    <path d="M0 120 C60 80 90 130 150 100 C210 70 230 20 300 60 C360 100 390 90 420 40 L420 160 L0 160 Z" fill="url(#chartGradient)" />
-                    <path d="M0 120 C60 80 90 130 150 100 C210 70 230 20 300 60 C360 100 390 90 420 40" fill="none" stroke="rgba(13,148,136,0.8)" strokeWidth="6" strokeLinecap="round" />
-                  </svg>
-                  <div className="mt-4 grid grid-cols-3 gap-3 text-xs text-slate-500">
-                    <div>
-                      <span className="block text-base font-semibold text-slate-900">৩৯০+</span>
-                      {t("dashboard.totalVisits")}
-                    </div>
-                    <div>
-                      <span className="block text-base font-semibold text-slate-900">৯৫%</span>
-                      {t("dashboard.leadsQualified")}
-                    </div>
-                    <div>
-                      <span className="block text-base font-semibold text-slate-900">১-২ সঃ</span>
-                      {t("dashboard.avgResponse")}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Floating cards */}
-            <div className="floating-card floating-card-1">
-              <div className="flex items-center gap-3">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-teal-100 text-teal-600">
-                  <FaRobot />
-                </span>
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-slate-400">{t("floatingCards.aiAssistant")}</p>
-                  <p className="text-sm font-semibold text-slate-700">{t("floatingCards.autoFollowUp")}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="floating-card floating-card-2">
-              <div className="flex items-center gap-3">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-sky-100 text-sky-600">
-                  <FaChartLine />
-                </span>
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-slate-400">{t("floatingCards.growthPulse")}</p>
-                  <p className="text-sm font-semibold text-slate-700">{t("floatingCards.roiTracking")}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="floating-card floating-card-3">
-              <div className="flex items-center gap-3">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
-                  <FaMessage />
-                </span>
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-slate-400">{t("floatingCards.smartInbox")}</p>
-                  <p className="text-sm font-semibold text-slate-700">{t("floatingCards.multichannel")}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Floating icons */}
-            <div className="absolute top-[10%] right-[16%] w-14 h-14 rounded-full flex items-center justify-center text-teal-600 bg-gradient-to-br from-white/95 to-slate-200/75 shadow-lg md:animate-bounce">
-              <FaBolt />
-            </div>
-            <div className="absolute bottom-[4%] left-[12%] w-14 h-14 rounded-full flex items-center justify-center text-sky-600 bg-gradient-to-br from-white/95 to-slate-200/75 shadow-lg md:animate-pulse">
-              <FaSignal />
-            </div>
-          </div>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Button href="#contact" icon={<FaArrowRight />}>
+            {t("ctaStrategy")}
+          </Button>
+          <Button href="#portfolio" variant="secondary" icon={<FaPlay />} className="!bg-white hover:!bg-slate-50">
+            {t("ctaVideo")}
+          </Button>
         </div>
       </div>
     </section>

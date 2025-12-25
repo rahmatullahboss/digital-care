@@ -103,6 +103,29 @@ CREATE TABLE IF NOT EXISTS users (
   created_at TEXT DEFAULT (datetime('now'))
 );
 
+-- Chat Conversations
+CREATE TABLE IF NOT EXISTS chat_conversations (
+  id TEXT PRIMARY KEY DEFAULT (lower(hex(randomblob(16)))),
+  session_id TEXT UNIQUE NOT NULL,
+  user_id TEXT, -- Nullable, references users(id) if needed but we keep it loose for now
+  guest_name TEXT,
+  guest_phone TEXT,
+  message_count INTEGER DEFAULT 0,
+  last_message_at TEXT,
+  created_at TEXT DEFAULT (datetime('now')),
+  updated_at TEXT DEFAULT (datetime('now'))
+);
+
+-- Chat Messages
+CREATE TABLE IF NOT EXISTS chat_messages (
+  id TEXT PRIMARY KEY DEFAULT (lower(hex(randomblob(16)))),
+  conversation_id TEXT NOT NULL,
+  role TEXT NOT NULL, -- 'user' or 'assistant'
+  content TEXT NOT NULL,
+  created_at TEXT DEFAULT (datetime('now')),
+  FOREIGN KEY (conversation_id) REFERENCES chat_conversations(id) ON DELETE CASCADE
+);
+
 -- Insert default settings
 INSERT OR IGNORE INTO settings (id, phone, email, address)
 VALUES (1, '01639590392', 'rahmatullahzisan@gmail.com', 'ডিকেপি রোড, বরগুনা');
