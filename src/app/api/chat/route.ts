@@ -1,4 +1,4 @@
-import { createGroq } from "@ai-sdk/groq";
+import { createOpenAI } from "@ai-sdk/openai";
 import { streamText, convertToModelMessages, type UIMessage } from "ai";
 import { getD1Database } from "@/lib/db";
 
@@ -93,7 +93,12 @@ function generateSystemPrompt(
       }).join('\n\n')
     : 'বর্তমানে কোন পজিশন খোলা নেই।';
 
-  return `You are a friendly and helpful customer support assistant for "${siteConfig.name}" (${siteConfig.nameEn}).
+  return `## CRITICAL INSTRUCTION - READ FIRST
+You are STRICTLY LIMITED to the information provided in this prompt. 
+YOU MUST NOT invent, guess, or make up ANY information.
+If information is not explicitly provided below, say: "এই বিষয়ে আমার কাছে সঠিক তথ্য নেই। দয়া করে ${siteConfig.phone} নম্বরে কল করুন।"
+
+You are a customer support assistant for "${siteConfig.name}" (${siteConfig.nameEn}).
 We are a digital marketing and web development agency in Bangladesh.
 
 ## YOUR PERSONALITY
@@ -184,27 +189,33 @@ export async function POST(req: Request) {
   const systemPrompt = generateSystemPrompt(services, packages, faqs, jobs);
   const enhancedMessages = await convertToModelMessages(messages);
 
-  const groqKey = process.env.GROQ_API_KEY;
+  const openRouterKey = process.env.OPENROUTER_API_KEY;
 
-  if (!groqKey) {
+  if (!openRouterKey) {
     return new Response(
       JSON.stringify({
-        error: "Chat service unavailable. GROQ_API_KEY not configured.",
+        error: "Chat service unavailable. OPENROUTER_API_KEY not configured.",
       }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
 
   try {
-    const groq = createGroq({ apiKey: groqKey });
+    // Use OpenRouter via OpenAI-compatible API
+    const openrouter = createOpenAI({
+      baseURL: "https://openrouter.ai/api/v1",
+      apiKey: openRouterKey,
+    });
+
     const result = streamText({
-      model: groq("llama-3.3-70b-versatile"),
+      model: openrouter("xiaomi/mimo-vl-7b-flash:free"),
       system: systemPrompt,
       messages: enhancedMessages,
+      temperature: 0, // Set to 0 for less hallucination
     });
     return result.toUIMessageStreamResponse();
   } catch (error) {
-    console.error("Groq API error:", error);
+    console.error("OpenRouter API error:", error);
     return new Response(
       JSON.stringify({ error: "Chat service error. Please try again." }),
       { status: 500, headers: { "Content-Type": "application/json" } }
