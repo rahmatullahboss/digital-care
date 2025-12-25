@@ -10,6 +10,7 @@
     "blog": "Blog",
     "affiliate": "Affiliate",
     "privacy": "Privacy Policy",
+    "careers": "Careers",
     "contact": "Contact Us",
     "menuToggle": "Toggle menu"
   },
@@ -703,5 +704,81 @@
   },
   "Common": {
     "learnMore": "Learn More"
+  },
+  "CareersPage": {
+    "badge": "Join Our Team",
+    "title": "Build the Future with Us",
+    "description": "We are looking for passionate individuals to join our growing team.",
+    "kicker": "Careers",
+    "values": {
+        "title": "Our Values",
+         "innovation": {
+             "title": "Innovation",
+             "description": "We embrace new technologies and creative solutions."
+         },
+         "growth": {
+             "title": "Growth",
+             "description": "We believe in continuous learning and professional development."
+         },
+         "teamwork": {
+             "title": "Teamwork",
+             "description": "We succeed together through collaboration and mutual support."
+         }
+    },
+    "openPositions": {
+        "title": "Open Positions",
+        "description": "Current opportunities to join our team",
+        "applyBtn": "Apply Now",
+        "noOpenings": "No specific openings right now, but we are always looking for talent.",
+        "jobs": {
+            "social_media_entry": {
+                "title": "Entry Level Social Media Manager",
+                "type": "Full-time / Part-time",
+                "location": "Remote",
+                "department": "Marketing"
+            },
+            "frontend": {
+                "title": "Senior Frontend Developer",
+                "type": "Full-time",
+                "location": "Remote / On-site",
+                "department": "Engineering"
+            },
+            "marketing": {
+                "title": "Digital Marketing Specialist",
+                "type": "Full-time",
+                "location": "Remote",
+                "department": "Marketing"
+            },
+             "content": {
+                "title": "Content Writer",
+                "type": "Part-time",
+                "location": "Remote",
+                "department": "Content"
+            }
+        }
+    },
+    "applicationForm": {
+        "title": "Apply for",
+        "name": "Your Name",
+        "namePlaceholder": "Enter your full name",
+        "email": "Email Address",
+        "emailPlaceholder": "example@email.com",
+        "phone": "Phone Number",
+        "phonePlaceholder": "01XXXXXXXXX",
+        "cvLink": "CV / Resume Link",
+        "cvPlaceholder": "Google Drive or LinkedIn link",
+        "cvHelp": "Please provide a publicly accessible link to your CV.",
+        "message": "Why are you a good fit?",
+        "messagePlaceholder": "Tell us briefly about yourself...",
+        "submit": "Submit Application",
+        "submitting": "Submitting...",
+        "success": "Application submitted successfully! We will contact you soon.",
+        "error": "Failed to submit application. Please try again."
+    },
+    "cta": {
+        "title": "Don't see a fit?",
+        "description": "Send us your CV anyway. We are always looking for talented people.",
+        "btn": "Send CV"
+    }
   }
 }

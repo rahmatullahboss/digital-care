@@ -25,6 +25,7 @@ const navItems = [
     { href: "/admin/contacts", icon: FaEnvelope, label: "যোগাযোগ" },
     { href: "/admin/affiliates", icon: FaUsers, label: "অ্যাফিলিয়েট" },
     { href: "/admin/faq", icon: FaCircleQuestion, label: "FAQ" },
+    { href: "/admin/careers", icon: FaUsers, label: "ক্যারিয়ার" },
     { href: "/admin/settings", icon: FaGear, label: "সেটিংস" },
 ];
 

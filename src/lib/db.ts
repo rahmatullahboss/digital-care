@@ -56,6 +56,18 @@ export interface FAQ {
     order_index: number;
 }
 
+export interface CareerApplication {
+    id: number;
+    name: string;
+    email: string;
+    phone: string;
+    position: string;
+    cv_link?: string;
+    message?: string;
+    status: string; // 'pending', 'reviewed', 'hired', 'rejected'
+    created_at: string;
+}
+
 export interface SiteSettings {
     id: number;
     phone?: string;

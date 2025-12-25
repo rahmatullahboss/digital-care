@@ -16,6 +16,7 @@ export default function Header() {
     { href: "/services", label: t("services") },
     { href: "/blog", label: t("blog") },
     { href: "/affiliate", label: t("affiliate") },
+    { href: "/careers", label: t("careers") },
     { href: "/privacy-policy", label: t("privacy") },
   ];
 

@@ -1,7 +1,3 @@
----
-description: deploy
----
-
 # Deployment Guide for Digital Care
 
 This guide explains how to deploy changes to the live site hosted on Cloudflare Workers.
