@@ -31,22 +31,22 @@ export default function LanguageSwitcher() {
       {/* Dropdown */}
       <div className="absolute right-0 top-full mt-2 w-32 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
         <button
-          onClick={() => switchLocale("bn")}
-          className={`w-full px-4 py-2.5 text-left text-sm rounded-t-xl hover:bg-gray-50 transition-colors flex items-center gap-2 ${
-            locale === "bn" ? "text-teal-600 font-semibold bg-teal-50" : "text-gray-700"
-          }`}
-        >
-          <span className="text-lg">🇧🇩</span>
-          {t("bn")}
-        </button>
-        <button
           onClick={() => switchLocale("en")}
-          className={`w-full px-4 py-2.5 text-left text-sm rounded-b-xl hover:bg-gray-50 transition-colors flex items-center gap-2 ${
+          className={`w-full px-4 py-2.5 text-left text-sm rounded-t-xl hover:bg-gray-50 transition-colors flex items-center gap-2 ${
             locale === "en" ? "text-teal-600 font-semibold bg-teal-50" : "text-gray-700"
           }`}
         >
           <span className="text-lg">🇺🇸</span>
           {t("en")}
+        </button>
+        <button
+          onClick={() => switchLocale("bn")}
+          className={`w-full px-4 py-2.5 text-left text-sm rounded-b-xl hover:bg-gray-50 transition-colors flex items-center gap-2 ${
+            locale === "bn" ? "text-teal-600 font-semibold bg-teal-50" : "text-gray-700"
+          }`}
+        >
+          <span className="text-lg">🇧🇩</span>
+          {t("bn")}
         </button>
       </div>
     </div>

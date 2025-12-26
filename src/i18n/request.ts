@@ -1,9 +1,9 @@
 import { cookies } from "next/headers";
 import { getRequestConfig } from "next-intl/server";
 
-export type Locale = "bn" | "en";
-export const locales: Locale[] = ["bn", "en"];
-export const defaultLocale: Locale = "bn";
+export type Locale = "en" | "bn";
+export const locales: Locale[] = ["en", "bn"];
+export const defaultLocale: Locale = "en";
 
 export default getRequestConfig(async () => {
   let locale: Locale = defaultLocale;

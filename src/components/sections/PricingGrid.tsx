@@ -8,6 +8,7 @@ import Button from "@/components/ui/Button";
 import OrderModal from "@/components/ui/OrderModal";
 import { useTranslations, useLocale } from "next-intl";
 import { useTranslateDbContent } from "@/hooks/useTranslateDbContent";
+import { formatCurrency, bengaliToNumber, toBengaliNumber, BDT_TO_USD_RATE } from "@/lib/currency";
 
 interface PricingGridProps {
     packages: PricingPackage[];
@@ -30,47 +31,6 @@ function isCustomPrice(price: string): boolean {
     return price === "কাস্টম" || price === "আলোচনা সাপেক্ষে";
 }
 
-// Convert Bengali numerals to English numerals for parsing
-function bengaliToNumber(bengaliStr: string): number {
-    const bengaliDigits: Record<string, string> = {
-        '০': '0', '১': '1', '২': '2', '৩': '3', '৪': '4',
-        '৫': '5', '৬': '6', '৭': '7', '৮': '8', '৯': '9'
-    };
-    const englishStr = bengaliStr
-        .replace(/,/g, '')
-        .split('')
-        .map(char => bengaliDigits[char] || char)
-        .join('');
-    return parseInt(englishStr, 10) || 0;
-}
-
-// Format number to Bengali
-function toBengaliNumber(num: number): string {
-    const englishDigits: Record<string, string> = {
-        '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪',
-        '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯'
-    };
-    return num.toLocaleString('en-IN')
-        .split('')
-        .map(char => englishDigits[char] || char)
-        .join('');
-}
-
-// Format price based on locale - converts Bengali numerals to English if needed
-function formatPriceForLocale(bengaliPrice: string, locale: string): string {
-    if (locale === "bn") return bengaliPrice;
-    
-    // Convert Bengali numerals to English
-    const bengaliDigits: Record<string, string> = {
-        '০': '0', '১': '1', '২': '2', '৩': '3', '৪': '4',
-        '৫': '5', '৬': '6', '৭': '7', '৮': '8', '৯': '9'
-    };
-    return bengaliPrice
-        .split('')
-        .map(char => bengaliDigits[char] || char)
-        .join('');
-}
-
 export default function PricingGrid({ packages }: PricingGridProps) {
     const [selectedPkg, setSelectedPkg] = useState<PricingPackage | null>(null);
     const [activeCategory, setActiveCategory] = useState<Category>("all");
@@ -78,8 +38,8 @@ export default function PricingGrid({ packages }: PricingGridProps) {
     const locale = useLocale();
     const { translatePricings } = useTranslateDbContent();
 
-    // Helper function to format price with locale
-    const formatPrice = (price: string) => formatPriceForLocale(price, locale);
+    // Helper function to format price with currency conversion
+    const formatPrice = (price: string) => formatCurrency(price, locale);
 
     const categories: { id: Category; label: string; icon: React.ReactNode }[] = [
         { id: "all", label: t("categories.all"), icon: null },
@@ -162,7 +122,7 @@ export default function PricingGrid({ packages }: PricingGridProps) {
                                     {/* Show total value with strikethrough */}
                                     {pkg.total_value && (
                                         <div className="flex items-center justify-center gap-2">
-                                            <span className="text-lg text-slate-400 line-through">৳{formatPrice(pkg.total_value)}</span>
+                                            <span className="text-lg text-slate-400 line-through">{formatPrice(pkg.total_value)}</span>
                                             <span className="px-2 py-0.5 rounded-full bg-red-100 text-red-600 text-xs font-bold">
                                                 {Math.round((1 - bengaliToNumber(pkg.price) / bengaliToNumber(pkg.total_value)) * 100)}% {t("discount")}
                                             </span>
@@ -170,7 +130,7 @@ export default function PricingGrid({ packages }: PricingGridProps) {
                                     )}
                                     {/* Actual price */}
                                     <div>
-                                        <span className="text-4xl font-bold text-slate-900">৳{formatPrice(pkg.price)}</span>
+                                        <span className="text-4xl font-bold text-slate-900">{formatPrice(pkg.price)}</span>
                                         {pkg.period && <span className="text-slate-500">/{t.has(`periods.${pkg.period}`) ? t(`periods.${pkg.period}`) : pkg.period}</span>}
                                     </div>
                                 </div>
@@ -195,7 +155,7 @@ export default function PricingGrid({ packages }: PricingGridProps) {
                                             )}
                                         </div>
                                         {featureValue && (
-                                            <span className="text-slate-400 text-sm whitespace-nowrap">৳{formatPrice(featureValue)}</span>
+                                            <span className="text-slate-400 text-sm whitespace-nowrap">{formatPrice(featureValue)}</span>
                                         )}
                                     </li>
                                 );
@@ -207,14 +167,11 @@ export default function PricingGrid({ packages }: PricingGridProps) {
                             <div className="border-t border-slate-200 pt-4 mb-6">
                                 <div className="flex justify-between text-sm">
                                     <span className="text-slate-500">{t("totalPrice")}</span>
-                                    <span className="text-slate-400 line-through">৳{formatPrice(pkg.total_value)}</span>
+                                    <span className="text-slate-400 line-through">{formatPrice(pkg.total_value)}</span>
                                 </div>
                                 <div className="flex justify-between text-sm font-bold mt-1">
                                     <span className="text-teal-600">{t("yourSavings")}</span>
-                                    <span className="text-teal-600">৳{locale === "bn" 
-                                        ? toBengaliNumber(bengaliToNumber(pkg.total_value) - bengaliToNumber(pkg.price))
-                                        : (bengaliToNumber(pkg.total_value) - bengaliToNumber(pkg.price)).toLocaleString('en-IN')
-                                    }</span>
+                                    <span className="text-teal-600">{formatCurrency(bengaliToNumber(pkg.total_value) - bengaliToNumber(pkg.price), locale)}</span>
                                 </div>
                             </div>
                         )}
@@ -241,7 +198,7 @@ export default function PricingGrid({ packages }: PricingGridProps) {
                     isOpen={!!selectedPkg}
                     onClose={() => setSelectedPkg(null)}
                     packageName={selectedPkg.name}
-                    price={formatPrice(selectedPkg.price)}
+                    price={formatCurrency(selectedPkg.price, locale)}
                 />
             )}
         </>
