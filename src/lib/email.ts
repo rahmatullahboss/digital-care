@@ -19,7 +19,7 @@ async function sendViaResend({ to, subject, html }: EmailOptions) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                from: 'Digital Care <onboarding@resend.dev>',
+                from: 'Digital Care <noreply@digitalcare.site>',
                 to: [to],
                 subject,
                 html,
