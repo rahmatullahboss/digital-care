@@ -715,13 +715,24 @@
     "description": "Our regular updates on business growth, technology, and marketing",
     "noPosts": "No blog posts found",
     "readMore": "Read More",
-    "readDetails": "Read Details"
+    "readDetails": "Read Details",
+    "searchPlaceholder": "Search blog posts...",
+    "clearSearch": "Clear Search"
+  },
+  "BlogCard": {
+    "readArticle": "Read Article",
+    "readMore": "Read More",
+    "articleBadge": "Article"
   },
   "BlogPostPage": {
     "allPosts": "All Blog Posts",
     "kicker": "Blog Details",
     "ctaTitle": "Looking for the right solution for your business?",
-    "ctaBtn": "Get Free Consultation"
+    "ctaDescription": "Need help with your business? Let's build something amazing together.",
+    "ctaBtn": "Get Free Consultation",
+    "minRead": "min read",
+    "relatedArticles": "Related Articles",
+    "share": "Share"
   },
   "Common": {
     "learnMore": "Learn More"

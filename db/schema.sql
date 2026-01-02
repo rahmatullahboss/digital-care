@@ -3,8 +3,11 @@ CREATE TABLE IF NOT EXISTS posts (
   id TEXT PRIMARY KEY DEFAULT (lower(hex(randomblob(16)))),
   slug TEXT UNIQUE NOT NULL,
   title TEXT NOT NULL,
+  title_en TEXT, -- English Title
   excerpt TEXT,
+  excerpt_en TEXT, -- English Excerpt
   content TEXT NOT NULL,
+  content_en TEXT, -- English Content
   image_url TEXT,
   published INTEGER DEFAULT 0,
   created_at TEXT DEFAULT (datetime('now')),

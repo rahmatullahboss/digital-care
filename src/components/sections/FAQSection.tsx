@@ -4,13 +4,19 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import FAQList from "@/components/ui/FAQList";
 import { getTranslations } from "next-intl/server";
 
-async function getFaqs() {
-  const db = await getD1Database();
-  const { results } = await db
-    .prepare("SELECT * FROM faq ORDER BY order_index ASC")
-    .all();
-  return results as FAQ[];
-}
+import { unstable_cache } from "next/cache";
+
+const getFaqs = unstable_cache(
+  async () => {
+    const db = await getD1Database();
+    const { results } = await db
+      .prepare("SELECT * FROM faq ORDER BY order_index ASC")
+      .all();
+    return results as FAQ[];
+  },
+  ['faq-section-list'],
+  { revalidate: 86400, tags: ['faq'] }
+);
 
 export default async function FAQSection() {
   const faqs = await getFaqs();

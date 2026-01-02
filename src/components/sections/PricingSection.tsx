@@ -6,17 +6,23 @@ import Button from "@/components/ui/Button";
 import PricingGrid from "./PricingGrid";
 import { getTranslations } from "next-intl/server";
 
-async function getPricingPackages() {
-  const db = await getD1Database();
-  const { results } = await db
-    .prepare("SELECT * FROM pricing WHERE id NOT IN ('pricing-009', 'pricing-010', 'pricing-011') ORDER BY order_index ASC")
-    .all();
+import { unstable_cache } from "next/cache";
 
-  return results.map((p: Record<string, unknown>) => ({
-    ...p,
-    features: p.features ? JSON.parse(p.features as string) : [],
-  })) as PricingPackage[];
-}
+const getPricingPackages = unstable_cache(
+  async () => {
+    const db = await getD1Database();
+    const { results } = await db
+      .prepare("SELECT * FROM pricing WHERE id NOT IN ('pricing-009', 'pricing-010', 'pricing-011') ORDER BY order_index ASC")
+      .all();
+
+    return results.map((p: Record<string, unknown>) => ({
+      ...p,
+      features: p.features ? JSON.parse(p.features as string) : [],
+    })) as PricingPackage[];
+  },
+  ['pricing-section-list'],
+  { revalidate: 86400, tags: ['pricing'] }
+);
 
 export default async function PricingSection() {
   const packages = await getPricingPackages();

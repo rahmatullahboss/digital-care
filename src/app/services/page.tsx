@@ -4,23 +4,28 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import ServiceContent from "@/components/ui/ServiceContent";
 import { getTranslations } from "next-intl/server";
 
-// ISR: Cache for 60 seconds, revalidate in background
-// Note: Only works with manual deploy (./deploy.sh)
-export const revalidate = 60;
+import { unstable_cache } from "next/cache";
 
-async function getServices() {
-  const db = await getD1Database();
-  const { results } = await db
-    .prepare("SELECT * FROM services WHERE id NOT IN ('service-002', 'service-004') ORDER BY order_index ASC")
-    .all();
+// Force dynamic rendering for D1 access (required for now), but data will be cached
+export const dynamic = "force-dynamic";
 
-  // Parse JSON
-  return results.map((s: Record<string, unknown>) => ({
-    ...s,
-    features: s.features ? JSON.parse(s.features as string) : [],
-    benefits: s.benefits ? JSON.parse(s.benefits as string) : [],
-  })) as unknown as (Service & { features: string[], benefits: string[] })[];
-}
+const getServices = unstable_cache(
+  async () => {
+    const db = await getD1Database();
+    const { results } = await db
+      .prepare("SELECT * FROM services WHERE id NOT IN ('service-002', 'service-004') ORDER BY order_index ASC")
+      .all();
+
+    // Parse JSON
+    return results.map((s: Record<string, unknown>) => ({
+      ...s,
+      features: s.features ? JSON.parse(s.features as string) : [],
+      benefits: s.benefits ? JSON.parse(s.benefits as string) : [],
+    })) as unknown as (Service & { features: string[], benefits: string[] })[];
+  },
+  ['services-page-list'],
+  { revalidate: 86400, tags: ['services'] }
+);
 
 export default async function ServicesPage({
   searchParams,

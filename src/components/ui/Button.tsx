@@ -9,6 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
   className?: string;
   icon?: ReactNode;
+  fullWidth?: boolean;
 }
 
 export default function Button({
@@ -18,6 +19,7 @@ export default function Button({
   href,
   className,
   icon,
+  fullWidth = false,
   ...props
 }: ButtonProps) {
   const baseStyles = "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 hover:-translate-y-0.5";
@@ -42,7 +44,13 @@ export default function Button({
     </>
   );
 
-  const combinedClassName = cn(baseStyles, variants[variant], sizes[size], className);
+  const combinedClassName = cn(
+    baseStyles, 
+    variants[variant], 
+    sizes[size], 
+    fullWidth ? "w-full" : "",
+    className
+  );
 
   if (href) {
     return (

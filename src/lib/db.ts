@@ -16,8 +16,11 @@ export interface Post {
     id: string;
     slug: string;
     title: string;
+    title_en?: string;
     excerpt?: string;
+    excerpt_en?: string;
     content: string;
+    content_en?: string;
     image_url?: string;
     published: number; // 0 or 1
     created_at: string;

@@ -17,41 +17,48 @@ const siteConfig = {
 };
 
 // Fetch all website content from database for AI context
-async function fetchWebsiteContent() {
-  try {
-    const db = await getD1Database();
-    
-    // Fetch services
-    const servicesResult = await db.prepare(
-        "SELECT title, tagline, description, features, benefits FROM services"
-    ).all();
-    
-    // Fetch pricing packages
-    const pricingResult = await db.prepare(
-        "SELECT name, price, period, description, features FROM pricing ORDER BY order_index"
-    ).all();
+import { unstable_cache } from "next/cache";
 
-    // Fetch FAQ - this contains a lot of useful info about the company
-    const faqResult = await db.prepare(
-        "SELECT question, answer FROM faq ORDER BY order_index"
-    ).all();
+// Fetch all website content from database for AI context (Cached)
+const getCachedWebsiteContent = unstable_cache(
+  async () => {
+    try {
+      const db = await getD1Database();
+      
+      // Fetch services
+      const servicesResult = await db.prepare(
+          "SELECT title, tagline, description, features, benefits FROM services"
+      ).all();
+      
+      // Fetch pricing packages
+      const pricingResult = await db.prepare(
+          "SELECT name, price, period, description, features FROM pricing ORDER BY order_index"
+      ).all();
 
-    // Fetch active jobs/career positions
-    const jobsResult = await db.prepare(
-        "SELECT title, department, type, location, description, responsibilities, requirements, salary_range FROM jobs WHERE is_active = 1 ORDER BY order_index"
-    ).all();
+      // Fetch FAQ - this contains a lot of useful info about the company
+      const faqResult = await db.prepare(
+          "SELECT question, answer FROM faq ORDER BY order_index"
+      ).all();
 
-    return {
-      services: servicesResult.results as { title: string; tagline?: string; description?: string; features?: string; benefits?: string }[],
-      packages: pricingResult.results as { name: string; price: string; period: string; description?: string; features?: string }[],
-      faqs: faqResult.results as { question: string; answer: string }[],
-      jobs: jobsResult.results as { title: string; department?: string; type?: string; location?: string; description?: string; responsibilities?: string; requirements?: string; salary_range?: string }[],
-    };
-  } catch (error) {
-    console.error("Error fetching website content for chat:", error);
-    return { services: [], packages: [], faqs: [], jobs: [] };
-  }
-}
+      // Fetch active jobs/career positions
+      const jobsResult = await db.prepare(
+          "SELECT title, department, type, location, description, responsibilities, requirements, salary_range FROM jobs WHERE is_active = 1 ORDER BY order_index"
+      ).all();
+
+      return {
+        services: servicesResult.results as { title: string; tagline?: string; description?: string; features?: string; benefits?: string }[],
+        packages: pricingResult.results as { name: string; price: string; period: string; description?: string; features?: string }[],
+        faqs: faqResult.results as { question: string; answer: string }[],
+        jobs: jobsResult.results as { title: string; department?: string; type?: string; location?: string; description?: string; responsibilities?: string; requirements?: string; salary_range?: string }[],
+      };
+    } catch (error) {
+      console.error("Error fetching website content for chat:", error);
+      return { services: [], packages: [], faqs: [], jobs: [] };
+    }
+  },
+  ['chat-website-content'],
+  { revalidate: 86400, tags: ['content'] }
+);
 
 function generateSystemPrompt(
   services: { title: string; tagline?: string; description?: string; features?: string; benefits?: string }[],
@@ -184,7 +191,7 @@ export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
 
   // Fetch all website content from database for context
-  const { services, packages, faqs, jobs } = await fetchWebsiteContent();
+  const { services, packages, faqs, jobs } = await getCachedWebsiteContent();
   
   const systemPrompt = generateSystemPrompt(services, packages, faqs, jobs);
   

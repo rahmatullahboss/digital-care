@@ -4,13 +4,19 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import ServiceGrid from "@/components/ui/ServiceGrid";
 import { getTranslations } from "next-intl/server";
 
-async function getServices() {
-  const db = await getD1Database();
-  const { results } = await db
-    .prepare("SELECT * FROM services WHERE id NOT IN ('service-002', 'service-004') ORDER BY order_index ASC")
-    .all();
-  return results as Service[];
-}
+import { unstable_cache } from "next/cache";
+
+const getServices = unstable_cache(
+  async () => {
+    const db = await getD1Database();
+    const { results } = await db
+      .prepare("SELECT * FROM services WHERE id NOT IN ('service-002', 'service-004') ORDER BY order_index ASC")
+      .all();
+    return results as Service[];
+  },
+  ['services-section-list'],
+  { revalidate: 86400, tags: ['services'] }
+);
 
 export default async function ServicesSection() {
   const services = await getServices();

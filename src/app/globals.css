@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --font-hind-siliguri: "Hind Siliguri", sans-serif;
@@ -11,6 +12,22 @@ body {
 
 .font-inter {
   font-family: var(--font-inter), sans-serif;
+}
+
+/* Custom Prose overrides for Bengali */
+.prose {
+  font-family: var(--font-hind-siliguri), sans-serif;
+  line-height: 1.8; /* Better for Bengali script */
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  font-family: var(--font-hind-siliguri), sans-serif;
+  line-height: 1.4;
+}
+
+/* Ensure list items bullet points are visible and aligned */
+.prose ul > li::before {
+  background-color: #cbd5e1; /* slate-300 */
 }
 
 /* ===== SECTION SHELL - Immersive section background ===== */

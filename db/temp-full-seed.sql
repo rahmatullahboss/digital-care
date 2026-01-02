@@ -1671,7 +1671,6 @@ Stay well! 🙏',
 -- =============================================================================
 -- Drop Shipping A to Z Guide
 -- =============================================================================
-DELETE FROM posts WHERE id = 'post-guide-001';
 INSERT INTO posts (id, slug, title, title_en, excerpt, excerpt_en, content, content_en, image_url, published) VALUES
 (
   'post-guide-001',
