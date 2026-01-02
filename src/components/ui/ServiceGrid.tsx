@@ -45,7 +45,7 @@ export default function ServiceGrid({ services }: ServiceGridProps) {
             title={service.title}
             description={service.tagline || service.description || ""}
             features={features.slice(0, 3)}
-            href={`/services?slug=${service.slug}`}
+            href={`/blog/service-overview-${service.slug}`}
             ctaIcon={<FaArrowRight />}
           />
         );
