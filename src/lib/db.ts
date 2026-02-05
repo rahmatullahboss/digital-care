@@ -107,8 +107,30 @@ export interface SiteSettings {
 
 
 import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { D1HTTPProxy, type D1Database } from "./d1-proxy";
 
-export async function getD1Database() {
-    const { env } = await getCloudflareContext({ async: true });
-    return env.DB;
+export async function getD1Database(): Promise<D1Database> {
+    try {
+        const { env } = await getCloudflareContext({ async: true });
+        if (env.DB) {
+            return env.DB as unknown as D1Database;
+        }
+    } catch (e) {
+        // Fallthrough if context lookup fails (e.g. not in Worker)
+    }
+    
+    // Fallback for Vercel / Local Node.js
+    const accountId = process.env.CLOUDFLARE_ACCOUNT_ID;
+    const databaseId = process.env.CLOUDFLARE_DATABASE_ID;
+    const apiToken = process.env.CLOUDFLARE_API_TOKEN;
+
+    if (!accountId || !databaseId || !apiToken) {
+        console.warn("Missing Cloudflare D1 credentials for remote access.");
+        // We throw or return a dummy to prevent crashes during build, 
+        // but runtime requests will fail if this is hit.
+        throw new Error("D1 Database not available and missing remote credentials");
+    }
+
+    return new D1HTTPProxy(accountId, databaseId, apiToken) as unknown as D1Database;
 }
+

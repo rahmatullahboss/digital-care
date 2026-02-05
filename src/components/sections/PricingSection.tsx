@@ -15,7 +15,7 @@ const getPricingPackages = unstable_cache(
       .prepare("SELECT * FROM pricing WHERE id NOT IN ('pricing-009', 'pricing-010', 'pricing-011') ORDER BY order_index ASC")
       .all();
 
-    return results.map((p: Record<string, unknown>) => ({
+    return (results as Record<string, unknown>[]).map((p) => ({
       ...p,
       features: p.features ? JSON.parse(p.features as string) : [],
     })) as PricingPackage[];

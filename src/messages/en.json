@@ -242,6 +242,11 @@
         "description": "Modern Upwork-style marketplace for Bangladeshi freelancers. Connects vetted talent with global clients.",
         "type": "Freelance Marketplace",
         "features": ["Vetted Freelancers", "Escrow Payment", "Milestone Tracking", "24/7 Support"]
+      },
+      "build-barguna": {
+        "description": "A community-driven co-operative website designed to empower the youth of Barguna through self-employment, skills training, and collective investment.",
+        "type": "Co-operative Platform",
+        "features": ["Membership System", "Skills Training", "Co-investment"]
       }
     }
   },

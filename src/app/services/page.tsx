@@ -17,7 +17,7 @@ const getServices = unstable_cache(
       .all();
 
     // Parse JSON
-    return results.map((s: Record<string, unknown>) => ({
+    return (results as Record<string, unknown>[]).map((s) => ({
       ...s,
       features: s.features ? JSON.parse(s.features as string) : [],
       benefits: s.benefits ? JSON.parse(s.benefits as string) : [],

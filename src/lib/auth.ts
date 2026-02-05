@@ -23,10 +23,18 @@ export const authOptions: NextAuthOptions = {
                     const db = await getD1Database();
                     console.log("[Auth] DB connection obtained");
 
+                    interface User {
+                        id: string;
+                        email: string;
+                        name: string;
+                        role: string;
+                        password_hash: string;
+                    }
+
                     const user = await db
                         .prepare("SELECT * FROM users WHERE email = ?")
                         .bind(credentials.email)
-                        .first();
+                        .first<User>();
 
                     console.log("[Auth] User found:", !!user, user ? { email: user.email, role: user.role } : null);
 

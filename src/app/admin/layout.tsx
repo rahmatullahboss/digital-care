@@ -15,10 +15,10 @@ export default async function AdminLayout({
     }
 
     return (
-        <div className="flex min-h-screen bg-slate-950">
+        <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950">
             <AdminNav />
-            <main className="flex-1 p-8">
-                <div className="max-w-7xl mx-auto">{children}</div>
+            <main className="flex-1 w-full lg:w-auto p-4 lg:p-8 overflow-x-hidden">
+                <div className="max-w-7xl mx-auto space-y-8">{children}</div>
             </main>
         </div>
     );

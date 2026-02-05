@@ -64,105 +64,109 @@ export default function SettingsPage() {
     };
 
     if (loading) {
-        return <div className="text-white">লোড হচ্ছে...</div>;
+        return <div className="text-center p-8 font-admin text-slate-500">লোড হচ্ছে...</div>;
     }
 
     return (
-        <div className="max-w-4xl mx-auto">
-            <div className="mb-8">
-                <h1 className="text-3xl font-bold text-white">সাইট সেটিংস</h1>
-                <p className="text-slate-400 mt-1">যোগাযোগ এবং সোশ্যাল মিডিয়া সেটিংস আপডেট করুন</p>
+        <div className="max-w-4xl mx-auto space-y-8 animate-fade-in-up">
+            <div>
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-admin-primary to-admin-secondary bg-clip-text text-transparent font-admin">
+                    সাইট সেটিংস
+                </h1>
+                <p className="text-slate-500 dark:text-slate-400 mt-1 font-admin">
+                    যোগাযোগ এবং সোশ্যাল মিডিয়া সেটিংস আপডেট করুন
+                </p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Contact Information */}
-                <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
-                    <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
-                        <FaPhone className="text-teal-500" /> যোগাযোগ তথ্য
+                <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+                    <h2 className="text-xl font-semibold text-slate-800 dark:text-white mb-6 flex items-center gap-2 font-admin">
+                        <FaPhone className="text-admin-primary" /> যোগাযোগ তথ্য
                     </h2>
                     <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                            <label className="block text-sm font-medium text-slate-300 mb-2">
-                                <FaPhone className="inline mr-2 text-slate-500" />
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 font-admin">
+                                <FaPhone className="inline mr-2 text-slate-400" />
                                 ফোন নম্বর
                             </label>
                             <input
                                 type="text"
                                 value={formData.phone}
                                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                className="w-full px-4 py-3 bg-white/5 border border-slate-600 rounded-xl text-white placeholder:text-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none font-mono"
+                                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-admin-primary focus:ring-2 focus:ring-admin-primary/20 outline-none font-mono-admin transition-all"
                                 placeholder="01XXXXXXXXX"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-slate-300 mb-2">
-                                <FaEnvelope className="inline mr-2 text-slate-500" />
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 font-admin">
+                                <FaEnvelope className="inline mr-2 text-slate-400" />
                                 ইমেইল
                             </label>
                             <input
                                 type="email"
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                className="w-full px-4 py-3 bg-white/5 border border-slate-600 rounded-xl text-white placeholder:text-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none"
+                                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-admin-primary focus:ring-2 focus:ring-admin-primary/20 outline-none font-mono-admin transition-all"
                                 placeholder="example@email.com"
                             />
                         </div>
                     </div>
                     <div className="mt-6">
-                        <label className="block text-sm font-medium text-slate-300 mb-2">
-                            <FaLocationDot className="inline mr-2 text-slate-500" />
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 font-admin">
+                            <FaLocationDot className="inline mr-2 text-slate-400" />
                             ঠিকানা
                         </label>
                         <textarea
                             value={formData.address}
                             onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                             rows={2}
-                            className="w-full px-4 py-3 bg-white/5 border border-slate-600 rounded-xl text-white placeholder:text-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none resize-none"
+                            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-admin-primary focus:ring-2 focus:ring-admin-primary/20 outline-none resize-none font-admin transition-all"
                             placeholder="আপনার ঠিকানা"
                         />
                     </div>
                 </div>
 
                 {/* Social Media Links */}
-                <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
-                    <h2 className="text-xl font-semibold text-white mb-6">সোশ্যাল মিডিয়া লিংক</h2>
+                <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+                    <h2 className="text-xl font-semibold text-slate-800 dark:text-white mb-6 font-admin">সোশ্যাল মিডিয়া লিংক</h2>
                     <div className="space-y-6">
                         <div>
-                            <label className="block text-sm font-medium text-slate-300 mb-2">
-                                <FaFacebook className="inline mr-2 text-blue-500" />
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 font-admin">
+                                <FaFacebook className="inline mr-2 text-blue-600 dark:text-blue-500" />
                                 Facebook URL
                             </label>
                             <input
                                 type="url"
                                 value={formData.facebook_url}
                                 onChange={(e) => setFormData({ ...formData, facebook_url: e.target.value })}
-                                className="w-full px-4 py-3 bg-white/5 border border-slate-600 rounded-xl text-white placeholder:text-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none"
+                                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-admin-primary focus:ring-2 focus:ring-admin-primary/20 outline-none font-mono-admin transition-all"
                                 placeholder="https://facebook.com/yourpage"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-slate-300 mb-2">
-                                <FaLinkedin className="inline mr-2 text-blue-400" />
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 font-admin">
+                                <FaLinkedin className="inline mr-2 text-blue-700 dark:text-blue-400" />
                                 LinkedIn URL
                             </label>
                             <input
                                 type="url"
                                 value={formData.linkedin_url}
                                 onChange={(e) => setFormData({ ...formData, linkedin_url: e.target.value })}
-                                className="w-full px-4 py-3 bg-white/5 border border-slate-600 rounded-xl text-white placeholder:text-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none"
+                                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-admin-primary focus:ring-2 focus:ring-admin-primary/20 outline-none font-mono-admin transition-all"
                                 placeholder="https://linkedin.com/in/yourprofile"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-slate-300 mb-2">
-                                <FaYoutube className="inline mr-2 text-red-500" />
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 font-admin">
+                                <FaYoutube className="inline mr-2 text-red-600 dark:text-red-500" />
                                 YouTube URL
                             </label>
                             <input
                                 type="url"
                                 value={formData.youtube_url}
                                 onChange={(e) => setFormData({ ...formData, youtube_url: e.target.value })}
-                                className="w-full px-4 py-3 bg-white/5 border border-slate-600 rounded-xl text-white placeholder:text-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none"
+                                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-admin-primary focus:ring-2 focus:ring-admin-primary/20 outline-none font-mono-admin transition-all"
                                 placeholder="https://youtube.com/@yourchannel"
                             />
                         </div>

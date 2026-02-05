@@ -35,7 +35,7 @@ export async function GET() {
     ).all();
 
     // Parse JSON fields
-    const jobs = result.results.map((row: Record<string, unknown>) => ({
+    const jobs = (result.results as Record<string, unknown>[]).map((row) => ({
       ...row,
       responsibilities: row.responsibilities ? JSON.parse(row.responsibilities as string) : [],
       responsibilities_bn: row.responsibilities_bn ? JSON.parse(row.responsibilities_bn as string) : [],

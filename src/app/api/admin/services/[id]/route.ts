@@ -15,7 +15,21 @@ export async function GET(
 
         const { id } = await params;
         const db = await getD1Database();
-        const service = await db.prepare("SELECT * FROM services WHERE id = ?").bind(id).first();
+
+        interface ServiceRow {
+            id: string;
+            title: string;
+            slug: string;
+            tagline: string | null;
+            description: string | null;
+            icon: string | null;
+            features: string;
+            benefits: string;
+            order_index: number;
+            created_at: string;
+        }
+
+        const service = await db.prepare("SELECT * FROM services WHERE id = ?").bind(id).first<ServiceRow>();
 
         if (!service) {
             return NextResponse.json({ error: "Service not found" }, { status: 404 });
@@ -24,8 +38,8 @@ export async function GET(
         // Parse JSON fields
         const parsedService = {
             ...service,
-            features: service.features ? JSON.parse(service.features as string) : [],
-            benefits: service.benefits ? JSON.parse(service.benefits as string) : [],
+            features: service.features ? JSON.parse(service.features) : [],
+            benefits: service.benefits ? JSON.parse(service.benefits) : [],
         };
 
         return NextResponse.json({ service: parsedService });

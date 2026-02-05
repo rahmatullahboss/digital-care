@@ -4,6 +4,20 @@
 :root {
   --font-hind-siliguri: "Hind Siliguri", sans-serif;
   --font-inter: "Inter", sans-serif;
+  --font-fira-sans: "Fira Sans", sans-serif;
+  --font-fira-code: "Fira Code", monospace;
+}
+
+@theme {
+  --font-admin: var(--font-fira-sans);
+  --font-mono-admin: var(--font-fira-code);
+  
+  --color-admin-primary: #7C3AED;
+  --color-admin-secondary: #A78BFA;
+  --color-admin-cta: #F97316;
+  --color-admin-bg: #FAF5FF;
+  --color-admin-text: #4C1D95;
+  --color-admin-surface: #ffffff;
 }
 
 body {

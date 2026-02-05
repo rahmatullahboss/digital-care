@@ -15,7 +15,20 @@ export async function GET(
 
         const { id } = await params;
         const db = await getD1Database();
-        const pkg = await db.prepare("SELECT * FROM pricing WHERE id = ?").bind(id).first();
+        
+        interface PricingRow {
+            id: string;
+            name: string;
+            price: string;
+            period: string | null;
+            description: string | null;
+            features: string;
+            popular: number;
+            order_index: number;
+            created_at: string;
+        }
+
+        const pkg = await db.prepare("SELECT * FROM pricing WHERE id = ?").bind(id).first<PricingRow>();
 
         if (!pkg) {
             return NextResponse.json({ error: "Package not found" }, { status: 404 });
@@ -23,7 +36,7 @@ export async function GET(
 
         const parsedPackage = {
             ...pkg,
-            features: pkg.features ? JSON.parse(pkg.features as string) : [],
+            features: pkg.features ? JSON.parse(pkg.features) : [],
         };
 
         return NextResponse.json({ package: parsedPackage });

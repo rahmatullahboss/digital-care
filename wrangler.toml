@@ -51,6 +51,7 @@ pattern = "www.digitalcare.site"
 custom_domain = true
 
 # Analytics Engine
-[[analytics_engine_datasets]]
-binding = "ANALYTIC_EVENT"
-dataset = "analytic_event"
+# Analytics Engine
+# [[analytics_engine_datasets]]
+# binding = "ANALYTIC_EVENT"
+# dataset = "analytic_event"

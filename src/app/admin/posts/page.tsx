@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { FaPlus, FaPencil, FaTrash } from "react-icons/fa6";
 import { Post } from "@/lib/db";
 import Button from "@/components/ui/Button";
+import AdminTable from "@/components/admin/AdminTable";
 
 export default function BlogPostsPage() {
     const [posts, setPosts] = useState<Post[]>([]);
@@ -44,71 +45,73 @@ export default function BlogPostsPage() {
     };
 
     if (loading) {
-        return <div className="text-white">লোড হচ্ছে...</div>;
+        return <div className="text-center p-8 font-admin text-slate-500">লোড হচ্ছে...</div>;
     }
 
     return (
-        <div>
-            <div className="flex items-center justify-between mb-8">
+        <div className="space-y-6 animate-fade-in-up">
+             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-white">ব্লগ পোস্ট</h1>
-                    <p className="text-slate-400 mt-1">সব ব্লগ পোস্ট ম্যানেজ করুন</p>
+                     <h1 className="text-3xl font-bold bg-gradient-to-r from-admin-primary to-admin-secondary bg-clip-text text-transparent font-admin">
+                        ব্লগ পোস্ট
+                    </h1>
+                    <p className="text-slate-500 dark:text-slate-400 mt-1 font-admin">
+                        সব ব্লগ পোস্ট ম্যানেজ করুন
+                    </p>
                 </div>
                 <Link href="/admin/posts/new">
                     <Button icon={<FaPlus />}>নতুন পোস্ট</Button>
                 </Link>
             </div>
 
-            <div className="bg-slate-800/50 border border-slate-700 rounded-2xl overflow-hidden">
-                <table className="w-full text-left">
-                    <thead className="bg-slate-800 text-slate-400">
-                        <tr>
-                            <th className="p-4">শিরোনাম</th>
-                            <th className="p-4">Slug</th>
-                            <th className="p-4">স্ট্যাটাস</th>
-                            <th className="p-4 text-right">অ্যাকশন</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-700">
-                        {posts.map((post) => (
-                            <tr key={post.id} className="text-white hover:bg-slate-800/30">
-                                <td className="p-4 font-medium">{post.title}</td>
-                                <td className="p-4 text-slate-400">{post.slug}</td>
-                                <td className="p-4">
-                                    <span
-                                        className={`px-3 py-1 rounded-full text-xs font-medium ${post.published
-                                                ? "bg-green-500/20 text-green-400"
-                                                : "bg-yellow-500/20 text-yellow-400"
-                                            }`}
-                                    >
-                                        {post.published ? "প্রকাশিত" : "ড্রাফট"}
-                                    </span>
-                                </td>
-                                <td className="p-4 text-right space-x-2">
-                                    <Link href={`/admin/posts/${post.id}`}>
-                                        <button className="p-2 text-blue-400 hover:bg-blue-500/10 rounded-lg transition-colors">
-                                            <FaPencil />
-                                        </button>
-                                    </Link>
-                                    <button
-                                        onClick={() => deletePost(post.id)}
-                                        className="p-2 text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
-                                    >
-                                        <FaTrash />
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                        {posts.length === 0 && (
-                            <tr>
-                                <td colSpan={4} className="p-8 text-center text-slate-500">
-                                    কোন পোস্ট পাওয়া যায়নি
-                                </td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
+            <AdminTable
+                data={posts}
+                keyExtractor={(post) => post.id}
+                emptyMessage="কোন পোস্ট পাওয়া যায়নি"
+                columns={[
+                    {
+                        header: "শিরোনাম",
+                        cell: (post) => (
+                             <span className="font-medium text-slate-900 dark:text-white">
+                                {post.title}
+                            </span>
+                        )
+                    },
+                    {
+                        header: "Slug",
+                        accessorKey: "slug",
+                        className: "text-slate-500"
+                    },
+                    {
+                        header: "স্ট্যাটাস",
+                        cell: (post) => (
+                             <span
+                                className={`px-2.5 py-1 rounded-full text-xs font-medium ${post.published
+                                        ? "bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-400"
+                                        : "bg-yellow-100 text-yellow-700 dark:bg-yellow-500/20 dark:text-yellow-400"
+                                    }`}
+                            >
+                                {post.published ? "প্রকাশিত" : "ড্রাফট"}
+                            </span>
+                        )
+                    }
+                ]}
+                actions={(post) => (
+                    <div className="flex items-center justify-end gap-2">
+                        <Link href={`/admin/posts/${post.id}`}>
+                            <button className="p-2 text-admin-primary hover:bg-admin-bg rounded-lg transition-colors">
+                                <FaPencil />
+                            </button>
+                        </Link>
+                        <button
+                            onClick={() => deletePost(post.id)}
+                            className="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 rounded-lg transition-colors"
+                        >
+                            <FaTrash />
+                        </button>
+                    </div>
+                )}
+            />
         </div>
     );
 }

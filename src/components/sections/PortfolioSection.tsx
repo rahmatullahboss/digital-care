@@ -61,6 +61,15 @@ const projects: Project[] = [
         gradient: "from-blue-500 to-cyan-500",
         screenshot: "https://res.cloudinary.com/dpnccgsja/image/upload/v1766460725/portfolio/talenthuntbd.png",
     },
+    {
+        id: "build-barguna",
+        title: "Build Barguna Co-op",
+        icon: <FaUsers className="text-2xl" />,
+        tech: ["Next.js", "Tailwind CSS", "TypeScript"],
+        link: "https://buildbarguna.vercel.app",
+        gradient: "from-green-500 to-emerald-500",
+        screenshot: "/images/portfolio/build-barguna.webp",
+    },
 ];
 
 interface ProjectCardProps {
@@ -97,7 +106,7 @@ function ProjectCard({ project, description, type, features, viewLiveText }: Pro
                     </>
                 )}
                 {/* Type badge */}
-                <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium">
+                <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-green-500/80 backdrop-blur-sm text-white text-sm font-medium shadow-sm">
                     {type}
                 </span>
                 {/* Icon overlay for screenshots */}
@@ -132,7 +141,7 @@ function ProjectCard({ project, description, type, features, viewLiveText }: Pro
                     {project.tech.map((tech) => (
                         <span
                             key={tech}
-                            className="px-2 py-1 rounded-md bg-teal-500/20 text-teal-300 text-xs font-medium"
+                            className="px-2 py-1 rounded-md bg-green-500/20 text-green-300 text-xs font-medium"
                         >
                             {tech}
                         </span>
