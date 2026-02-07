@@ -14,11 +14,18 @@ binding = "DB"
 database_name = "digital-care-db"
 database_id = "aa825794-edd1-41e9-9160-ef63af2e121e"
 
+
 # D1 Tag Cache for ISR on-demand revalidation
 [[d1_databases]]
 binding = "NEXT_TAG_CACHE_D1"
 database_name = "digital-care-db"
 database_id = "aa825794-edd1-41e9-9160-ef63af2e121e"
+
+# Durable Object Rate Limiter (External Worker)
+[[durable_objects.bindings]]
+name = "RATE_LIMITER"
+class_name = "RateLimiter"
+script_name = "rate-limiter-worker"
 
 # KV Namespace for ISR Cache
 [[kv_namespaces]]

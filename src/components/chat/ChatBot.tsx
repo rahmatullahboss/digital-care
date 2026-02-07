@@ -202,10 +202,23 @@ export function ChatBot() {
     return null;
   });
 
+  const [isRateLimited, setIsRateLimited] = useState(false);
+
   const { messages, sendMessage, status } = useChat({
     transport: new DefaultChatTransport({
       api: "/api/chat",
     }),
+    onError: (error) => {
+      if (error.message.includes("429") || error.message.includes("Too many requests")) {
+        setIsRateLimited(true);
+        // Add a system message to the chat
+        setHistoryMessages(prev => [...prev, {
+            id: `sys-${Date.now()}`,
+            role: "assistant",
+            content: "You are sending too many messages. Please wait a minute before trying again."
+        }]);
+      }
+    }
   });
 
   const isLoading = status === "streaming" || status === "submitted";
@@ -669,11 +682,11 @@ export function ChatBot() {
                         onChange={(e) => setInput(e.target.value)}
                         placeholder="Type a message..."
                         className="flex-1 px-4 py-2.5 rounded-full border border-gray-200 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-200 text-sm bg-gray-50"
-                        disabled={status !== "ready"}
+                        disabled={status !== "ready" || isRateLimited}
                     />
                     <button
                         type="submit"
-                        disabled={status !== "ready" || !input.trim()}
+                        disabled={status !== "ready" || !input.trim() || isRateLimited}
                         className={cn(
                         "w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-sm",
                         input.trim() 
