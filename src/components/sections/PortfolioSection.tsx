@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FaExternalLinkAlt, FaShoppingCart, FaHotel, FaRocket, FaHome, FaUsers } from "react-icons/fa";
+import { FaExternalLinkAlt, FaShoppingCart, FaHotel, FaRocket, FaHome, FaUsers, FaMoon, FaUtensils } from "react-icons/fa";
 import SectionHeader from "@/components/ui/SectionHeader";
 import GlassCard from "@/components/ui/GlassCard";
 import { useTranslations } from "next-intl";
@@ -17,6 +17,15 @@ interface Project {
 }
 
 const projects: Project[] = [
+    {
+        id: "foodland",
+        title: "Foodland",
+        icon: <FaUtensils className="text-2xl" />,
+        tech: ["Next.js", "Tailwind CSS", "API"],
+        link: "https://foodland.digitalcare.site",
+        gradient: "from-orange-500 to-red-500",
+        screenshot: "/images/portfolio/foodland.png",
+    },
     {
         id: "barguna-housing",
         title: "Barguna Housing",
@@ -69,6 +78,24 @@ const projects: Project[] = [
         link: "https://buildbarguna.vercel.app",
         gradient: "from-green-500 to-emerald-500",
         screenshot: "/images/portfolio/build-barguna.webp",
+    },
+    {
+        id: "ozzyl",
+        title: "Ozzyl",
+        icon: <FaRocket className="text-2xl" />,
+        tech: ["Next.js", "Tailwind CSS", "Cloudflare"],
+        link: "https://ozzyl.com",
+        gradient: "from-purple-500 to-indigo-500",
+        screenshot: "/images/portfolio/ozzyl.png",
+    },
+    {
+        id: "iftar-plan",
+        title: "Iftar Plan",
+        icon: <FaMoon className="text-2xl" />,
+        tech: ["Next.js", "Tailwind CSS", "API"],
+        link: "https://iftarplan.vercel.app",
+        gradient: "from-orange-500 to-amber-500",
+        screenshot: "/images/portfolio/iftar-plan.png",
     },
 ];
 

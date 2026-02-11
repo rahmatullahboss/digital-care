@@ -218,6 +218,11 @@
     "viewLive": "View Live",
     "moreProjects": "More projects coming soon...",
     "projects": {
+      "foodland": {
+        "description": "Online food ordering and delivery platform with delicious recipes.",
+        "type": "Food Delivery",
+        "features": ["Online Ordering", "Real-time Tracking", "Recipe Blog"]
+      },
       "barguna-housing": {
         "description": "Complete real estate platform for land, house rentals, hotel booking, and commercial properties in the Barguna region.",
         "type": "Real Estate",
@@ -247,6 +252,16 @@
         "description": "A community-driven co-operative website designed to empower the youth of Barguna through self-employment, skills training, and collective investment.",
         "type": "Co-operative Platform",
         "features": ["Membership System", "Skills Training", "Co-investment"]
+      },
+      "ozzyl": {
+        "description": "The ultimate AI-powered website builder. Create stunning websites in minutes with drag-and-drop simplicity.",
+        "type": "SaaS / Website Builder",
+        "features": ["AI Website Builder", "Drag & Drop", "E-commerce"]
+      },
+      "iftar-plan": {
+        "description": "Ramadan calendar and Iftar timing scheduler. Plan your holy month with accurate prayer times and reminders.",
+        "type": "Utility / Religious",
+        "features": ["Prayer Times", "Iftar/Sehri Schedule", "Location Based"]
       }
     }
   },
